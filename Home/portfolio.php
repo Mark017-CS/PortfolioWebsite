@@ -120,8 +120,10 @@ $user_data = mysqli_fetch_array($run);
 
           ?>
 
-        <li><a class="nav-link" href="../login.php" style="display: inline-block; padding: 0.7rem 1rem; background: #1db954;
-                    border-radius: 2rem; box-shadow: 0 0 .5rem #1db954; font-size: .5rem; margin-left: 10px; color: var(--second-bg-color); letter-spacing: 0.05rem;font-weight: 500; transition: 0.5s ease;">Login</a></li>
+          <li><a class="nav-link" href="../login.php"
+              style="display: inline-block; padding: 0.7rem 1rem; background: #1db954;
+                    border-radius: 2rem; box-shadow: 0 0 .5rem #1db954; font-size: .5rem; margin-left: 10px; color: var(--second-bg-color); letter-spacing: 0.05rem;font-weight: 500; transition: 0.5s ease;">Login</a>
+          </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -595,48 +597,53 @@ $user_data = mysqli_fetch_array($run);
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="icon-box">
             <div class="icon"><i class="bx bxl-dribbble"></i></div>
-            <h4><a href="">Service 1</a></h4>
-            <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            <h4><a href="">Digital Art</a></h4>
+            <p>Utilizing digital tools, software, and techniques to create artwork, including digital painting, graphic
+              design, and illustration.</p>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
           <div class="icon-box">
             <div class="icon"><i class="bx bx-file"></i></div>
-            <h4><a href="">Service 2</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+            <h4><a href="">Drawing</a></h4>
+            <p>The ability to accurately represent objects, people, or scenes using lines, shapes, and shading.</p>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
           <div class="icon-box">
             <div class="icon"><i class="bx bx-tachometer"></i></div>
-            <h4><a href="">Service 3</a></h4>
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+            <h4><a href="">Composition</a></h4>
+            <p>The arrangement and organization of visual elements within a piece to create a harmonious and visually
+              pleasing result.</p>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
           <div class="icon-box">
             <div class="icon"><i class="bx bx-world"></i></div>
-            <h4><a href="">Service 4</a></h4>
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+            <h4><a href="">Color theory</a></h4>
+            <p>Understanding the principles of color mixing, color harmony, and color psychology to effectively use and
+              manipulate colors in artwork.</p>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
           <div class="icon-box">
             <div class="icon"><i class="bx bx-slideshow"></i></div>
-            <h4><a href="">Service 5</a></h4>
-            <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+            <h4><a href="">Sculpting</a></h4>
+            <p>Working with various materials like clay, stone, or metal to create three-dimensional forms or
+              sculptures.</p>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
           <div class="icon-box">
             <div class="icon"><i class="bx bx-arch"></i></div>
-            <h4><a href="">Service 6</a></h4>
-            <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+            <h4><a href="">Printmaking</a></h4>
+            <p>Techniques like relief printing, intaglio, lithography, and screen printing, which involve creating
+              images by transferring ink onto paper or other surfaces.</p>
           </div>
         </div>
 
