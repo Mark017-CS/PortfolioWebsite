@@ -153,8 +153,9 @@ section {
 }
 
 .home-img img {
-  width: 24vw;
-  margin-right: 8rem;
+  width: 30vw;
+  margin-right: 3rem;
+  height: 600px;
 }
 
 .homexiao-img img {
@@ -586,11 +587,15 @@ span {
   .home-img {
     margin-right: 0;
     margin-bottom: 2rem; /* Reduce the margin for smaller screens */
+    justify-content: center;
+    align-items: center;
   }
 
   .home-img img {
     width: 70%;
     max-width: 300px; /* Set a maximum width for the image */
+    justify-content: center;
+    align-items: center;
   }
 
   .home-content h3 {
