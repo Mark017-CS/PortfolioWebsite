@@ -39,13 +39,14 @@ if (isset($_POST['login'])) {
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
+
 <body style="background-color: #000000;" class="hold-transition login-page">
-  <div class="login-box">
+  <div class="login-box" >
     <div class="login-logo">
       <a href="Home/home.html"><b style="color: #1DB954;">Art </b><b style="color: #FFF;">Abode</b></a>
     </div>
     <!-- /.login-logo -->
-    <div class="card">
+    <div class="card">   
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to manage your PORTFOLIO</p>
 
