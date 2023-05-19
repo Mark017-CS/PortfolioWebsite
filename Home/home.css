@@ -196,7 +196,7 @@ span {
   height: 4rem;
   background: transparent;
   border: 0.2rem solid var(--main-color);
-  border-radius: 50%;
+  border-radius: 5v0%;
   font-size: 2rem;
   color: var(--main-color);
   margin: 3rem 1.5rem 3rem 0;
@@ -606,3 +606,4 @@ span {
     font-size: 4rem; /* Adjust the font size as desired */
   }
 }
+
