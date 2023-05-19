@@ -663,9 +663,9 @@ $user_data = mysqli_fetch_array($run);
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
+            <li data-filter=".filter-app">Line Art</li>
+            <li data-filter=".filter-card">Sculpture</li>
+            <li data-filter=".filter-web">Painting</li>
           </ul>
         </div>
       </div>
