@@ -592,8 +592,8 @@ span {
   }
 
   .home-img img {
-    width: 70%;
-    max-width: 300px; /* Set a maximum width for the image */
+    width: 100%;
+    max-width: 100%; /* Set a maximum width for the image */
     justify-content: center;
     align-items: center;
   }
