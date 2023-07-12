@@ -1,20 +1,39 @@
 <?php
 require('include/db.php');
+
+// Check if the user clicked the login button
 if (isset($_POST['login'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
+
+  // Check if the email and password are valid
   $query = "SELECT * FROM admin WHERE email='$email' && password='$password'";
   $run = mysqli_query($db, $query);
   $data = mysqli_fetch_array($run);
+
   if (count($data) > 0) {
+    // Login successful
     $_SESSION['isUserLoggedIn'] = true;
     $_SESSION['emailId'] = $_POST['email'];
+
+    // Check if "Remember Me" checkbox is selected
+    if (isset($_POST['remember'])) {
+      // Set cookies for email and password
+      setcookie('email', $_POST['email'], time() + (86400 * 30), '/');
+      setcookie('password', $_POST['password'], time() + (86400 * 30), '/');
+    } else {
+      // Clear cookies for email and password
+      setcookie('email', '', time() - 3600, '/');
+      setcookie('password', '', time() - 3600, '/');
+    }
+
     echo "<script>window.location.href = 'index.php';</script>";
   } else {
-    echo "<script>alert('Incorrect email id or password !')</script>";
+    echo "<script>alert('Incorrect email id or password!')</script>";
   }
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -37,22 +56,23 @@ if (isset($_POST['login'])) {
   <link rel="stylesheet" href="./admin/dist/css/admin.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</style>
 </head>
 
-
-<body style="background-color: #000000;" class="hold-transition login-page">
-  <div class="login-box" >
+<body style="background-image: url('images/GGB.jpg'); background-size: cover; background-position: center;" class="hold-transition login-page">
+  <div class="login-box">
     <div class="login-logo">
-      <a href="Home/home.html"><b style="color: #1DB954;">Art </b><b style="color: #FFF;">Abode</b></a>
+      <a href="Home/home.php"><b style="color: #1DB954;">Art</b><b style="color: #FFF;">Abode</b></a>
     </div>
     <!-- /.login-logo -->
-    <div class="card">   
+    <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to manage your PORTFOLIO</p>
 
         <form method="post">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" name="email" placeholder="Email" required>
+            <input type="email" class="form-control" name="email" placeholder="Email" required
+              value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -60,17 +80,22 @@ if (isset($_POST['login'])) {
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" placeholder="Password" required>
+            <input type="password" class="form-control" name="password" placeholder="Password" required
+              value="<?php echo isset($_COOKIE['password']) ? $_COOKIE['password'] : ''; ?>">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
               </div>
             </div>
           </div>
+          <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="showPassword">
+            <label class="form-check-label" for="showPassword">Show Password</label>
+          </div>
           <div class="row">
             <div class="col-8">
               <div class="icheck-primary">
-                <input type="checkbox" id="remember">
+                <input type="checkbox" id="remember" name="remember" <?php echo isset($_COOKIE['email']) ? 'checked' : ''; ?>>
                 <label for="remember">
                   Remember Me
                 </label>
@@ -84,15 +109,13 @@ if (isset($_POST['login'])) {
           </div>
         </form>
 
-
         <!-- /.social-auth-links -->
         <p class="mb-1">
-          <a href="./admin/forgot-password.html">I forgot my password</a>
+          <a href="forgot-password.php">I forgot my password</a>
         </p>
         <p class="mb-0">
-          <a href="./admin/register.html" class="text-center">Register</a>
+          <a href="register.php" class="text-center">Register</a>
         </p>
-
       </div>
       <!-- /.login-card-body -->
     </div>
@@ -105,7 +128,18 @@ if (isset($_POST['login'])) {
   <script src=".admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Admin App -->
   <script src=".admin/dist/js/adminlte.min.js"></script>
+  <script>
+    var passwordInput = document.querySelector('input[name="password"]');
+    var showPasswordCheckbox = document.getElementById('showPassword');
 
+    showPasswordCheckbox.addEventListener('change', function () {
+      if (this.checked) {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    });
+  </script>
 </body>
 
 </html>
