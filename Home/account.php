@@ -2,12 +2,38 @@
 require('../include/db.php');
 if (!isset($_SESSION['isUserLoggedIn'])) {
   echo "<script>window.location.href='login.php';</script>";
-
+  exit;
 }
-$query = "SELECT * FROM home,section_control,social_media,about,contact,site_background,seo,admin";
+
+$admin_id = $_SESSION['admin_id']; // Assuming the admin_id is stored in the session
+
+// Retrieve data for the specific user based on admin_id
+$query = "SELECT * FROM admin 
+          LEFT JOIN home ON admin.admin_id = home.admin_id 
+          LEFT JOIN section_control ON admin.admin_id = section_control.admin_id 
+          LEFT JOIN social_media ON admin.admin_id = social_media.admin_id 
+          LEFT JOIN about ON admin.admin_id = about.admin_id 
+          LEFT JOIN contact ON admin.admin_id = contact.admin_id 
+          LEFT JOIN site_background ON admin.admin_id = site_background.admin_id 
+          LEFT JOIN seo ON admin.admin_id = seo.admin_id 
+          LEFT JOIN resume ON admin.admin_id = resume.admin_id
+          LEFT JOIN portfolio ON admin.admin_id = portfolio.admin_id
+          WHERE admin.admin_id = $admin_id";
+
 $run = mysqli_query($db, $query);
+if (!$run) {
+  echo "Error executing query: " . mysqli_error($db);
+  exit;
+}
+
 $user_data = mysqli_fetch_array($run);
+if (!$user_data) {
+  echo "Error fetching user data: " . mysqli_error($db);
+  exit;
+}
 ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -21,19 +47,19 @@ $user_data = mysqli_fetch_array($run);
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="../admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/admin.min.css">
+  <link rel="stylesheet" href="../admin/dist/css/admin.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="../admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../admin/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="../admin/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -48,17 +74,11 @@ $user_data = mysqli_fetch_array($run);
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-
       </ul>
-
-
-
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
-
         <!-- Notifications Dropdown Menu -->
-
         <li class="nav-item">
           <a class="nav-link" href="../logout.php">
             Logout
@@ -76,7 +96,6 @@ $user_data = mysqli_fetch_array($run);
           style="opacity: .8">
         <span class="brand-text font-weight-light">Account Panel</span>
       </a>
-
       <!-- Sidebar -->
       <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -84,120 +103,89 @@ $user_data = mysqli_fetch_array($run);
             <img src="../images/<?= $user_data['admin_profile'] ?>" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="../index.php" class="d-block">
+            <a href="../Home/portfolio.php?admin_id=<?= $admin_id ?>" class="d-block">
               <?= $user_data['fullname'] ?>
             </a>
           </div>
         </div>
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item menu-open">
               <a href="account.php" class="nav-link">
                 <i class="fa fa-th-large" aria-hidden="true"></i>
-
                 <p>
                   Section Control
                 </p>
               </a>
-
             </li>
             <li class="nav-item menu-open">
               <a href="account.php?homesetting=true" class="nav-link">
                 <i class="fa fa-home" aria-hidden="true"></i>
-
-
-                <p>
+               <p>
                   Home Setting
                 </p>
               </a>
-
             </li>
             <li class="nav-item menu-open">
               <a href="account.php?aboutsetting=true" class="nav-link">
                 <i class="fa fa-question-circle" aria-hidden="true"></i>
-
-
                 <p>
                   About Setting
                 </p>
               </a>
-
             </li>
             <li class="nav-item menu-open">
               <a href="account.php?resumesetting=true" class="nav-link">
                 <i class="fa fa-briefcase" aria-hidden="true"></i>
-
-
                 <p>
                   Resume Setting
                 </p>
-              </a>
-
+             </a>
             </li>
             <li class="nav-item menu-open">
               <a href="account.php?portfoliosetting=true" class="nav-link">
                 <i class="fa fa-desktop" aria-hidden="true"></i>
-
-
                 <p>
                   Artworks Setting
                 </p>
               </a>
-
             </li>
             <li class="nav-item menu-open">
               <a href="account.php" class="nav-link">
                 <i class="fa fa-th-large" aria-hidden="true"></i>
-
                 <p>
                   Service Setting
                 </p>
               </a>
-
             </li>
             <li class="nav-item menu-open">
               <a href="account.php?contactsetting=true" class="nav-link">
                 <i class="fa fa-phone" aria-hidden="true"></i>
-
-
-
                 <p>
                   Contact Setting
                 </p>
               </a>
-
             </li>
             <li class="nav-item menu-open">
               <a href="account.php?changebackground=true" class="nav-link">
                 <i class="fa fa-cog" aria-hidden="true"></i>
-
-
-
                 <p>
                   Change Background
                 </p>
               </a>
-
             </li>
             <li class="nav-item menu-open">
               <a href="account.php?seosetting=true" class="nav-link">
                 <i class="fa fa-search" aria-hidden="true"></i>
-
-
-
                 <p>
                   SEO Setting
                 </p>
               </a>
-
             </li>
             <li class="nav-item menu-open">
               <a href="account.php?accountsetting=true" class="nav-link">
                 <i class="fa fa-user" aria-hidden="true"></i>
-
-
                 <p>
                   Account Setting
                 </p>
@@ -217,13 +205,11 @@ $user_data = mysqli_fetch_array($run);
       <!-- Content Header (Page header) -->
       <br>
       <!-- /.content-header -->
-
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
-
-          <!-- /.row -->
+         <!-- /.row -->
           <!-- Main row -->
           <div class="row">
             <?php
@@ -252,7 +238,6 @@ $user_data = mysqli_fetch_array($run);
                       if ($user_data['showicons']) {
                         echo "checked";
                       }
-
                       ?>>
                       <label class="form-check-label" for="exampleCheck1">Show Social Icons</label>
                     </div>
@@ -265,7 +250,6 @@ $user_data = mysqli_fetch_array($run);
                 </form>
               </div>
               <?php
-
             } else if (isset($_GET['aboutsetting'])) {
               ?>
                 <div class="card card-primary col-lg-12">
@@ -296,17 +280,13 @@ $user_data = mysqli_fetch_array($run);
                         <label for="exampleInputPassword1">About Description</label><br>
                         <textarea cols="50" name="aboutdesc"><?= $user_data['about_desc'] ?></textarea>
                       </div>
-
-
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                       <button type="submit" name="update-about" class="btn btn-primary">Save Changes</button>
                     </div>
                   </form>
                 </div>
-
                 <div class="card card-primary col-lg-12">
                   <div class="card-header">
                     <h3 class="card-title">Manage Skills</h3>
@@ -316,8 +296,6 @@ $user_data = mysqli_fetch_array($run);
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Skills</h3>
-
-
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
@@ -355,21 +333,17 @@ $user_data = mysqli_fetch_array($run);
                               </td>
                               <td>
                                 <a href="../include/deleteskill.php?id=<?= $skill['id'] ?>">Delete</a>
-
                               </td>
                             </tr>
                             <?php
                             $c++;
                           }
                           ?>
-
-
                         </tbody>
                       </table>
                     </div>
                     <!-- /.card-body -->
                   </div>
-
                   <form role="form" action="../include/admin.php" method="post">
                     <div class="card-body">
                       <div class="form-group col-6">
@@ -381,18 +355,13 @@ $user_data = mysqli_fetch_array($run);
                         <input type="range" min="1" max="100" class="form-control" name="skilllevel"
                           id="exampleInputEmail1">
                       </div>
-
-
-
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                       <button type="submit" name="add-skill" class="btn btn-primary">Add Skill</button>
                     </div>
                   </form>
                 </div>
-
                 <div class="card card-primary col-lg-12">
                   <div class="card-header">
                     <h3 class="card-title">Manage Personal Info</h3>
@@ -402,8 +371,6 @@ $user_data = mysqli_fetch_array($run);
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Personal Info</h3>
-
-
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
@@ -412,9 +379,7 @@ $user_data = mysqli_fetch_array($run);
                           <tr>
                             <th style="width: 10px">#</th>
                             <th>Label</th>
-
                             <th>Value</th>
-
                             <th style="width: 40px">Action</th>
                           </tr>
                         </thead>
@@ -435,25 +400,19 @@ $user_data = mysqli_fetch_array($run);
                               <td>
                               <?= $pi['value'] ?>
                               </td>
-
-
                               <td>
                                 <a href="../include/deletepi.php?id=<?= $pi['id'] ?>">Delete</a>
-
                               </td>
                             </tr>
                             <?php
                             $c++;
                           }
                           ?>
-
-
                         </tbody>
                       </table>
                     </div>
                     <!-- /.card-body -->
                   </div>
-
                   <form role="form" action="../include/admin.php" method="post">
                     <div class="card-body">
                       <div class="form-group col-6">
@@ -464,22 +423,17 @@ $user_data = mysqli_fetch_array($run);
                         <label for="exampleInputEmail1">Label Value</label>
                         <input type="text" class="form-control" name="value" id="exampleInputEmail1">
                       </div>
-
-
-
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                       <button type="submit" name="add-pi" class="btn btn-primary">Add Personal Info</button>
                     </div>
                   </form>
                 </div>
-              <?php
+                <?php
             } elseif (isset($_GET['resumesetting'])) {
               ?>
-
-                <div class="card card-primary col-lg-12">
+               <div class="card card-primary col-lg-12">
                   <div class="card-header">
                     <h3 class="card-title">Manage Resume</h3>
                   </div>
@@ -488,8 +442,6 @@ $user_data = mysqli_fetch_array($run);
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Education & Work</h3>
-
-
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
@@ -507,7 +459,7 @@ $user_data = mysqli_fetch_array($run);
                         </thead>
                         <tbody>
                           <?php
-                          $q = "SELECT * from resume";
+                          $q = "SELECT * from resume WHERE admin_id = $admin_id";
                           $r = mysqli_query($db, $q);
                           $c = 1;
                           while ($pi = mysqli_fetch_array($r)) {
@@ -531,11 +483,6 @@ $user_data = mysqli_fetch_array($run);
                               <td>
                               <?= $pi['about_exp'] ?>
                               </td>
-
-
-
-
-
                               <td>
                                 <a href="../include/deleteresume.php?id=<?= $pi['id'] ?>">Delete</a>
 
@@ -545,15 +492,12 @@ $user_data = mysqli_fetch_array($run);
                             $c++;
                           }
                           ?>
-
-
                         </tbody>
                       </table>
                     </div>
                     <!-- /.card-body -->
                   </div>
-
-                  <form role="form" action="../include/admin.php" method="post">
+                <form role="form" action="../include/admin.php" method="post">
                     <div class="card-body">
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Select Type</label><br>
@@ -561,7 +505,6 @@ $user_data = mysqli_fetch_array($run);
                           <option value="e">Education</option>
                           <option value="p">Professional</option>
                         </select>
-
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Title</label>
@@ -580,17 +523,14 @@ $user_data = mysqli_fetch_array($run);
                         <label for="exampleInputEmail1">About</label>
                         <input type="text" class="form-control" name="about" id="exampleInputEmail1">
                       </div>
-
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                       <button type="submit" name="add-resume" class="btn btn-primary">Add Details</button>
                     </div>
                   </form>
                 </div>
-              <?php
-
+                <?php
             } elseif (isset($_GET['portfoliosetting'])) {
               ?>
                 <div class="card card-primary col-lg-12">
@@ -602,8 +542,6 @@ $user_data = mysqli_fetch_array($run);
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Your Projects</h3>
-
-
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
@@ -620,7 +558,7 @@ $user_data = mysqli_fetch_array($run);
                         </thead>
                         <tbody>
                           <?php
-                          $q = "SELECT * from portfolio";
+                          $q = "SELECT * from portfolio WHERE admin_id = $admin_id";
                           $r = mysqli_query($db, $q);
                           $c = 1;
                           while ($pi = mysqli_fetch_array($r)) {
@@ -637,29 +575,19 @@ $user_data = mysqli_fetch_array($run);
                               <?= $pi['project_name'] ?>
                               </td>
                               <td><a href="<?= $pi['project_link'] ?>" target="_blank">Open Link</a></td>
-
-
-
-
-
-
                               <td>
                                 <a href="../include/deleteportfolio.php?id=<?= $pi['id'] ?>">Delete</a>
-
                               </td>
                             </tr>
                             <?php
                             $c++;
                           }
                           ?>
-
-
                         </tbody>
                       </table>
                     </div>
                     <!-- /.card-body -->
                   </div>
-
                   <form role="form" action="../include/admin.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                       <div class="form-group col-6">
@@ -673,7 +601,6 @@ $user_data = mysqli_fetch_array($run);
                           <option value="VIDEO">LINE ART</option>
                           <option value="ANIMATION">MIXED MEDIA</option>
                         </select>
-
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Project Image</label>
@@ -687,18 +614,14 @@ $user_data = mysqli_fetch_array($run);
                         <label for="exampleInputEmail1">Project Link</label>
                         <input type="text" class="form-control" name="project_link" id="exampleInputEmail1">
                       </div>
-
-
-
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                       <button type="submit" name="add-project" class="btn btn-primary">Add Project</button>
                     </div>
                   </form>
                 </div>
-              <?php
+                <?php
             } elseif (isset($_GET['contactsetting'])) {
               ?>
                 <div class="card card-primary col-lg-12">
@@ -719,23 +642,18 @@ $user_data = mysqli_fetch_array($run);
                         <input type="text" class="form-control" name="email" value="<?= $user_data['email'] ?>"
                           id="exampleInputPassword1" placeholder="Enter Email">
                       </div>
-
                       <div class="form-group">
                         <label for="exampleInputPassword1">Mobile No</label>
                         <input type="text" class="form-control" name="mobile" value="<?= $user_data['mobile'] ?>"
                           id="exampleInputPassword1" placeholder="Enter mobile no">
                       </div>
-
-
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                       <button type="submit" name="update-contact" class="btn btn-primary">Save Changes</button>
                     </div>
                   </form>
                 </div>
-
                 <div class="card card-primary col-lg-12">
                   <div class="card-header">
                     <h3 class="card-title">Update Social Media Details</h3>
@@ -754,36 +672,29 @@ $user_data = mysqli_fetch_array($run);
                         <input type="text" class="form-control" name="facebook" value="<?= $user_data['facebook'] ?>"
                           id="exampleInputPassword1" placeholder="Enter Username">
                       </div>
-
                       <div class="form-group">
                         <label for="exampleInputPassword1">Instagram</label>
                         <input type="text" class="form-control" name="instagram" value="<?= $user_data['instagram'] ?>"
                           id="exampleInputPassword1" placeholder="Enter username">
                       </div>
-
                       <div class="form-group">
                         <label for="exampleInputPassword1">Skype</label>
                         <input type="text" class="form-control" name="skype" value="<?= $user_data['skype'] ?>"
                           id="exampleInputPassword1" placeholder="Enter username">
                       </div>
-
                       <div class="form-group">
                         <label for="exampleInputPassword1">Linkedin</label>
                         <input type="text" class="form-control" name="linkedin" value="<?= $user_data['linkedin'] ?>"
                           id="exampleInputPassword1" placeholder="Enter username">
                       </div>
-
-
-
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                       <button type="submit" name="update-socialmedia" class="btn btn-primary">Save Changes</button>
                     </div>
                   </form>
                 </div>
-              <?php
+                <?php
             } elseif (isset($_GET['changebackground'])) {
               ?>
                 <div class="card card-primary col-lg-12">
@@ -799,22 +710,16 @@ $user_data = mysqli_fetch_array($run);
                         <label for="exampleInputEmail1">Choose Background Image</label>
                         <input type="file" class="form-control" name="background">
                       </div>
-
-
-
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                       <button type="submit" name="update-background" class="btn btn-primary">Update Background</button>
                     </div>
                   </form>
                 </div>
-              <?php
+                <?php
             } elseif (isset($_GET['seosetting'])) {
               ?>
-
-
                 <div class="card card-primary col-lg-12">
                   <div class="card-header">
                     <h3 class="card-title">Update SEO</h3>
@@ -828,7 +733,6 @@ $user_data = mysqli_fetch_array($run);
                         <label for="exampleInputEmail1">Siteicon</label>
                         <input type="file" class="form-control" name="siteicon">
                       </div>
-
                       <div class="form-group">
                         <label for="exampleInputEmail1">Page Title</label>
                         <input type="text" class="form-control" name="page_title" value="<?= $user_data['page_title'] ?>">
@@ -841,20 +745,14 @@ $user_data = mysqli_fetch_array($run);
                         <label for="exampleInputEmail1">Description</label>
                         <input type="text" class="form-control" name="description" value="<?= $user_data['description'] ?>">
                       </div>
-
-
-
-                    </div>
+                   </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                       <button type="submit" name="update-seo" class="btn btn-primary">Save Changes</button>
                     </div>
                   </form>
                 </div>
-
-
-              <?php
+                <?php
             } elseif (isset($_GET['accountsetting'])) {
               ?>
                 <div class="card card-primary col-lg-12">
@@ -870,7 +768,6 @@ $user_data = mysqli_fetch_array($run);
                         <label for="exampleInputEmail1">Profile Pic</label>
                         <input type="file" class="form-control" name="profilepic">
                       </div>
-
                       <div class="form-group">
                         <label for="exampleInputEmail1">Full Name</label>
                         <input type="text" class="form-control" name="fullname" value="<?= $user_data['fullname'] ?>">
@@ -883,40 +780,30 @@ $user_data = mysqli_fetch_array($run);
                         <label for="exampleInputEmail1">Password</label>
                         <input type="text" class="form-control" name="password" value="<?= $user_data['password'] ?>">
                       </div>
-
-
-
-                    </div>
+                   </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                       <button type="submit" name="update-account" class="btn btn-primary">Update Account</button>
                     </div>
                   </form>
                 </div>
-
-
-              <?php
+               <?php
             } else {
               ?>
-
                 <form method="post" action="../include/admin.php">
                   <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                     <input type="checkbox" name="home" class="custom-control-input" id="customSwitch1" <?php
                     if ($user_data['home_section']) {
                       echo "checked";
                     }
-
                     ?>>
                     <label class="custom-control-label" for="customSwitch1">Home Section</label>
                   </div>
-
                   <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                     <input type="checkbox" name="about" class="custom-control-input" id="customSwitch2" <?php
                     if ($user_data['about_section']) {
                       echo "checked";
                     }
-
                     ?>>
                     <label class="custom-control-label" for="customSwitch2">About Section</label>
                   </div>
@@ -926,17 +813,14 @@ $user_data = mysqli_fetch_array($run);
                     if ($user_data['resume_section']) {
                       echo "checked";
                     }
-
-                    ?>>
+                   ?>>
                     <label class="custom-control-label" for="customSwitch3">Resume Section</label>
                   </div>
-
                   <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                     <input type="checkbox" name="portfolio" class="custom-control-input" id="customSwitch4" <?php
                     if ($user_data['portfolio_section']) {
                       echo "checked";
                     }
-
                     ?>>
                     <label class="custom-control-label" for="customSwitch4">Portfolio Section</label>
                   </div>
@@ -946,7 +830,6 @@ $user_data = mysqli_fetch_array($run);
                     if ($user_data['services_section']) {
                       echo "checked";
                     }
-
                     ?>>
                     <label class="custom-control-label" for="customSwitch6">Service Section</label>
                   </div>
@@ -955,15 +838,13 @@ $user_data = mysqli_fetch_array($run);
                     if ($user_data['contact_section']) {
                       echo "checked";
                     }
-
                     ?>>
                     <label class="custom-control-label" for="customSwitch5">Contact Section</label>
                   </div>
 
                   <input type="submit" class="btn btn-sm btn-primary" name="update-section" value="Save Changes">
-
                 </form>
-              <?php
+                <?php
             }
             ?>
           </div>
@@ -990,39 +871,39 @@ $user_data = mysqli_fetch_array($run);
   <!-- ./wrapper -->
 
   <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="../admin/plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
-  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script src="../admin/plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>
   <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
+  <script src="../admin/plugins/chart.js/Chart.min.js"></script>
   <!-- Sparkline -->
-  <script src="plugins/sparklines/sparkline.js"></script>
+  <script src="../admin/plugins/sparklines/sparkline.js"></script>
   <!-- JQVMap -->
-  <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <script src="../admin/plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="../admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
   <!-- jQuery Knob Chart -->
-  <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+  <script src="../admin/plugins/jquery-knob/jquery.knob.min.js"></script>
   <!-- daterangepicker -->
-  <script src="plugins/moment/moment.min.js"></script>
-  <script src="plugins/daterangepicker/daterangepicker.js"></script>
+  <script src="../admin/plugins/moment/moment.min.js"></script>
+  <script src="../admin/plugins/daterangepicker/daterangepicker.js"></script>
   <!-- Tempusdominus Bootstrap 4 -->
-  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="../admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
   <!-- Summernote -->
-  <script src="plugins/summernote/summernote-bs4.min.js"></script>
+  <script src="../admin/plugins/summernote/summernote-bs4.min.js"></script>
   <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="../admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.js"></script>
+  <script src="../admin/dist/js/adminlte.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="dist/js/pages/dashboard.js"></script>
+  <script src="../admin/dist/js/pages/dashboard.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
+  <script src="../admin/dist/js/demo.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

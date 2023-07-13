@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
   $confirmPassword = $_POST["confirmPassword"];
 
   // File upload handling
-  $targetDir = "uploads/";
+  $targetDir = "images/";
   $fileName = $_FILES["adminProfile"]["name"];
   $targetFile = $targetDir . $fileName;
   $uploadOk = 1;

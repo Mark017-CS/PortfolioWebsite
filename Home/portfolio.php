@@ -1,9 +1,66 @@
 <?php
 require('../include/db.php');
-$query = "SELECT * FROM home,section_control,social_media,about,contact,site_background,seo";
-$run = mysqli_query($db, $query);
-$user_data = mysqli_fetch_array($run);
+
+// Check if the admin_id parameter is provided
+if (isset($_GET['admin_id'])) {
+  // Retrieve the admin_id from the URL parameter
+  $admin_id = $_GET['admin_id'];
+
+  // Retrieve the portfolio data from the 'portfolio' table
+  $portfolio_query = "SELECT * FROM portfolio WHERE admin_id = $admin_id";
+  $portfolio_run = mysqli_query($db, $portfolio_query);
+  $user_data['portfolio'] = mysqli_fetch_assoc($portfolio_run);
+
+  // Retrieve data from other tables
+  $admin_query = "SELECT * FROM admin WHERE admin_id = $admin_id";
+  $admin_run = mysqli_query($db, $admin_query);
+  $user_data['admin'] = mysqli_fetch_assoc($admin_run);
+
+  $home_query = "SELECT * FROM home WHERE admin_id = $admin_id";
+  $home_run = mysqli_query($db, $home_query);
+  $user_data['home'] = mysqli_fetch_assoc($home_run);
+
+  $section_control_query = "SELECT * FROM section_control WHERE admin_id = $admin_id";
+  $section_control_run = mysqli_query($db, $section_control_query);
+  $user_data['section_control'] = mysqli_fetch_assoc($section_control_run);
+
+  $social_media_query = "SELECT * FROM social_media WHERE admin_id = $admin_id";
+  $social_media_run = mysqli_query($db, $social_media_query);
+  $user_data['social_media'] = mysqli_fetch_assoc($social_media_run);
+
+  $about_query = "SELECT * FROM about WHERE admin_id = $admin_id";
+  $about_run = mysqli_query($db, $about_query);
+  $user_data['about'] = mysqli_fetch_assoc($about_run);
+
+  $contact_query = "SELECT * FROM contact WHERE admin_id = $admin_id";
+  $contact_run = mysqli_query($db, $contact_query);
+  $user_data['contact'] = mysqli_fetch_assoc($contact_run);
+
+  $site_background_query = "SELECT * FROM site_background WHERE admin_id = $admin_id";
+  $site_background_run = mysqli_query($db, $site_background_query);
+  $user_data['site_background'] = mysqli_fetch_assoc($site_background_run);
+
+  $seo_query = "SELECT * FROM seo WHERE admin_id = $admin_id";
+  $seo_run = mysqli_query($db, $seo_query);
+  $user_data['seo'] = mysqli_fetch_assoc($seo_run);
+
+  // Retrieve the resume data from the 'resume' table
+  $resume_query = "SELECT * FROM resume WHERE admin_id = $admin_id";
+  $resume_run = mysqli_query($db, $resume_query);
+  $user_data['resume'] = mysqli_fetch_assoc($resume_run);
+}
+
+// Check if $user_data is set and not empty
+if (isset($user_data) && !empty($user_data)) {
+  // Extract individual data arrays from $user_data for easier access in HTML
+  extract($user_data);
+} else {
+  // Set default values if $user_data is not set or empty
+  $portfolio = $admin = $home = $section_control = $social_media = $about = $contact = $site_background = $seo = $resume = [];
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,14 +70,14 @@ $user_data = mysqli_fetch_array($run);
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>
-    <?= $user_data['title'] ?>
+    <?= $home['title'] ?>
   </title>
-  <meta content="<?= $user_data['description'] ?>" name="description">
-  <meta content="<?= $user_data['keywords'] ?>" name="keywords">
+  <meta content="<?= $seo['description'] ?>" name="description">
+  <meta content="<?= $seo['keywords'] ?>" name="keywords">
 
   <!-- Favicons -->
-  <link href="../images/<?= $user_data['siteicon'] ?>" rel="icon">
-  <link href="../images/<?= $user_data['siteicon'] ?>" rel="apple-touch-icon">
+  <link href="../images/<?= $seo['siteicon'] ?>" rel="icon">
+  <link href="../images/<?= $seo['siteicon'] ?>" rel="apple-touch-icon">
 
   <!-- box icons -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -58,7 +115,7 @@ $user_data = mysqli_fetch_array($run);
     bottom: 0;
     left: 0;
     z-index: -1;
-    background: url('../assets/img/<?= $user_data['background_img'] ?>') top right no-repeat;
+    background: url('../assets/img/<?= $site_background['background_img'] ?>') top right no-repeat;
     background-size: cover;
   }
 </style>
@@ -74,97 +131,74 @@ $user_data = mysqli_fetch_array($run);
         style=" display: flex; align-items: center; text-decoration: none; font-size: 1.5rem; color: var(--text-color); margin-top: -200px;margin-bottom: 160px; margin-left: -40px; font-style: italic; font-weight: 600; cursor: pointer;"><b
           style="color: #1DB954;">Art </b><b style="color: #FFF;">Abode</b></a>
       <h1><a href="portfolio.php">
-          <?= $user_data['title'] ?>
+          <?= isset($home['title']) ? $home['title'] : '' ?>
         </a></h1>
       <h2>
-        <?= $user_data['subtitle'] ?>
+        <?= isset($home['subtitle']) ? $home['subtitle'] : '' ?>
       </h2>
       <!-- navbar -->
       <nav id="navbar" class="navbar">
         <ul>
-          <?php
-          if ($user_data['home_section']) {
-            ?>
+          <?php if (isset($section_control['home_section']) && $section_control['home_section']) { ?>
             <li><a class="nav-link active" href="#header">Home</a></li>
-            <?php
-          }
-          if ($user_data['about_section']) {
-            ?>
+          <?php } ?>
+          <?php if (isset($section_control['about_section']) && $section_control['about_section']) { ?>
             <li><a class="nav-link" href="#about">About</a></li>
-            <?php
-          }
-          if ($user_data['resume_section']) {
-            ?>
+          <?php } ?>
+          <?php if (isset($section_control['resume_section']) && $section_control['resume_section']) { ?>
             <li><a class="nav-link" href="#resume">Resume</a></li>
-            <?php
-          }
-          if ($user_data['services_section']) {
-            ?>
+          <?php } ?>
+          <?php if (isset($section_control['services_section']) && $section_control['services_section']) { ?>
             <li><a class="nav-link" href="#services">Services</a></li>
-            <?php
-          }
-          if ($user_data['portfolio_section']) {
-            ?>
+          <?php } ?>
+          <?php if (isset($section_control['portfolio_section']) && $section_control['portfolio_section']) { ?>
             <li><a class="nav-link" href="#portfolio">Artworks</a></li>
-            <?php
-          }
-          if ($user_data['contact_section']) {
-            ?>
+          <?php } ?>
+          <?php if (isset($section_control['contact_section']) && $section_control['contact_section']) { ?>
             <li><a class="nav-link" href="#contact">Contact</a></li>
-            <?php
-          }
-          ?>
-          <?php
+          <?php } ?>
 
-          ?>
-
-          <li><a class="nav-link" href="../login.php"
-              style="display: inline-block; padding: 0.7rem 1rem; background: #1db954;
-                    border-radius: 2rem; box-shadow: 0 0 .5rem #1db954; font-size: .5rem; margin-left: 10px; color: var(--second-bg-color); letter-spacing: 0.05rem;font-weight: 500; transition: 0.5s ease;">Login</a>
+          <li><a class="nav-link" href="home.php"
+              style="display: inline-block; padding: 0.5rem .5rem; background: #1db954;
+                    border-radius: 2rem; box-shadow: 0 0 .5rem #1db954; font-size: .5rem;  color: var(--second-bg-color); transition: 0.5s ease;">Go Back
+              →</a>
           </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <?php if ($user_data['showicons']) { ?>
+      <?php if (isset($home['showicons']) && $home['showicons']) { ?>
         <div class="social-links">
 
-          <?php if ($user_data['twitter'] != '') { ?>
-            <a href="https://twitter.com/<?= $user_data['twitter'] ?>" class="twitter"><i class="bi bi-twitter"></i></a>
-            <?php
-          }
-          ?>
-          <?php if ($user_data['facebook'] != '') { ?>
-            <a href="https://facebook.com/<?= $user_data['facebook'] ?>" class="facebook"><i class="bi bi-facebook"></i></a>
-            <?php
-          }
-          ?>
-          <?php if ($user_data['instagram'] != '') { ?>
-            <a href="https://instagram.com/<?= $user_data['instagram'] ?>" class="instagram"><i
+          <?php if (isset($social_media['twitter']) && $social_media['twitter'] != '') { ?>
+            <a href="https://twitter.com/<?= $social_media['twitter'] ?>" class="twitter"><i class="bi bi-twitter"></i></a>
+          <?php } ?>
+
+          <?php if (isset($social_media['facebook']) && $social_media['facebook'] != '') { ?>
+            <a href="https://facebook.com/<?= $social_media['facebook'] ?>" class="facebook"><i
+                class="bi bi-facebook"></i></a>
+          <?php } ?>
+
+          <?php if (isset($social_media['instagram']) && $social_media['instagram'] != '') { ?>
+            <a href="https://instagram.com/<?= $social_media['instagram'] ?>" class="instagram"><i
                 class="bi bi-instagram"></i></a>
-            <?php
-          }
-          ?>
-          <?php if ($user_data['skype'] != '') { ?>
-            <a href="https://skype.com/<?= $user_data['skype'] ?>" class="google-plus"><i class="bi bi-skype"></i></a>
-            <?php
-          }
-          ?>
-          <?php if ($user_data['youtube'] != '') { ?>
-            <a href="https://youtube.com/<?= $user_data['youtube'] ?>" class="youtube"><i class="bi bi-youtube"></i></a>
-            <?php
-          }
-          ?>
-          <?php if ($user_data['linkedin'] != '') { ?>
-            <a href="https://linkedin.com/<?= $user_data['linkedin'] ?>" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            <?php
-          }
-          ?>
+          <?php } ?>
+
+          <?php if (isset($social_media['skype']) && $social_media['skype'] != '') { ?>
+            <a href="https://skype.com/<?= $social_media['skype'] ?>" class="google-plus"><i class="bi bi-skype"></i></a>
+          <?php } ?>
+
+          <?php if (isset($social_media['youtube']) && $social_media['youtube'] != '') { ?>
+            <a href="https://youtube.com/<?= $social_media['youtube'] ?>" class="youtube"><i class="bi bi-youtube"></i></a>
+          <?php } ?>
+
+          <?php if (isset($social_media['linkedin']) && $social_media['linkedin'] != '') { ?>
+            <a href="https://linkedin.com/<?= $social_media['linkedin'] ?>" class="linkedin"><i
+                class="bi bi-linkedin"></i></a>
+          <?php } ?>
 
         </div>
-        <?php
-      }
-      ?>
+      <?php } ?>
 
     </div>
   </header><!-- End Header -->
@@ -182,20 +216,20 @@ $user_data = mysqli_fetch_array($run);
 
       <div class="row">
         <div class="col-lg-4" data-aos="fade-right">
-          <img src="../images/<?= $user_data['profile_pic'] ?>" class="img-fluid" alt="">
+          <img src="../images/<?= $about['profile_pic'] ?>" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
           <h3>
-            <?= $user_data['about_title'] ?>
+            <?= $about['about_title'] ?>
           </h3>
           <p class="fst-italic">
-            <?= $user_data['about_subtitle'] ?>
+            <?= $about['about_subtitle'] ?>
           </p>
           <div class="row">
             <div class="col-lg-6">
               <ul>
                 <?php
-                $query2 = "SELECT * FROM personal_info LIMIT 5";
+                $query2 = "SELECT * FROM personal_info WHERE admin_id = $admin_id LIMIT 5";
                 $run2 = mysqli_query($db, $query2);
                 while ($personal_info = mysqli_fetch_array($run2)) {
                   ?>
@@ -208,11 +242,12 @@ $user_data = mysqli_fetch_array($run);
                 }
                 ?>
               </ul>
+
             </div>
             <div class="col-lg-6">
               <ul>
                 <?php
-                $query2 = "SELECT * FROM personal_info LIMIT 5, 5";
+                $query2 = "SELECT * FROM personal_info WHERE admin_id = $admin_id LIMIT 5, 5";
                 $run2 = mysqli_query($db, $query2);
                 while ($personal_info = mysqli_fetch_array($run2)) {
                   ?>
@@ -225,10 +260,11 @@ $user_data = mysqli_fetch_array($run);
                 }
                 ?>
               </ul>
+
             </div>
           </div>
           <p style="text-align: justify;">
-            <?= $user_data['about_desc'] ?>
+            <?= $about['about_desc'] ?>
           </p>
         </div>
       </div>
@@ -291,7 +327,7 @@ $user_data = mysqli_fetch_array($run);
 
         <div class="col-lg-12">
           <?php
-          $query3 = "SELECT * FROM skills";
+          $query3 = "SELECT * FROM skills WHERE admin_id = $admin_id";
           $run3 = mysqli_query($db, $query3);
           while ($skills = mysqli_fetch_array($run3)) {
             ?>
@@ -523,62 +559,54 @@ $user_data = mysqli_fetch_array($run);
 
           <h3 class="resume-title">Education</h3>
           <?php
-          $query4 = "SELECT * FROM resume";
+          $query4 = "SELECT * FROM resume WHERE admin_id = $admin_id AND (type = 'e' OR type = 'E' OR type = 'Education' OR type = 'education')";
           $run4 = mysqli_query($db, $query4);
           while ($resume = mysqli_fetch_array($run4)) {
-            if ($resume['type'] == 'e' or $resume['type'] == 'E' or $resume['type'] == 'Education' or $resume['type'] == 'education') {
-              ?>
-              <div class="resume-item">
-                <h4>
-                  <?= $resume['title'] ?>
-                </h4>
-                <h5>
-                  <?= $resume['time'] ?>
-                </h5>
-                <p><em>
-                    <?= $resume['org'] ?>
-                  </em></p>
-                <p>
-                  <?= $resume['about_exp'] ?>
-                </p>
-              </div>
-              <?php
-            }
+            ?>
+            <div class="resume-item">
+              <h4>
+                <?= $resume['title'] ?>
+              </h4>
+              <h5>
+                <?= $resume['time'] ?>
+              </h5>
+              <p><em>
+                  <?= $resume['org'] ?>
+                </em></p>
+              <p>
+                <?= $resume['about_exp'] ?>
+              </p>
+            </div>
+            <?php
           }
           ?>
         </div>
         <div class="col-lg-6">
-
           <h3 class="resume-title">Professional Experience</h3>
           <?php
-          $query4 = "SELECT * FROM resume";
+          $query4 = "SELECT * FROM resume WHERE admin_id = $admin_id AND (type = 'p' OR type = 'P' OR type = 'Professional' OR type = 'professional')";
           $run4 = mysqli_query($db, $query4);
           while ($resume = mysqli_fetch_array($run4)) {
-            if ($resume['type'] == 'p' or $resume['type'] == 'P' or $resume['type'] == 'Professional' or $resume['type'] == 'professional') {
-              ?>
-              <div class="resume-item">
-                <h4>
-                  <?= $resume['title'] ?>
-                </h4>
-                <h5>
-                  <?= $resume['time'] ?>
-                </h5>
-                <p><em>
-                    <?= $resume['org'] ?>
-                  </em></p>
-                <p>
-                  <?= $resume['about_exp'] ?>
-                </p>
-              </div>
-              <?php
-            }
+            ?>
+            <div class="resume-item">
+              <h4>
+                <?= $resume['title'] ?>
+              </h4>
+              <h5>
+                <?= $resume['time'] ?>
+              </h5>
+              <p><em>
+                  <?= $resume['org'] ?>
+                </em></p>
+              <p>
+                <?= $resume['about_exp'] ?>
+              </p>
+            </div>
+            <?php
           }
           ?>
-
         </div>
-
       </div>
-
     </div>
   </section><!-- End Resume Section -->
 
@@ -658,26 +686,28 @@ $user_data = mysqli_fetch_array($run);
         <h2>Artworks</h2>
         <p>My Works</p>
       </div>
-
       <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">Line Art</li>
-            <li data-filter=".filter-card">Sculpture</li>
-            <li data-filter=".filter-web">Painting</li>
+            <li data-filter=".filter-photography">Photography</li>
+            <li data-filter=".filter-drawing">Drawing</li>
+            <li data-filter=".filter-graphic-design">Graphic Design</li>
+            <li data-filter=".filter-mixed-media">Mixed Media</li>
+            <li data-filter=".filter-line-art">Line Art</li>
+            <li data-filter=".filter-sculpture">Sculpture</li>
+            <li data-filter=".filter-painting">Painting</li>
           </ul>
         </div>
       </div>
-
       <div class="row portfolio-container">
         <?php
-        $query5 = "SELECT * FROM portfolio";
+        $query5 = "SELECT * FROM portfolio WHERE admin_id = $admin_id";
         $run5 = mysqli_query($db, $query5);
         while ($portfolio = mysqli_fetch_array($run5)) {
-
           ?>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div
+            class="col-lg-4 col-md-6 portfolio-item <?= 'filter-' . strtolower(str_replace(' ', '-', $portfolio['project_type'])) ?>">
             <div class="portfolio-wrap">
               <img src="../images/<?= $portfolio['project_pic'] ?>" class="img-fluid portfolio-image" alt="">
               <div class="portfolio-info">
@@ -700,7 +730,6 @@ $user_data = mysqli_fetch_array($run);
         }
         ?>
       </div>
-
     </div>
   </section><!-- End Portfolio Section -->
 
@@ -720,7 +749,7 @@ $user_data = mysqli_fetch_array($run);
             <i class="bx bx-map"></i>
             <h3>My Address</h3>
             <p>
-              <?= $user_data['address'] ?>
+              <?= $contact['address'] ?>
             </p>
           </div>
         </div>
@@ -730,39 +759,40 @@ $user_data = mysqli_fetch_array($run);
             <i class="bx bx-share-alt"></i>
             <h3>Social Profiles</h3>
             <div class="social-links">
-              <?php if ($user_data['twitter'] != '') { ?>
-                <a href="https://twitter.com/<?= $user_data['twitter'] ?>" class="twitter"><i
+              <?php if ($social_media['twitter'] != '') { ?>
+                <a href="https://twitter.com/<?= $social_media['twitter'] ?>" class="twitter"><i
                     class="bi bi-twitter"></i></a>
                 <?php
               }
               ?>
 
-              <?php if ($user_data['facebook'] != '') { ?>
-                <a href="https://facebook.com/<?= $user_data['facebook'] ?>" class="facebook"><i
+              <?php if ($social_media['facebook'] != '') { ?>
+                <a href="https://facebook.com/<?= $social_media['facebook'] ?>" class="facebook"><i
                     class="bi bi-facebook"></i></a>
 
                 <?php
               }
-              if ($user_data['instagram'] != '') {
+              if ($social_media['instagram'] != '') {
                 ?>
-                <a href="https://instagram.com/<?= $user_data['instagram'] ?>" class="instagram"><i
+                <a href="https://instagram.com/<?= $social_media['instagram'] ?>" class="instagram"><i
                     class="bi bi-instagram"></i></a>
                 <?php
               }
-              if ($user_data['skype'] != '') {
+              if ($social_media['skype'] != '') {
                 ?>
-                <a href="https://skype.com/<?= $user_data['skype'] ?>" class="google-plus"><i class="bi bi-skype"></i></a>
+                <a href="https://skype.com/<?= $social_media['skype'] ?>" class="google-plus"><i
+                    class="bi bi-skype"></i></a>
                 <?php
               }
-              if ($user_data['skype'] != '') {
+              if ($social_media['skype'] != '') {
                 ?>
-                <a href="https:/youtube.com/<?= $user_data['youtube'] ?>" class="youtube"><i
+                <a href="https:/youtube.com/<?= $social_media['youtube'] ?>" class="youtube"><i
                     class="bi bi-youtube"></i></a>
                 <?php
               }
-              if ($user_data['linkedin'] != '') {
+              if ($social_media['linkedin'] != '') {
                 ?>
-                <a href="https://linkedin.com/<?= $user_data['linkedin'] ?>" class="linkedin"><i
+                <a href="https://linkedin.com/<?= $social_media['linkedin'] ?>" class="linkedin"><i
                     class="bi bi-linkedin"></i></a>
                 <?php
               }
@@ -776,7 +806,7 @@ $user_data = mysqli_fetch_array($run);
             <i class="bx bx-envelope"></i>
             <h3>Email Me</h3>
             <p>
-              <?= $user_data['email'] ?>
+              <?= $contact['email'] ?>
             </p>
           </div>
         </div>
@@ -785,41 +815,38 @@ $user_data = mysqli_fetch_array($run);
             <i class="bx bx-phone-call"></i>
             <h3>Call Me</h3>
             <p>
-              <?= $user_data['mobile'] ?>
+              <?= $contact['mobile'] ?>
             </p>
           </div>
         </div>
       </div>
-
-
-      <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
+      <form action="forms/contact.php?admin_id=<?= $_GET['admin_id'] ?>" method="POST" class="mt-4">
         <div class="row">
           <div class="info-boxx">
-            <h2 style=" text-align: center; margin-bottom: 20px; font-weight: bold;">Feedback Form</h2>
+            <h2 style="text-align: center; margin-bottom: 20px; font-weight: bold;">Feedback Form</h2>
           </div>
-          <div class="col-md-6 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+          <div class="col-md-6 form-group mt-3">
+            <input type="text" name="fullName" class="form-control gray-background" placeholder="Your Name" required>
           </div>
-          <div class="col-md-6 form-group mt-3 mt-md-0">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+          <div class="col-md-6 form-group mt-3">
+            <input type="email" class="form-control gray-background" name="email" placeholder="Your Email" required />
+          </div>
+          <div class="col-md-6 form-group mt-3">
+            <input type="number" class="form-control gray-background" name="mobileNumber" placeholder="Mobile Number"
+              required>
+          </div>
+          <div class="col-md-6 form-group mt-3">
+            <input type="text" class="form-control gray-background" name="subject" placeholder="Email Subject" required>
           </div>
         </div>
         <div class="form-group mt-3">
-          <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+          <textarea class="form-control gray-background" name="message" rows="5" placeholder="Your Message"
+            required></textarea>
         </div>
-        <div class="form-group mt-3">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+        <div class="text-center">
+          <input type="submit" value="Send Message" class="btn btn-green" />
         </div>
-        <div class="my-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your message has been sent. Thank you!</div>
-        </div>
-        <div class="text-center"><button type="submit">Send Message</button></div>
       </form>
-
-
-    </div>
   </section><!-- End Contact Section -->
 
   <div class="credits">

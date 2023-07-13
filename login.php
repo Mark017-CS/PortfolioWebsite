@@ -13,8 +13,9 @@ if (isset($_POST['login'])) {
 
   if (count($data) > 0) {
     // Login successful
-    $_SESSION['isUserLoggedIn'] = true;
-    $_SESSION['emailId'] = $_POST['email'];
+    session_start(); // Start the session
+    $_SESSION['admin_id'] = $data['admin_id']; // Store the admin ID in the session
+    $_SESSION['isUserLoggedIn'] = true; // Set the session variable to indicate that the user is logged in
 
     // Check if "Remember Me" checkbox is selected
     if (isset($_POST['remember'])) {
@@ -27,12 +28,14 @@ if (isset($_POST['login'])) {
       setcookie('password', '', time() - 3600, '/');
     }
 
-    echo "<script>window.location.href = 'index.php';</script>";
+    header("Location: ./Home/home.php"); // Redirect to the index page
+    exit();
   } else {
     echo "<script>alert('Incorrect email id or password!')</script>";
   }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -123,11 +126,11 @@ if (isset($_POST['login'])) {
   <!-- /.login-box -->
 
   <!-- jQuery -->
-  <script src=".admin/plugins/jquery/jquery.min.js"></script>
+  <script src="./admin/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src=".admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="./admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Admin App -->
-  <script src=".admin/dist/js/adminlte.min.js"></script>
+  <script src="./admin/dist/js/adminlte.min.js"></script>
   <script>
     var passwordInput = document.querySelector('input[name="password"]');
     var showPasswordCheckbox = document.getElementById('showPassword');

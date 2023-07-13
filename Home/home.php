@@ -2,14 +2,15 @@
 require('../include/db.php');
 
 // Retrieve data from the admin table
-$query = "SELECT id, fullname, admin_profile FROM admin";
+$query = "SELECT admin_id, admin_profile FROM admin";
 $result = mysqli_query($db, $query);
 
 // Fetch data from the home table
-$queryHome = "SELECT subtitle FROM home";
+$queryHome = "SELECT subtitle, title FROM home";
 $resultHome = mysqli_query($db, $queryHome);
 $rowHome = mysqli_fetch_assoc($resultHome);
 $subtitle = $rowHome['subtitle'];
+$title = $rowHome['title'];
 ?>
 
 <!DOCTYPE html>
@@ -118,15 +119,25 @@ $subtitle = $rowHome['subtitle'];
     </nav>
 
     <nav class="navbar2 show">
-      <a href="../register.php" class="btn1"><b>Register</b></a>
-      <a>|</a>
-      <a href="../login.php" class="btn1"><b style="color: green; opacity: 0;">ii</b><b>Login</b><b
-          style="color: green; opacity: 0;">ii</b></a>
+      <?php
+      session_start(); // Start the session
+      if (isset($_SESSION['admin_id'])) {
+        // User is logged in
+        echo '<a href="account.php" ><b>ACCOUNT  </b></a>';
+        echo '<a>|</a>';
+        echo '<a href="../logout.php" ><b>  Logout</b></a>';
+      } else {
+        // User is not logged in
+        echo '<a href="../register.php" ><b>REGISTER</b></a>';
+        echo '<a>|</a>';
+        echo '<a href="../login.php" ><b style="color: green; opacity: 0;"></b><b>LOGIN</b><b style="color: green; opacity: 0;"></b></a>';
+      }
+      ?>
     </nav>
   </header>
 
   <!-- home section design -->
-  <section  class="home" id="home">
+  <section class="home" id="home">
     <div class="home-content">
       <h3>Step into our</h3>
       <h1>WORLD OF DESIGN</h1>
@@ -147,7 +158,7 @@ $subtitle = $rowHome['subtitle'];
         target="_blank">More Info</a>
     </div>
 
-   
+
   </section>
 
   <!-- about section design -->
@@ -224,72 +235,80 @@ $subtitle = $rowHome['subtitle'];
     </div>
   </section>
 
-<!-- portfolio section design -->
-<section class="portfolio" id="portfolio">
-  <h2 class="heading">Port<span>folios</span></h2>
+  <!-- portfolio section design -->
+  <section class="portfolio" id="portfolio">
+    <h2 class="heading">Port<span>folios</span></h2>
 
-  <div class="portfolio-container">
-    <?php
-    $itemsPerPage = 5; // Number of items to display per page
-    $page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
-    $startFrom = ($page - 1) * $itemsPerPage; // Calculate the starting point for the query
-    
-    // Retrieve data with pagination
-    $query = "SELECT a.id, a.fullname, a.admin_profile, h.subtitle
+    <div class="portfolio-container">
+      <?php
+      $itemsPerPage = 5; // Number of items to display per page
+      $page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
+      $startFrom = ($page - 1) * $itemsPerPage; // Calculate the starting point for the query
+      
+      // Retrieve data with pagination
+      $query = "SELECT a.admin_id, a.admin_profile, h.title, h.subtitle
               FROM admin AS a
-              JOIN home AS h ON a.id = h.admin_id
+              LEFT JOIN home AS h ON a.admin_id = h.admin_id
               LIMIT $startFrom, $itemsPerPage";
-    $result = mysqli_query($db, $query);
+      $result = mysqli_query($db, $query);
 
-    while ($row = mysqli_fetch_assoc($result)) {
-      ?>
-      <div class="portfolio-box">
-        <img src="../images/<?php echo $row['admin_profile']; ?>" alt="" />
-        <div class="portfolio-layer">
-          <h4>
-            <?php echo $row['fullname']; ?>
-          </h4>
-          <p>
-            <?php echo $row['subtitle']; ?>!<br><br>
-            Know more about me. Click here ↓ 
-          </p>
-          <a href="portfolio.php?id=<?php echo $row['id']; ?>" target="_blank"><i class="bx bx-link-external"></i></a>
+      if (!$result) {
+        die('Error executing the query: ' . mysqli_error($db));
+      }
+
+      while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+        <div class="portfolio-box">
+          <img src="../images/<?php echo $row['admin_profile']; ?>" alt="" />
+          <div class="portfolio-layer">
+            <h4>
+              <?php echo $row['title']; ?>
+            </h4>
+            <p>
+              <?php echo $row['subtitle']; ?>!<br><br>
+              Know more about me. Click here ↓
+            </p>
+            <a href="portfolio.php?admin_id=<?php echo $row['admin_id']; ?>" target="_blank"><i class="bx bx-link-external"></i></a>
+          </div>
         </div>
-      </div>
-    <?php } ?>
-  </div>
+      <?php } ?>
+    </div>
 
-  <!-- Pagination -->
-  <div class="pagination" style="cursor: pointer">
-    <?php
-    // Calculate total number of pages
-    $query = "SELECT COUNT(*) AS total FROM admin";
-    $result = mysqli_query($db, $query);
-    $row = mysqli_fetch_assoc($result);
-    $totalPages = ceil($row['total'] / $itemsPerPage);
+    <!-- Pagination -->
+    <div class="pagination" style="cursor: pointer">
+      <?php
+      // Calculate total number of pages
+      $query = "SELECT COUNT(*) AS total FROM admin";
+      $result = mysqli_query($db, $query);
 
-    // Display pagination links
-    if ($totalPages > 1) {
-      if ($page > 1) {
-        echo '<a href="?page=1" class="arrow">&lt;&lt;</a>';
-        echo '<a href="?page=' . ($page - 1) . '" class="arrow">&lt;</a>';
+      if (!$result) {
+        die('Error executing the query: ' . mysqli_error($db));
       }
-      for ($i = 1; $i <= $totalPages; $i++) {
-        echo '<a href="?page=' . $i . '" class="page-number';
-        if ($i == $page) {
-          echo ' active';
+
+      $row = mysqli_fetch_assoc($result);
+      $totalPages = ceil($row['total'] / $itemsPerPage);
+
+      // Display pagination links
+      if ($totalPages > 1) {
+        if ($page > 1) {
+          echo '<a href="#portfolio" onclick="navigateToPage(1)" class="arrow">&lt;&lt;</a>';
+          echo '<a href="#portfolio" onclick="navigateToPage(' . ($page - 1) . ')" class="arrow">&lt;</a>';
         }
-        echo '">' . $i . '</a>';
+        for ($i = 1; $i <= $totalPages; $i++) {
+          echo '<a href="#portfolio" onclick="navigateToPage(' . $i . ')" class="page-number';
+          if ($i == $page) {
+            echo ' active';
+          }
+          echo '">' . $i . '</a>';
+        }
+        if ($page < $totalPages) {
+          echo '<a href="#portfolio" onclick="navigateToPage(' . ($page + 1) . ')" class="arrow">&gt;</a>';
+          echo '<a href="#portfolio" onclick="navigateToPage(' . $totalPages . ')" class="arrow">&gt;&gt;</a>';
+        }
       }
-      if ($page < $totalPages) {
-        echo '<a href="?page=' . ($page + 1) . '" class="arrow">&gt;</a>';
-        echo '<a href="?page=' . $totalPages . '" class="arrow">&gt;&gt;</a>';
-      }
-    }
-    ?>
-  </div>
-</section>
-
+      ?>
+    </div>
+  </section>
 
   <!-- contact section design -->
   <section class="contact" id="contact">
@@ -378,6 +397,17 @@ $subtitle = $rowHome['subtitle'];
         pageNumber.classList.add("active");
       });
     });
+  </script>
+  <script>
+    function navigateToPage(pageNumber) {
+      // Update the URL with the page number
+      const url = new URL(window.location.href);
+      url.searchParams.set('page', pageNumber);
+      window.location.href = url;
+
+      // Prevent the default link behavior
+      return false;
+    }
   </script>
 </body>
 

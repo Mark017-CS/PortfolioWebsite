@@ -315,6 +315,51 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+
+.contacts h2 {
+  margin-bottom: 3rem;
+}
+
+.contacts form {
+  max-width: 70rem;
+  margin: 1rem auto;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contacts form .input-box {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.contacts form .input-box input,
+.contacts form textarea {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.6rem;
+  color: var(--text-color);
+  background: var(--second-bg-color);
+  border-radius: 0.8rem;
+  margin: 0.7rem 0;
+}
+
+.contacts form .input-box input {
+  width: 49%;
+}
+
+.contacts form textarea {
+  resize: none;
+}
+
+.contacts form .btn {
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+/*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
 section {
@@ -710,7 +755,23 @@ section .container {
   color: #fff;
   font-size: 28px;
 }
+.gray-background {
+  background-color: #504c4c;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  margin-top: 20PX;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+.btn:hover {
+  background-color: darkgreen;
+}
 .services .icon-box .icon::before {
   position: absolute;
   content: "";
