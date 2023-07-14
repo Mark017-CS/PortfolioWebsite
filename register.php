@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
   }
 
   // Check file size
-  if ($_FILES["adminProfile"]["size"] > 500000) {
+  if ($_FILES["adminProfile"]["size"] > 5000000) {
     echo '<script>alert("Sorry, your file is too large.");</script>';
     $uploadOk = 0;
   }

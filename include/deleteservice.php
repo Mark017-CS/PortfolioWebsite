@@ -11,13 +11,13 @@ $userId = $_SESSION['user_id'];
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
-  
-  // Add a condition to delete the data based on the user_id of the logged-in user
-  $query = "DELETE FROM skills WHERE id=$id AND user_id=$userId";
+
+  // Add a condition to check if the user_id matches the logged-in user's user_id
+  $query = "DELETE FROM services WHERE id=$id AND user_id=$userId";
+
   $run = mysqli_query($db, $query);
-  
   if ($run) {
-    echo "<script>window.location.href='../Home/account.php?aboutsetting=true';</script>";
+    echo "<script>window.location.href='../Home/account.php?servicesetting=true';</script>";
     exit();
   }
 }

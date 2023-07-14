@@ -595,7 +595,7 @@ section .container {
 
 .testimonials .testimonial-item {
   box-sizing: content-box;
-  min-height: 320px;
+  min-height: 350px;
 }
 
 .testimonials .testimonial-item .testimonial-img {
@@ -623,7 +623,7 @@ section .container {
 .testimonials .testimonial-item .quote-icon-left,
 .testimonials .testimonial-item .quote-icon-right {
   color: rgba(255, 255, 255, 0.25);
-  font-size: 26px;
+  font-size: 20px;
 }
 
 .testimonials .testimonial-item .quote-icon-left {
@@ -647,6 +647,8 @@ section .container {
   position: relative;
   border-radius: 6px;
   position: relative;
+  min-height: 350px;
+  font-size: 5px;
   z-index: 1;
 }
 

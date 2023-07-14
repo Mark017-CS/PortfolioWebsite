@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
 
     // Update the password in the database
-    $updateQuery = "UPDATE admin SET password = '$password' WHERE email = '$email'";
+    $updateQuery = "UPDATE user SET password = '$password' WHERE email = '$email'";
     if (mysqli_query($conn, $updateQuery)) {
       // Password updated successfully
       header("Location: login.php");
@@ -51,13 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="./admin/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="./user/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="./admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="./user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="./admin/dist/css/admin.min.css">
+  <link rel="stylesheet" href="./user/dist/css/user.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -125,11 +125,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <!-- /.login-box -->
 
   <!-- jQuery -->
-  <script src="./admin/plugins/jquery/jquery.min.js"></script>
+  <script src="./user/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="./admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Admin App -->
-  <script src="./admin/dist/js/admin.min.js"></script>
+  <script src="./user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- user App -->
+  <script src="./user/dist/js/user.min.js"></script>
 </body>
 
 </html>

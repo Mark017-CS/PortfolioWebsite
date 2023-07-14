@@ -7,14 +7,14 @@ if (isset($_POST['login'])) {
   $password = $_POST['password'];
 
   // Check if the email and password are valid
-  $query = "SELECT * FROM admin WHERE email='$email' && password='$password'";
+  $query = "SELECT * FROM user WHERE email='$email' && password='$password'";
   $run = mysqli_query($db, $query);
   $data = mysqli_fetch_array($run);
 
   if (count($data) > 0) {
     // Login successful
     session_start(); // Start the session
-    $_SESSION['admin_id'] = $data['admin_id']; // Store the admin ID in the session
+    $_SESSION['user_id'] = $data['user_id']; // Store the user ID in the session
     $_SESSION['isUserLoggedIn'] = true; // Set the session variable to indicate that the user is logged in
 
     // Check if "Remember Me" checkbox is selected
@@ -50,13 +50,13 @@ if (isset($_POST['login'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="./admin/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="./user/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="./admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="./user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="./admin/dist/css/admin.min.css">
+  <link rel="stylesheet" href="./user/dist/css/user.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </style>
@@ -126,11 +126,11 @@ if (isset($_POST['login'])) {
   <!-- /.login-box -->
 
   <!-- jQuery -->
-  <script src="./admin/plugins/jquery/jquery.min.js"></script>
+  <script src="./user/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="./admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Admin App -->
-  <script src="./admin/dist/js/adminlte.min.js"></script>
+  <script src="./user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- user App -->
+  <script src="./user/dist/js/userlte.min.js"></script>
   <script>
     var passwordInput = document.querySelector('input[name="password"]');
     var showPasswordCheckbox = document.getElementById('showPassword');

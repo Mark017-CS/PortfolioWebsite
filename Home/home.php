@@ -1,8 +1,8 @@
 <?php
 require('../include/db.php');
 
-// Retrieve data from the admin table
-$query = "SELECT admin_id, admin_profile FROM admin";
+// Retrieve data from the user table
+$query = "SELECT user_id, user_profile FROM user";
 $result = mysqli_query($db, $query);
 
 // Fetch data from the home table
@@ -30,6 +30,9 @@ $title = $rowHome['title'];
 
   <!-- custom css -->
   <link rel="stylesheet" href="home.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <style>
     .navbar {
       display: none;
@@ -62,6 +65,27 @@ $title = $rowHome['title'];
         padding: 10px;
         background: rgba(0, 0, 0, 0.8);
       }
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .pagination-link {
+      padding: 10px 15px;
+      margin: 0 5px;
+      border-radius: 4px;
+      color: black;
+      text-decoration: none;
+      background-color: gray;
+      transition: 0.3s;
+    }
+
+    .pagination-link:hover {
+      background-color: green;
     }
 
     .credits a {
@@ -121,9 +145,9 @@ $title = $rowHome['title'];
     <nav class="navbar2 show">
       <?php
       session_start(); // Start the session
-      if (isset($_SESSION['admin_id'])) {
+      if (isset($_SESSION['user_id'])) {
         // User is logged in
-        echo '<a href="account.php" ><b>ACCOUNT  </b></a>';
+        echo '<a href="account.php" target="_blank"><b>ACCOUNT  </b></a>';
         echo '<a>|</a>';
         echo '<a href="../logout.php" ><b>  Logout</b></a>';
       } else {
@@ -235,21 +259,23 @@ $title = $rowHome['title'];
     </div>
   </section>
 
-  <!-- portfolio section design -->
-  <section class="portfolio" id="portfolio">
-    <h2 class="heading">Port<span>folios</span></h2>
+<!-- portfolio section design -->
+<section class="portfolio" id="portfolio">
+  <h2 class="heading">Port<span>folios</span></h2>
 
+  <div class="portfolio-slider">
     <div class="portfolio-container">
       <?php
       $itemsPerPage = 5; // Number of items to display per page
       $page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
       $startFrom = ($page - 1) * $itemsPerPage; // Calculate the starting point for the query
       
-      // Retrieve data with pagination
-      $query = "SELECT a.admin_id, a.admin_profile, h.title, h.subtitle
-              FROM admin AS a
-              LEFT JOIN home AS h ON a.admin_id = h.admin_id
-              LIMIT $startFrom, $itemsPerPage";
+      // Retrieve data with pagination, ordered by registration date in descending order
+      $query = "SELECT a.user_id, a.fullname, a.user_profile, h.subtitle
+                FROM user AS a
+                LEFT JOIN home AS h ON a.user_id = h.user_id
+                ORDER BY a.user_id DESC
+                LIMIT $startFrom, $itemsPerPage";
       $result = mysqli_query($db, $query);
 
       if (!$result) {
@@ -259,26 +285,28 @@ $title = $rowHome['title'];
       while ($row = mysqli_fetch_assoc($result)) {
         ?>
         <div class="portfolio-box">
-          <img src="../images/<?php echo $row['admin_profile']; ?>" alt="" />
+          <img src="../images/<?php echo $row['user_profile']; ?>" alt="" />
           <div class="portfolio-layer">
             <h4>
-              <?php echo $row['title']; ?>
+              <?php echo $row['fullname']; ?>
             </h4>
             <p>
               <?php echo $row['subtitle']; ?>!<br><br>
               Know more about me. Click here ↓
             </p>
-            <a href="portfolio.php?admin_id=<?php echo $row['admin_id']; ?>" target="_blank"><i class="bx bx-link-external"></i></a>
+            <a href="portfolio.php?user_id=<?php echo $row['user_id']; ?>" target="_blank"><i
+                class="bx bx-link-external"></i></a>
           </div>
         </div>
       <?php } ?>
     </div>
+  </div>
 
     <!-- Pagination -->
-    <div class="pagination" style="cursor: pointer">
+    <div class="pagination">
       <?php
       // Calculate total number of pages
-      $query = "SELECT COUNT(*) AS total FROM admin";
+      $query = "SELECT COUNT(*) AS total FROM user";
       $result = mysqli_query($db, $query);
 
       if (!$result) {
@@ -291,23 +319,24 @@ $title = $rowHome['title'];
       // Display pagination links
       if ($totalPages > 1) {
         if ($page > 1) {
-          echo '<a href="#portfolio" onclick="navigateToPage(1)" class="arrow">&lt;&lt;</a>';
-          echo '<a href="#portfolio" onclick="navigateToPage(' . ($page - 1) . ')" class="arrow">&lt;</a>';
+          echo '<a href="#portfolio" onclick="navigateToPage(1)" class="pagination-link">&lt;&lt;</a>';
+          echo '<a href="#portfolio" onclick="navigateToPage(' . ($page - 1) . ')" class="pagination-link">&lt;</a>';
         }
         for ($i = 1; $i <= $totalPages; $i++) {
-          echo '<a href="#portfolio" onclick="navigateToPage(' . $i . ')" class="page-number';
+          echo '<a href="#portfolio" onclick="navigateToPage(' . $i . ')" class="pagination-link';
           if ($i == $page) {
             echo ' active';
           }
           echo '">' . $i . '</a>';
         }
         if ($page < $totalPages) {
-          echo '<a href="#portfolio" onclick="navigateToPage(' . ($page + 1) . ')" class="arrow">&gt;</a>';
-          echo '<a href="#portfolio" onclick="navigateToPage(' . $totalPages . ')" class="arrow">&gt;&gt;</a>';
+          echo '<a href="#portfolio" onclick="navigateToPage(' . ($page + 1) . ')" class="pagination-link">&gt;</a>';
+          echo '<a href="#portfolio" onclick="navigateToPage(' . $totalPages . ')" class="pagination-link">&gt;&gt;</a>';
         }
       }
       ?>
     </div>
+
   </section>
 
   <!-- contact section design -->
@@ -380,7 +409,6 @@ $title = $rowHome['title'];
 
     window.addEventListener("resize", checkScreenWidth);
   </script>
-
   <script>
     // Get all the page numbers
     const pageNumbers = document.querySelectorAll(".page-number");

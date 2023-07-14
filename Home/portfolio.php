@@ -1,51 +1,55 @@
 <?php
 require('../include/db.php');
 
-// Check if the admin_id parameter is provided
-if (isset($_GET['admin_id'])) {
-  // Retrieve the admin_id from the URL parameter
-  $admin_id = $_GET['admin_id'];
+// Check if the user_id parameter is provided
+if (isset($_GET['user_id'])) {
+  // Retrieve the user_id from the URL parameter
+  $user_id = $_GET['user_id'];
 
   // Retrieve the portfolio data from the 'portfolio' table
-  $portfolio_query = "SELECT * FROM portfolio WHERE admin_id = $admin_id";
+  $portfolio_query = "SELECT * FROM portfolio WHERE user_id = $user_id";
   $portfolio_run = mysqli_query($db, $portfolio_query);
   $user_data['portfolio'] = mysqli_fetch_assoc($portfolio_run);
 
-  // Retrieve data from other tables
-  $admin_query = "SELECT * FROM admin WHERE admin_id = $admin_id";
-  $admin_run = mysqli_query($db, $admin_query);
-  $user_data['admin'] = mysqli_fetch_assoc($admin_run);
+  $services_query = "SELECT * FROM services WHERE user_id = $user_id";
+  $services_run = mysqli_query($db, $services_query);
+  $user_data['services'] = mysqli_fetch_assoc($services_run);
 
-  $home_query = "SELECT * FROM home WHERE admin_id = $admin_id";
+  // Retrieve data from other tables
+  $user_query = "SELECT * FROM user WHERE user_id = $user_id";
+  $user_run = mysqli_query($db, $user_query);
+  $user_data['user'] = mysqli_fetch_assoc($user_run);
+
+  $home_query = "SELECT * FROM home WHERE user_id = $user_id";
   $home_run = mysqli_query($db, $home_query);
   $user_data['home'] = mysqli_fetch_assoc($home_run);
 
-  $section_control_query = "SELECT * FROM section_control WHERE admin_id = $admin_id";
+  $section_control_query = "SELECT * FROM section_control WHERE user_id = $user_id";
   $section_control_run = mysqli_query($db, $section_control_query);
   $user_data['section_control'] = mysqli_fetch_assoc($section_control_run);
 
-  $social_media_query = "SELECT * FROM social_media WHERE admin_id = $admin_id";
+  $social_media_query = "SELECT * FROM social_media WHERE user_id = $user_id";
   $social_media_run = mysqli_query($db, $social_media_query);
   $user_data['social_media'] = mysqli_fetch_assoc($social_media_run);
 
-  $about_query = "SELECT * FROM about WHERE admin_id = $admin_id";
+  $about_query = "SELECT * FROM about WHERE user_id = $user_id";
   $about_run = mysqli_query($db, $about_query);
   $user_data['about'] = mysqli_fetch_assoc($about_run);
 
-  $contact_query = "SELECT * FROM contact WHERE admin_id = $admin_id";
+  $contact_query = "SELECT * FROM contact WHERE user_id = $user_id";
   $contact_run = mysqli_query($db, $contact_query);
   $user_data['contact'] = mysqli_fetch_assoc($contact_run);
 
-  $site_background_query = "SELECT * FROM site_background WHERE admin_id = $admin_id";
+  $site_background_query = "SELECT * FROM site_background WHERE user_id = $user_id";
   $site_background_run = mysqli_query($db, $site_background_query);
   $user_data['site_background'] = mysqli_fetch_assoc($site_background_run);
 
-  $seo_query = "SELECT * FROM seo WHERE admin_id = $admin_id";
+  $seo_query = "SELECT * FROM seo WHERE user_id = $user_id";
   $seo_run = mysqli_query($db, $seo_query);
   $user_data['seo'] = mysqli_fetch_assoc($seo_run);
 
   // Retrieve the resume data from the 'resume' table
-  $resume_query = "SELECT * FROM resume WHERE admin_id = $admin_id";
+  $resume_query = "SELECT * FROM resume WHERE user_id = $user_id";
   $resume_run = mysqli_query($db, $resume_query);
   $user_data['resume'] = mysqli_fetch_assoc($resume_run);
 }
@@ -56,7 +60,7 @@ if (isset($user_data) && !empty($user_data)) {
   extract($user_data);
 } else {
   // Set default values if $user_data is not set or empty
-  $portfolio = $admin = $home = $section_control = $social_media = $about = $contact = $site_background = $seo = $resume = [];
+  $portfolio = $user = $home = $section_control = $social_media = $about = $contact = $site_background = $seo = $resume = [];
 }
 ?>
 
@@ -125,11 +129,10 @@ if (isset($user_data) && !empty($user_data)) {
   <!-- ======= Header ======= -->
   <header class="header " id="header">
     <div class="container">
-      <!-- <img src="../images/logo.png" class="img-fluid logos" alt=""
-        style="width: 4vw; cursor: pointer; font-style: italic; margin-top: -190px;margin-bottom: 150px; margin-left: -100px; "> -->
+
       <a href="./home.php" class="logo"
-        style=" display: flex; align-items: center; text-decoration: none; font-size: 1.5rem; color: var(--text-color); margin-top: -200px;margin-bottom: 160px; margin-left: -40px; font-style: italic; font-weight: 600; cursor: pointer;"><b
-          style="color: #1DB954;">Art </b><b style="color: #FFF;">Abode</b></a>
+        style=" display: flex; align-items: center; text-decoration: none; font-size: 1.5rem; color: var(--text-color);margin-bottom: 20px; margin-top: -100px; margin-left: -40px; font-weight: 600; cursor: pointer;"><b
+          style="color: #1DB954; font-style: italic; ">Art </b><b style="color: #FFF;">Abode</b></a>
       <h1><a href="portfolio.php">
           <?= isset($home['title']) ? $home['title'] : '' ?>
         </a></h1>
@@ -229,7 +232,7 @@ if (isset($user_data) && !empty($user_data)) {
             <div class="col-lg-6">
               <ul>
                 <?php
-                $query2 = "SELECT * FROM personal_info WHERE admin_id = $admin_id LIMIT 5";
+                $query2 = "SELECT * FROM personal_info WHERE user_id = $user_id LIMIT 5";
                 $run2 = mysqli_query($db, $query2);
                 while ($personal_info = mysqli_fetch_array($run2)) {
                   ?>
@@ -247,7 +250,7 @@ if (isset($user_data) && !empty($user_data)) {
             <div class="col-lg-6">
               <ul>
                 <?php
-                $query2 = "SELECT * FROM personal_info WHERE admin_id = $admin_id LIMIT 5, 5";
+                $query2 = "SELECT * FROM personal_info WHERE user_id = $user_id LIMIT 5, 5";
                 $run2 = mysqli_query($db, $query2);
                 while ($personal_info = mysqli_fetch_array($run2)) {
                   ?>
@@ -275,43 +278,50 @@ if (isset($user_data) && !empty($user_data)) {
     <div class="counts container">
 
       <div class="row">
+        <?php
+        $query22 = "SELECT * FROM counts WHERE user_id = $user_id";
+        $run22 = mysqli_query($db, $query22);
+        while ($counts = mysqli_fetch_array($run22)) {
+          ?>
 
-        <div class="col-lg-3 col-md-6">
-          <div class="count-box">
-            <i class="bi bi-emoji-smile"></i>
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
-              class="purecounter"></span>
-            <p>Happy Clients</p>
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile"></i>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $counts['happy_clients'] ?>"
+                data-purecounter-duration="1" class="purecounter"></span>
+              <p>Happy Clients</p>
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-          <div class="count-box">
-            <i class="bi bi-journal-richtext"></i>
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
-              class="purecounter"></span>
-            <p>Projects</p>
+          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+            <div class="count-box">
+              <i class="bi bi-journal-richtext"></i>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $counts['projects'] ?>"
+                data-purecounter-duration="1" class="purecounter"></span>
+              <p>Projects</p>
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="bi bi-headset"></i>
-            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1"
-              class="purecounter"></span>
-            <p>Hours Of Support</p>
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="bi bi-headset"></i>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $counts['hours'] ?>"
+                data-purecounter-duration="1" class="purecounter"></span>
+              <p>Hours Of Support</p>
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="bi bi-award"></i>
-            <span data-purecounter-start="0" data-purecounter-end="24" data-purecounter-duration="1"
-              class="purecounter"></span>
-            <p>Awards</p>
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="bi bi-award"></i>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $counts['awards'] ?>"
+                data-purecounter-duration="1" class="purecounter"></span>
+              <p>Awards</p>
+            </div>
           </div>
-        </div>
-
+          <?php
+        }
+        ?>
       </div>
 
     </div><!-- End Counts -->
@@ -327,7 +337,7 @@ if (isset($user_data) && !empty($user_data)) {
 
         <div class="col-lg-12">
           <?php
-          $query3 = "SELECT * FROM skills WHERE admin_id = $admin_id";
+          $query3 = "SELECT * FROM skills WHERE user_id = $user_id";
           $run3 = mysqli_query($db, $query3);
           while ($skills = mysqli_fetch_array($run3)) {
             ?>
@@ -361,78 +371,22 @@ if (isset($user_data) && !empty($user_data)) {
       </div>
 
       <div class="row">
-        <div class="col-lg-3 col-md-4">
-          <div class="icon-box">
-            <i class="ri-store-line" style="color: #ffbb2c;"></i>
-            <h3>Playing</h3>
+        <?php
+        $query33 = "SELECT * FROM interests WHERE user_id = $user_id";
+        $run33 = mysqli_query($db, $query33);
+        while ($interests = mysqli_fetch_array($run33)) {
+          ?>
+          <div class="col-lg-3 col-md-4">
+            <div class="icon-box">
+              <i class="bx bx-star" style="color: #ffbb2c;"></i>
+              <h3>
+                <?= $interests['inter_name'] ?>
+              </h3>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
-            <h3>Coding</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-            <h3>Hiking</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
-          <div class="icon-box">
-            <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
-            <h3>Cosplaying</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-database-2-line" style="color: #47aeff;"></i>
-            <h3>Studying</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
-            <h3>Pets</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-            <h3>Basketball</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
-            <h3>Javascript</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-anchor-line" style="color: #b2904f;"></i>
-            <h3>PHP</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-disc-line" style="color: #b20969;"></i>
-            <h3>CSS</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-base-station-line" style="color: #ff5828;"></i>
-            <h3>Python</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-fingerprint-line" style="color: #29cc61;"></i>
-            <h3>Her</h3>
-          </div>
-        </div>
+          <?php
+        }
+        ?>
       </div>
 
     </div><!-- End Interests -->
@@ -446,101 +400,37 @@ if (isset($user_data) && !empty($user_data)) {
 
       <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
         <div class="swiper-wrapper">
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p style="text-align: justify;">
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Working with Cedric was an absolute pleasure. Their attention to detail and design skills are
-                exceptional. They took our vision and transformed it into a stunning and user-friendly website. The
-                frontend code they delivered was clean, well-structured, and optimized for performance. Our users love
-                the intuitive interface and seamless navigation. I highly recommend Cedric Vico for any frontend
-                development project.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="../assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p style="text-align: justify;">
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Working with Cedric was an absolute pleasure. Their attention to detail and design skills are
-                exceptional. They took our vision and transformed it into a stunning and user-friendly website. The
-                frontend code they delivered was clean, well-structured, and optimized for performance. Our users love
-                the intuitive interface and seamless navigation. I highly recommend Cedric Vico for any frontend
-                development project.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="../assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p style="text-align: justify;">
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Working with Cedric was an absolute pleasure. Their attention to detail and design skills are
-                exceptional. They took our vision and transformed it into a stunning and user-friendly website. The
-                frontend code they delivered was clean, well-structured, and optimized for performance. Our users love
-                the intuitive interface and seamless navigation. I highly recommend Cedric Vico for any frontend
-                development project.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="../assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p style="text-align: justify;">
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Working with Cedric was an absolute pleasure. Their attention to detail and design skills are
-                exceptional. They took our vision and transformed it into a stunning and user-friendly website. The
-                frontend code they delivered was clean, well-structured, and optimized for performance. Our users love
-                the intuitive interface and seamless navigation. I highly recommend Cedric Vico for any frontend
-                development project.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="../assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p style="text-align: justify;">
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Working with Cedric was an absolute pleasure. Their attention to detail and design skills are
-                exceptional. They took our vision and transformed it into a stunning and user-friendly website. The
-                frontend code they delivered was clean, well-structured, and optimized for performance. Our users love
-                the intuitive interface and seamless navigation. I highly recommend Cedric Vico for any frontend
-                development project.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="../assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-              <h3>John Larson</h3>
-              <h4>Entrepreneur</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
+          <?php
+          $query333 = "SELECT * FROM testimonials WHERE user_id = $user_id";
+          $run333 = mysqli_query($db, $query333);
+          while ($testimonials = mysqli_fetch_array($run333)) {
+            ?>
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p style="text-align: justify;">
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  <?= $testimonials['testimonial'] ?>
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="../images/<?= $testimonials['profile'] ?>" class="testimonial-img" alt="">
+                <h3>
+                  <?= $testimonials['test_name'] ?>
+                </h3>
+                <h4>
+                  <?= $testimonials['position'] ?>
+                </h4>
+              </div>
+            </div><!-- End testimonial item -->
+            <?php
+          }
+          ?>
         </div>
         <div class="swiper-pagination"></div>
       </div>
 
-      <div class="owl-carousel testimonials-carousel">
+      <div class="owl-carousel testimonials-carousel"></div>
 
-      </div>
-
-    </div><!-- End Testimonials  -->
+    </div><!-- End Testimonials -->
 
   </section><!-- End About Section -->
 
@@ -559,7 +449,7 @@ if (isset($user_data) && !empty($user_data)) {
 
           <h3 class="resume-title">Education</h3>
           <?php
-          $query4 = "SELECT * FROM resume WHERE admin_id = $admin_id AND (type = 'e' OR type = 'E' OR type = 'Education' OR type = 'education')";
+          $query4 = "SELECT * FROM resume WHERE user_id = $user_id AND (type = 'e' OR type = 'E' OR type = 'Education' OR type = 'education')";
           $run4 = mysqli_query($db, $query4);
           while ($resume = mysqli_fetch_array($run4)) {
             ?>
@@ -584,7 +474,7 @@ if (isset($user_data) && !empty($user_data)) {
         <div class="col-lg-6">
           <h3 class="resume-title">Professional Experience</h3>
           <?php
-          $query4 = "SELECT * FROM resume WHERE admin_id = $admin_id AND (type = 'p' OR type = 'P' OR type = 'Professional' OR type = 'professional')";
+          $query4 = "SELECT * FROM resume WHERE user_id = $user_id AND (type = 'p' OR type = 'P' OR type = 'Professional' OR type = 'professional')";
           $run4 = mysqli_query($db, $query4);
           while ($resume = mysqli_fetch_array($run4)) {
             ?>
@@ -620,59 +510,24 @@ if (isset($user_data) && !empty($user_data)) {
       </div>
 
       <div class="row">
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bxl-dribbble"></i></div>
-            <h4><a href="">Digital Art</a></h4>
-            <p>Utilizing digital tools, software, and techniques to create artwork, including digital painting, graphic
-              design, and illustration.</p>
-          </div>
-        </div>
+        <?php
+        $query55 = "SELECT * FROM services WHERE user_id = $user_id";
+        $run55 = mysqli_query($db, $query55);
+        while ($services = mysqli_fetch_array($run55)) {
+          ?>
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="icon-box">
+              <div class="icon"><i class="bx"></i></div>
+              <h4><a href="<?= $services['service_link'] ?>" target="_blank"><?= $services['service_name'] ?></a></h4>
+              <p>
+                <?= $services['service_desc'] ?>
+              </p>
+            </div>
 
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-file"></i></div>
-            <h4><a href="">Drawing</a></h4>
-            <p>The ability to accurately represent objects, people, or scenes using lines, shapes, and shading.</p>
           </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-tachometer"></i></div>
-            <h4><a href="">Composition</a></h4>
-            <p>The arrangement and organization of visual elements within a piece to create a harmonious and visually
-              pleasing result.</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-world"></i></div>
-            <h4><a href="">Color theory</a></h4>
-            <p>Understanding the principles of color mixing, color harmony, and color psychology to effectively use and
-              manipulate colors in artwork.</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-slideshow"></i></div>
-            <h4><a href="">Sculpting</a></h4>
-            <p>Working with various materials like clay, stone, or metal to create three-dimensional forms or
-              sculptures.</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-arch"></i></div>
-            <h4><a href="">Printmaking</a></h4>
-            <p>Techniques like relief printing, intaglio, lithography, and screen printing, which involve creating
-              images by transferring ink onto paper or other surfaces.</p>
-          </div>
-        </div>
-
+          <?php
+        }
+        ?>
       </div>
 
     </div>
@@ -702,7 +557,7 @@ if (isset($user_data) && !empty($user_data)) {
       </div>
       <div class="row portfolio-container">
         <?php
-        $query5 = "SELECT * FROM portfolio WHERE admin_id = $admin_id";
+        $query5 = "SELECT * FROM portfolio WHERE user_id = $user_id";
         $run5 = mysqli_query($db, $query5);
         while ($portfolio = mysqli_fetch_array($run5)) {
           ?>
@@ -820,7 +675,7 @@ if (isset($user_data) && !empty($user_data)) {
           </div>
         </div>
       </div>
-      <form action="forms/contact.php?admin_id=<?= $_GET['admin_id'] ?>" method="POST" class="mt-4">
+      <form action="forms/contact.php?user_id=<?= $_GET['user_id'] ?>" method="POST" class="mt-4">
         <div class="row">
           <div class="info-boxx">
             <h2 style="text-align: center; margin-bottom: 20px; font-weight: bold;">Feedback Form</h2>

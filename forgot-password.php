@@ -21,8 +21,8 @@ if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $code = mysqli_real_escape_string($db, md5(rand()));
 
-    if (mysqli_num_rows(mysqli_query($db, "SELECT * FROM admin WHERE email='{$email}'")) > 0) {
-        $query = mysqli_query($db, "UPDATE admin SET code='{$code}' WHERE email='{$email}'");
+    if (mysqli_num_rows(mysqli_query($db, "SELECT * FROM user WHERE email='{$email}'")) > 0) {
+        $query = mysqli_query($db, "UPDATE user SET code='{$code}' WHERE email='{$email}'");
 
         if ($query) {
             echo "<div style='display: none;'>";
@@ -78,13 +78,13 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="./admin/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./user/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="./admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="./user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="./admin/dist/css/admin.min.css">
+    <link rel="stylesheet" href="./user/dist/css/user.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!--/Style-CSS -->
@@ -136,11 +136,11 @@ if (isset($_POST['submit'])) {
 
     <script src="js/jquery.min.js"></script>
     <!-- jQuery -->
-    <script src="./admin/plugins/jquery/jquery.min.js"></script>
+    <script src="./user/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="./admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Admin App -->
-    <script src="./admin/dist/js/adminlte.min.js"></script>
+    <script src="./user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- user App -->
+    <script src="./user/dist/js/userlte.min.js"></script>
 </body>
 
 </html>

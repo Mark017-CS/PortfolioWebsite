@@ -7,13 +7,13 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
   exit();
 }
 
-$adminId = $_SESSION['admin_id'];
+$userId = $_SESSION['user_id'];
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
   
-  // Modify the query to include the admin_id condition
-  $query = "DELETE FROM resume WHERE id=$id AND admin_id=$adminId";
+  // Modify the query to include the user_id condition
+  $query = "DELETE FROM resume WHERE id=$id AND user_id=$userId";
   
   $run = mysqli_query($db, $query);
   if ($run) {

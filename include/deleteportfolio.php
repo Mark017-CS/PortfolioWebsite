@@ -7,13 +7,13 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
   exit();
 }
 
-$adminId = $_SESSION['admin_id'];
+$userId = $_SESSION['user_id'];
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
 
-  // Add a condition to check if the admin_id matches the logged-in user's admin_id
-  $query = "DELETE FROM portfolio WHERE id=$id AND admin_id=$adminId";
+  // Add a condition to check if the user_id matches the logged-in user's user_id
+  $query = "DELETE FROM portfolio WHERE id=$id AND user_id=$userId";
 
   $run = mysqli_query($db, $query);
   if ($run) {
