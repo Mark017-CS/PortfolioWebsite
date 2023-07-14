@@ -11,6 +11,21 @@ $resultHome = mysqli_query($db, $queryHome);
 $rowHome = mysqli_fetch_assoc($resultHome);
 $subtitle = $rowHome['subtitle'];
 $title = $rowHome['title'];
+
+// Fetch data from the homebg table
+$queryHomebg = "SELECT * FROM admin_homebg";
+$resultHomebg = mysqli_query($db, $queryHomebg);
+$pi = mysqli_fetch_array($resultHomebg);
+
+// Fetch data from the admin about table
+$queryHomeAbout = "SELECT * FROM admin_about";
+$resultHomeAbout = mysqli_query($db, $queryHomeAbout);
+$pii = mysqli_fetch_array($resultHomeAbout);
+
+// Fetch data from the admin services table
+$queryService = "SELECT * FROM admin_services";
+$resultService = mysqli_query($db, $queryService);
+$piii = mysqli_fetch_array($resultService);
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +47,13 @@ $title = $rowHome['title'];
   <link rel="stylesheet" href="home.css" />
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <style>
+
+.home {
+  background: url('../images/<?= $pi['background_img'] ?>');
+}
     .navbar {
       display: none;
     }
@@ -149,12 +169,12 @@ $title = $rowHome['title'];
         // User is logged in
         echo '<a href="account.php" target="_blank"><b>ACCOUNT  </b></a>';
         echo '<a>|</a>';
-        echo '<a href="../logout.php" ><b>  Logout</b></a>';
+        echo '<a href="../components/logout.php" ><b>  Logout</b></a>';
       } else {
         // User is not logged in
-        echo '<a href="../register.php" ><b>REGISTER</b></a>';
+        echo '<a href="../components/register.php" ><b>REGISTER</b></a>';
         echo '<a>|</a>';
-        echo '<a href="../login.php" ><b style="color: green; opacity: 0;"></b><b>LOGIN</b><b style="color: green; opacity: 0;"></b></a>';
+        echo '<a href="../components/login.php" ><b style="color: green; opacity: 0;"></b><b>LOGIN</b><b style="color: green; opacity: 0;"></b></a>';
       }
       ?>
     </nav>
@@ -188,76 +208,47 @@ $title = $rowHome['title'];
   <!-- about section design -->
   <section class="about" id="about">
     <div class="about-img">
-      <img src="images/about.png" alt="" />
+      <img src="../images/<?= $pii['about_img'] ?>" alt="" />
     </div>
 
     <div class="about-content">
       <h2 class="heading">About <span>Us</span></h2>
       <p>
-        Welcome to our team of talented undergraduate developers! We are a
-        group of passionate individuals who share a love for software
-        development and programming. Our team is made up of experienced
-        developers with a diverse set of skills, ranging from front-end
-        development to data science. We strive to create innovative and
-        user-friendly applications that make a difference in the world.
-      </p>
-      <p>
-        Our team believes that collaboration is the key to success. We work
-        closely together to develop new ideas, solve complex problems, and
-        create solutions that meet the needs of our clients. We are always
-        looking for new challenges and opportunities to learn and grow.
-      </p>
-      <p>
-        We are proud of our commitment to delivering high-quality work that
-        exceeds our clients' expectations. Our dedication to detail and
-        quality ensures that our applications are reliable, efficient, and
-        easy to use. We are committed to delivering exceptional service and
-        support to our clients, and we take pride in the relationships we have
-        built with them.
-      </p>
-      <p>
-        Thank you for taking the time to learn more about us. We look forward
-        to working with you and creating exceptional solutions together.
+      <?= $pii['about_desc'] ?>
       </p>
     </div>
   </section>
 
   <!-- services section design -->
   <section class="services" id="services">
-    <h2 class="heading">Our <span>Services</span></h2>
-
-    <div class="services-container">
-      <div class="services-box">
-        <i class="bx bxs-paint"></i>
-        <h3>Graphic Design</h3>
-        <p>
-          We believe that great graphic design is all about the details - let
-          us bring your vision to life.
-        </p>
-        <a href="https://www.youtube.com/watch?v=INMuAYZDums" class="btn" target="_blank">Watch</a>
+  <h2 class="heading">Our <span>Services</span></h2>
+  <div class="services-container">
+  <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper-wrapper">
+          <?php
+          $query333 = "SELECT * FROM admin_services";
+          $run333 = mysqli_query($db, $query333);
+          while ($service = mysqli_fetch_array($run333)) {
+            ?>
+            <div class="swiper-slide">
+            <div class="services-box">
+              <i class="bx bxs-briefcase"></i>
+              <h3><?= $service['service_title'] ?></h3>
+              <p><?= $service['service_des'] ?></p>
+              <a href="<?= $service['service_link'] ?>" class="btn" target="_blank">Watch</a>
+            </div>
+            </div><!-- End testimonial item -->
+            <?php
+          }
+          ?>
+        </div>
+        <div class="swiper-pagination"></div>
       </div>
-
-      <div class="services-box">
-        <i class="bx bx-code-alt"></i>
-        <h3>Web Development</h3>
-        <p>
-          Our web development is focused on delivering fast, reliable, and
-          secure websites that exceed your expectations.
-        </p>
-        <a href="https://www.youtube.com/watch?v=HGSR3FDVkkQ" class="btn" target="_blank">Watch</a>
       </div>
+      <div class="owl-carousel testimonials-carousel"></div>
 
-      <div class="services-box">
-        <i class="bx bx-bar-chart-alt"></i>
-        <h3>Digital Marketing</h3>
-        <p>
-          Our digital marketing strategy is designed to deliver results, with
-          a focus on data-driven insights and optimization.
-        </p>
-        <a href="https://www.youtube.com/watch?v=tT2puL7IZOE" class="btn" target="_blank">Watch</a>
-      </div>
-    </div>
-  </section>
+</section>
+
 
 <!-- portfolio section design -->
 <section class="portfolio" id="portfolio">
@@ -437,6 +428,18 @@ $title = $rowHome['title'];
       return false;
     }
   </script>
+ <!-- Vendor JS Files -->
+ <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

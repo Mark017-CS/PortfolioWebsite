@@ -368,7 +368,7 @@ if (!$user_data) {
                   <!-- form start -->
                   
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
-                  <img src="../images/<?= $user_data['profile_pic'] ?>" class="col-2">
+                  <!-- <img src="../images/<?= $user_data['profile_pic'] ?>" class="col-2"> -->
                     <div class="card-body">
                       <div class="form-group">
                         <label for="exampleInputEmail1">About Profile Pic</label>
@@ -1293,7 +1293,7 @@ if (!$user_data) {
                               <?= $c ?>
                               </td>                             
                               <td>
-                              <img src="../assets/img/<?= $pi['background_img'] ?>" style="height: 70px; width: 100px;">
+                              <img src="../assets/img/<?= $pi['background_img'] ?>" style="height: 170px; width: 200px;">
                               </td>                                                      
                             </tr>
                             <?php
@@ -1305,7 +1305,7 @@ if (!$user_data) {
                     </div>
                     </div>
                   <!-- form start -->
-                  <img src="../assets/img/<?= $user_data['background_img'] ?>" class="col-6">
+                  <!-- <img src="../assets/img/<?= $user_data['background_img'] ?>" class="col-6"> -->
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                       <div class="form-group">
@@ -1387,7 +1387,7 @@ if (!$user_data) {
                     </div>
                     </div>
                   <!-- form start -->
-                  <img src="../images/<?= $user_data['siteicon'] ?>" class="col-2">
+                  <!-- <img src="../images/<?= $user_data['siteicon'] ?>" class="col-2"> -->
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                       <div class="form-group">
@@ -1485,7 +1485,7 @@ if (!$user_data) {
                     </div>
                     </div>
                   <!-- form start -->
-                  <img src="../images/<?= $user_data['user_profile'] ?>" class="col-2">
+                  <!-- <img src="../images/<?= $user_data['user_profile'] ?>" class="col-2"> -->
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                       <div class="form-group">

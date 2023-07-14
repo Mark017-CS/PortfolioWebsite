@@ -183,9 +183,7 @@ section {
 # Home
 --------------------------------------------------------------*/
 
-.home {
-  background: url('images/homee.jpg');
-}
+
 
 .home-content h3 {
   font-size: 5rem;
@@ -357,6 +355,7 @@ span {
   flex: 1 1 30rem;
   background: var(--second-bg-color);
   padding: 3rem 2rem 4rem;
+  border-color: var(--main-color);
   border-radius: 2rem;
   text-align: center;
   border: 0.2rem solid var(--bg-color);

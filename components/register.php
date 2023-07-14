@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
-  require('include/db.php');
+  require('../include/db.php');
 
   $fullName = $_POST["fullName"];
   $email = $_POST["email"];
@@ -9,14 +9,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
   $confirmPassword = $_POST["confirmPassword"];
 
   // File upload handling
-  $targetDir = "images/";
-  $fileName = $_FILES["adminProfile"]["name"];
+  $targetDir = "../images/";
+  $fileName = $_FILES["userProfile"]["name"];
   $targetFile = $targetDir . $fileName;
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
   // Check if image file is a actual image or fake image
-  $check = getimagesize($_FILES["adminProfile"]["tmp_name"]);
+  $check = getimagesize($_FILES["userProfile"]["tmp_name"]);
   if ($check !== false) {
     $uploadOk = 1;
   } else {
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
   }
 
   // Check file size
-  if ($_FILES["adminProfile"]["size"] > 5000000) {
+  if ($_FILES["userProfile"]["size"] > 5000000) {
     echo '<script>alert("Sorry, your file is too large.");</script>';
     $uploadOk = 0;
   }
@@ -46,9 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
     echo '<script>alert("Sorry, your file was not uploaded.");</script>';
   } else {
     // if everything is ok, try to upload file
-    if (move_uploaded_file($_FILES["adminProfile"]["tmp_name"], $targetFile)) {
+    if (move_uploaded_file($_FILES["userProfile"]["tmp_name"], $targetFile)) {
       // Check if email already exists in the database
-      $emailQuery = "SELECT * FROM admin WHERE email = '$email'";
+      $emailQuery = "SELECT * FROM user WHERE email = '$email'";
       $emailResult = mysqli_query($db, $emailQuery);
       if (mysqli_num_rows($emailResult) > 0) {
         echo '<script>alert("Email already exists. Please choose a different email.");</script>';
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
           echo '<script>alert("Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, and one number.");</script>';
         } else {
           // Insert data into the database
-          $query = "INSERT INTO admin (fullname, email, password, admin_profile) VALUES ('$fullName', '$email', '$password', '$fileName')";
+          $query = "INSERT INTO user (fullname, email, password, user_profile) VALUES ('$fullName', '$email', '$password', '$fileName')";
           $result = mysqli_query($db, $query);
 
           if ($result) {
@@ -84,27 +84,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Art Abode | Registration Page</title>
-  <link href="./images/logo.png" rel="icon" />
-  <link href="./images/logo.png" rel="apple-touch-icon" />
+  <link href="../images/logo.png" rel="icon" />
+  <link href="../images/logo.png" rel="apple-touch-icon" />
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="./admin/plugins/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="../user/plugins/fontawesome-free/css/all.min.css" />
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="./admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+  <link rel="stylesheet" href="../user/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
   <!-- Theme style -->
-  <link rel="stylesheet" href="./admin/dist/css/admin.min.css" />
+  <link rel="stylesheet" href="../user/dist/css/user.min.css" />
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
 </head>
 
-<body style="background-image: url('images/GGB.jpg'); background-size: cover; background-position: center;" class="hold-transition login-page">
+<body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;" class="hold-transition login-page">
   <div class="register-box">
     <div class="register-logo">
-      <a href="./Home/home.php"><b style="color: #1db954">Art</b><b style="color: #fff">Abode</b></a>
+      <a href="../Home/home.php"><b style="color: #1db954">Art</b><b style="color: #fff">Abode</b></a>
     </div>
 
     <div class="card">
@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
           <div class="input-group mb-3">
-            <input type="file" class="form-control" name="adminProfile" required />
+            <input type="file" class="form-control" name="userProfile" required />
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-image"></span>
@@ -189,11 +189,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
   <!-- /.register-box -->
 
   <!-- jQuery -->
-  <script src="./admin/plugins/jquery/jquery.min.js"></script>
+  <script src="../user/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="./admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Admin App -->
-  <script src="./admin/dist/js/admin.min.js"></script>
+  <script src="../user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- user App -->
+  <script src="../user/dist/js/user.min.js"></script>
 
   <!-- Include SweetAlert JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
