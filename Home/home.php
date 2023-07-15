@@ -28,8 +28,6 @@ $resultService = mysqli_query($db, $queryService);
 $piii = mysqli_fetch_array($resultService);
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +76,6 @@ $piii = mysqli_fetch_array($resultService);
     background-color: #040404;
     color: #fff;
     overflow-y: scroll;
-    /* Enable vertical scrolling */
   }
 
   .navbar-link {
@@ -86,7 +83,20 @@ $piii = mysqli_fetch_array($resultService);
     color: #FFF !important;
     text-shadow: lightgreen;
   }
-
+  .gray-background::placeholder {
+    color: black;
+  }
+  .gray-background {
+    color: black;
+  }
+  .gray-background {
+    background-color: gray;
+    color: white;
+  }
+  .gray-background:focus {
+    background-color: gray;
+    color: white;
+  }
   .background-image {
     position: fixed;
     top: 0;
@@ -103,66 +113,54 @@ $piii = mysqli_fetch_array($resultService);
 <body>
   <div class="background-image"></div>
   <!-- ======= Header ======= -->
-  <header class="header " id="header">
-    <div class="container">
-
-
-      <h1><a href="home.php">
-          <b style="color: #1DB954; font-style: italic; ">Art</b><b style="color: #FFF;">Abode</b></a>
-        </a></h1>
-        <h2>
-      Step into our <span>WORLD OF DESIGN</span> where <span>IMAGINATION</span><br> meets <span>REALITY!</span>
-        Greetings! Welcome to our Portfolio Website!
-      </h2>
-      <!-- navbar -->
-      <nav id="navbar" class="navbar">
-        <ul>
-
-          <li><a class="nav-link active" href="#header">Home</a></li>
-          <li><a class="nav-link" href="#about">About Us</a></li>
-          <li><a class="nav-link" href="#services">Services</a></li>
-          <li><a class="nav-link" href="#portfolio">Portfolios</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
-
-          <?php
-          session_start(); // Start the session
-          if (isset($_SESSION['user_id'])) {
-            // User is logged in
-            echo '<li><a href="account.php" target="_blank"><b class="navbar-link">ACCOUNT</b></a></li>';
-            echo '<li><a href="../components/logout.php"><b class="navbar-link">Logout</b></a></li>';
-          } else {
-            // User is not logged in
-            echo '<li><a href="../components/register.php"><b class="navbar-link">Register</b></a></li>';
-            echo '<li><a href="../components/login.php"><b class="navbar-link">Login</b></a></li>';
-          }
-          ?>
-
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-      <div class="social-links">
-        <a href="https://twitter.com/" class="twitter" target="_blank"><i class="bi bi-twitter"></i></a>
-        <a href="https://facebook.com/" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
-        <a href="https://instagram.com/" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-        <a href="https://skype.com/" class="google-plus" target="_blank"><i class="bi bi-skype"></i></a>
-        <a href="https://youtube.com/" class="youtube" target="_blank"><i class="bi bi-youtube"></i></a>
-        <a href="https://linkedin.com/" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+    <header class="header " id="header">
+      <div class="container">
+        <h1><a href="home.php">
+            <b style="color: #1DB954; font-style: italic; ">Art</b><b style="color: #FFF;">Abode</b></a>
+          </a></h1>
+        <h2> Step into our <span>WORLD OF DESIGN</span> where <span>IMAGINATION</span><br> meets <span>REALITY!</span>
+          Greetings! Welcome to our Portfolio Website!</h2>
+        <!-- navbar -->
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link active" href="#header">Home</a></li>
+            <li><a class="nav-link" href="#about">About Us</a></li>
+            <li><a class="nav-link" href="#services">Services</a></li>
+            <li><a class="nav-link" href="#portfolio">Portfolios</a></li>
+            <li><a class="nav-link" href="#contact">Contact</a></li>
+            <?php
+            session_start(); // Start the session
+            if (isset($_SESSION['user_id'])) {
+              // User is logged in
+              echo '<li><a href="account.php" target="_blank"><b class="navbar-link">ACCOUNT</b></a></li>';
+              echo '<li><a href="../components/logout.php"><b class="navbar-link">Logout</b></a></li>';
+            } else {
+              // User is not logged in
+              echo '<li><a href="../components/register.php"><b class="navbar-link">Register</b></a></li>';
+              echo '<li><a href="../components/login.php"><b class="navbar-link">Login</b></a></li>';
+            }?>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        <div class="social-links">
+          <a href="https://twitter.com/" class="twitter" target="_blank"><i class="bi bi-twitter"></i></a>
+          <a href="https://facebook.com/" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="https://instagram.com/" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="https://skype.com/" class="google-plus" target="_blank"><i class="bi bi-skype"></i></a>
+          <a href="https://youtube.com/" class="youtube" target="_blank"><i class="bi bi-youtube"></i></a>
+          <a href="https://linkedin.com/" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+        </div>
       </div>
-    </div>
-  </header><!-- End Header -->
+    </header><!-- End Header -->
 
   <!-- ======= About Section ======= -->
   <section id="about" class="about">
-
-    <!-- ======= About Me ======= -->
+    <!-- ======= About Us ======= -->
     <div class="about-me container">
-
       <div class="section-title">
         <h2>About Us</h2>
         <p>Learn more about us</p>
       </div>
-
       <div class="row">
         <div class="col-lg-4" data-aos="fade-right">
           <img src="../images/<?= $pii['about_img'] ?>" class="img-fluid" alt="">
@@ -173,21 +171,16 @@ $piii = mysqli_fetch_array($resultService);
           </p>
         </div>
       </div>
-
-    </div><!-- End About Me -->
-
+    </div><!-- End About Us-->
   </section><!-- End About Section -->
 
   <!-- ======= Services Section ======= -->
-  <!-- ======= Services Section ======= -->
   <section id="services" class="services">
     <div class="container">
-
       <div class="section-title">
         <h2>Services</h2>
         <p>Our Services</p>
       </div>
-
       <div class="row">
         <?php
         $query55 = "SELECT * FROM admin_services";
@@ -203,15 +196,11 @@ $piii = mysqli_fetch_array($resultService);
               </p>
             </div>
           </div>
-          <?php
-        }
-        ?>
+          <?php } ?>
       </div>
-
     </div>
   </section>
   <!-- End Services Section -->
-
 
   <!-- ======= Portfolio Section ======= -->
   <section id="portfolio" class="portfolio">
@@ -220,24 +209,37 @@ $piii = mysqli_fetch_array($resultService);
         <h2>Portfolios</h2>
         <p>Users</p>
       </div>
+      <!-- Filter Section -->
+      <div class="row">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <ul id="portfolio-flters">
+            <li data-filter="*" class="filter-active">All</li>
+            <?php
+            // Generate filter buttons for all letters from A to Z
+            for ($i = 65; $i <= 90; $i++) {
+              $letter = chr($i);
+              echo '<li data-filter=".' . $letter . '">' . $letter . '</li>';
+            } ?>
+          </ul>
+        </div>
+      </div>
+      <!-- End Filter Section -->
+
       <div class="row portfolio-container">
         <?php
         $query = "SELECT a.user_id, a.fullname, a.user_profile, h.subtitle
-                FROM user AS a
-                LEFT JOIN home AS h ON a.user_id = h.user_id";
+                  FROM user AS a
+                  LEFT JOIN home AS h ON a.user_id = h.user_id";
         $result = mysqli_query($db, $query);
         while ($portfolio = mysqli_fetch_array($result)) {
+          $nameStartingLetter = strtoupper(substr($portfolio['fullname'], 0, 1));
           ?>
-          <div class="col-lg-4 col-md-6 portfolio-item">
+          <div class="col-lg-4 col-md-6 portfolio-item <?= $nameStartingLetter ?>">
             <div class="portfolio-wrap">
               <img src="../images/<?= $portfolio['user_profile'] ?>" class="img-fluid portfolio-image" alt="">
               <div class="portfolio-info">
-                <h4>
-                  <?= $portfolio['fullname'] ?>
-                </h4>
-                <p>
-                  <?= $portfolio['subtitle'] ?>
-                </p>
+                <h4><?= $portfolio['fullname'] ?></h4>
+                <p><?= $portfolio['subtitle'] ?></p>
                 <div class="portfolio-links">
                   <a href="../images/<?= $portfolio['user_profile'] ?>" data-gallery="portfolioGallery"
                     class="portfolio-lightbox" title="<?= $portfolio['fullname'] ?>" target="_blank">
@@ -251,9 +253,7 @@ $piii = mysqli_fetch_array($resultService);
               </div>
             </div>
           </div>
-          <?php
-        }
-        ?>
+          <?php } ?>
       </div>
     </div>
   </section>
@@ -262,7 +262,6 @@ $piii = mysqli_fetch_array($resultService);
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
     <div class="container">
-
       <div class="section-title">
         <h2>Contact</h2>
         <p>Contact Us</p>
@@ -273,7 +272,7 @@ $piii = mysqli_fetch_array($resultService);
             <input type="text" name="fullName" class="form-control gray-background" placeholder="Your Name" required>
           </div>
           <div class="col-md-6 form-group mt-3">
-            <input type="email" class="form-control gray-background" name="email" placeholder="Your Email" required />
+            <input type="email" class="form-control gray-background" name="email" placeholder="Your Email" required>
           </div>
           <div class="col-md-6 form-group mt-3">
             <input type="number" class="form-control gray-background" name="mobileNumber" placeholder="Mobile Number"
@@ -291,13 +290,15 @@ $piii = mysqli_fetch_array($resultService);
           <input type="submit" value="Send Message" class="btn btn-green" />
         </div>
       </form>
-  </section><!-- End Contact Section -->
+    </div>
+  </section>
+  <!-- End Contact Section -->
 
   <div class="credits">
     Copyright &copy; 2023 <a href="#">by Group 4 | All Rights Reserved.</a>
   </div>
 
-  <!-- Vendor JS Files -->
+  <!-- SCRIPTS -->
   <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -305,9 +306,6 @@ $piii = mysqli_fetch_array($resultService);
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
-
-
-  <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
 
 </body>

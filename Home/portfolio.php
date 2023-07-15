@@ -64,8 +64,6 @@ if (isset($user_data) && !empty($user_data)) {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,10 +85,8 @@ if (isset($user_data) && !empty($user_data)) {
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
   <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
-
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -98,7 +94,6 @@ if (isset($user_data) && !empty($user_data)) {
   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
 
@@ -109,9 +104,21 @@ if (isset($user_data) && !empty($user_data)) {
     background-color: #040404;
     color: #fff;
     overflow-y: scroll;
-    /* Enable vertical scrolling */
   }
-
+ .gray-background::placeholder {
+    color: black;
+  }
+  .gray-background {
+    color: black;
+  }
+  .gray-background {
+    background-color: gray;
+    color: white;
+  }
+  .gray-background:focus {
+    background-color: gray;
+    color: white;
+  }
   .background-image {
     position: fixed;
     top: 0;
@@ -133,12 +140,8 @@ if (isset($user_data) && !empty($user_data)) {
       <a href="./home.php" class="logo"
         style=" display: flex; align-items: center; text-decoration: none; font-size: 1.5rem; color: var(--text-color);margin-bottom: 20px; margin-top: -100px; margin-left: -40px; font-weight: 600; cursor: pointer;"><b
           style="color: #1DB954; font-style: italic; ">Art </b><b style="color: #FFF;">Abode</b></a>
-      <h1><a href="portfolio.php">
-          <?= isset($home['title']) ? $home['title'] : '' ?>
-        </a></h1>
-      <h2>
-        <?= isset($home['subtitle']) ? $home['subtitle'] : '' ?>
-      </h2>
+      <h1><a href="portfolio.php"><?= isset($home['title']) ? $home['title'] : '' ?></a></h1>
+      <h2><?= isset($home['subtitle']) ? $home['subtitle'] : '' ?></h2>
       <!-- navbar -->
       <nav id="navbar" class="navbar">
         <ul>
@@ -160,7 +163,6 @@ if (isset($user_data) && !empty($user_data)) {
           <?php if (isset($section_control['contact_section']) && $section_control['contact_section']) { ?>
             <li><a class="nav-link" href="#contact">Contact</a></li>
           <?php } ?>
-
           <li><a class="nav-link" href="home.php"
               style="display: inline-block; padding: 0.5rem .5rem; background: #1db954;
                     border-radius: 2rem; box-shadow: 0 0 .5rem #1db954; font-size: .5rem;  color: var(--second-bg-color); transition: 0.5s ease;">Go Back
@@ -199,10 +201,8 @@ if (isset($user_data) && !empty($user_data)) {
             <a href="https://linkedin.com/<?= $social_media['linkedin'] ?>" class="linkedin"><i
                 class="bi bi-linkedin"></i></a>
           <?php } ?>
-
         </div>
       <?php } ?>
-
     </div>
   </header><!-- End Header -->
 
@@ -211,12 +211,10 @@ if (isset($user_data) && !empty($user_data)) {
 
     <!-- ======= About Me ======= -->
     <div class="about-me container">
-
       <div class="section-title">
         <h2>About</h2>
         <p>Learn more about me</p>
       </div>
-
       <div class="row">
         <div class="col-lg-4" data-aos="fade-right">
           <img src="../images/<?= $about['profile_pic'] ?>" class="img-fluid" alt="">
@@ -245,7 +243,6 @@ if (isset($user_data) && !empty($user_data)) {
                 }
                 ?>
               </ul>
-
             </div>
             <div class="col-lg-6">
               <ul>
@@ -263,7 +260,6 @@ if (isset($user_data) && !empty($user_data)) {
                 }
                 ?>
               </ul>
-
             </div>
           </div>
           <p style="text-align: justify;">
@@ -271,19 +267,16 @@ if (isset($user_data) && !empty($user_data)) {
           </p>
         </div>
       </div>
-
     </div><!-- End About Me -->
 
     <!-- ======= Counts ======= -->
     <div class="counts container">
-
       <div class="row">
         <?php
         $query22 = "SELECT * FROM counts WHERE user_id = $user_id";
         $run22 = mysqli_query($db, $query22);
         while ($counts = mysqli_fetch_array($run22)) {
           ?>
-
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
               <i class="bi bi-emoji-smile"></i>
@@ -292,7 +285,6 @@ if (isset($user_data) && !empty($user_data)) {
               <p>Happy Clients</p>
             </div>
           </div>
-
           <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
             <div class="count-box">
               <i class="bi bi-journal-richtext"></i>
@@ -301,7 +293,6 @@ if (isset($user_data) && !empty($user_data)) {
               <p>Projects</p>
             </div>
           </div>
-
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="bi bi-headset"></i>
@@ -310,7 +301,6 @@ if (isset($user_data) && !empty($user_data)) {
               <p>Hours Of Support</p>
             </div>
           </div>
-
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="bi bi-award"></i>
@@ -319,29 +309,21 @@ if (isset($user_data) && !empty($user_data)) {
               <p>Awards</p>
             </div>
           </div>
-          <?php
-        }
-        ?>
+          <?php } ?>
       </div>
-
     </div><!-- End Counts -->
 
     <!-- ======= Skills  ======= -->
     <div class="skills container">
-
       <div class="section-title">
         <h2>Skills</h2>
       </div>
-
       <div class="row skills-content">
-
         <div class="col-lg-12">
           <?php
           $query3 = "SELECT * FROM skills WHERE user_id = $user_id";
           $run3 = mysqli_query($db, $query3);
-          while ($skills = mysqli_fetch_array($run3)) {
-            ?>
-
+          while ($skills = mysqli_fetch_array($run3)) { ?>
             <div class="progress">
               <span class="skill">
                 <?= $skills['skill_name'] ?><i class="val">
@@ -353,23 +335,16 @@ if (isset($user_data) && !empty($user_data)) {
                   aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
-            <?php
-          }
-          ?>
-
+            <?php } ?>
         </div>
-
       </div>
-
     </div><!-- End Skills -->
 
     <!-- ======= Interests ======= -->
     <div class="interests container">
-
       <div class="section-title">
         <h2>Interests</h2>
       </div>
-
       <div class="row">
         <?php
         $query33 = "SELECT * FROM interests WHERE user_id = $user_id";
@@ -384,20 +359,15 @@ if (isset($user_data) && !empty($user_data)) {
               </h3>
             </div>
           </div>
-          <?php
-        }
-        ?>
+          <?php } ?>
       </div>
-
     </div><!-- End Interests -->
 
     <!-- ======= Testimonials ======= -->
     <div class="testimonials container">
-
       <div class="section-title">
         <h2>Testimonials of Workmates</h2>
       </div>
-
       <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
         <div class="swiper-wrapper">
           <?php
@@ -421,32 +391,23 @@ if (isset($user_data) && !empty($user_data)) {
                 </h4>
               </div>
             </div><!-- End testimonial item -->
-            <?php
-          }
-          ?>
+            <?php } ?>
         </div>
         <div class="swiper-pagination"></div>
       </div>
-
       <div class="owl-carousel testimonials-carousel"></div>
-
     </div><!-- End Testimonials -->
-
   </section><!-- End About Section -->
 
   <!-- ======= Resume Section ======= -->
   <section id="resume" class="resume">
     <div class="container">
-
       <div class="section-title">
         <h2>Resume</h2>
         <p>Check My Resume</p>
       </div>
-
       <div class="row">
         <div class="col-lg-6">
-
-
           <h3 class="resume-title">Education</h3>
           <?php
           $query4 = "SELECT * FROM resume WHERE user_id = $user_id AND (type = 'e' OR type = 'E' OR type = 'Education' OR type = 'education')";
@@ -467,9 +428,7 @@ if (isset($user_data) && !empty($user_data)) {
                 <?= $resume['about_exp'] ?>
               </p>
             </div>
-            <?php
-          }
-          ?>
+            <?php } ?>
         </div>
         <div class="col-lg-6">
           <h3 class="resume-title">Professional Experience</h3>
@@ -492,9 +451,7 @@ if (isset($user_data) && !empty($user_data)) {
                 <?= $resume['about_exp'] ?>
               </p>
             </div>
-            <?php
-          }
-          ?>
+            <?php } ?>
         </div>
       </div>
     </div>
@@ -503,12 +460,10 @@ if (isset($user_data) && !empty($user_data)) {
   <!-- ======= Services Section ======= -->
   <section id="services" class="services">
     <div class="container">
-
       <div class="section-title">
         <h2>Services</h2>
         <p>My Services</p>
       </div>
-
       <div class="row">
         <?php
         $query55 = "SELECT * FROM services WHERE user_id = $user_id";
@@ -523,20 +478,15 @@ if (isset($user_data) && !empty($user_data)) {
                 <?= $services['service_desc'] ?>
               </p>
             </div>
-
           </div>
-          <?php
-        }
-        ?>
+          <?php } ?>
       </div>
-
     </div>
   </section><!-- End Services Section -->
 
   <!-- ======= Portfolio Section ======= -->
   <section id="portfolio" class="portfolio">
     <div class="container">
-
       <div class="section-title">
         <h2>Artworks</h2>
         <p>My Works</p>
@@ -581,9 +531,7 @@ if (isset($user_data) && !empty($user_data)) {
               </div>
             </div>
           </div>
-          <?php
-        }
-        ?>
+          <?php } ?>
       </div>
     </div>
   </section><!-- End Portfolio Section -->
@@ -591,14 +539,11 @@ if (isset($user_data) && !empty($user_data)) {
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
     <div class="container">
-
       <div class="section-title">
         <h2>Contact</h2>
         <p>Contact Me</p>
       </div>
-
       <div class="row mt-2">
-
         <div class="col-md-6 d-flex align-items-stretch">
           <div class="info-box">
             <i class="bx bx-map"></i>
@@ -608,7 +553,6 @@ if (isset($user_data) && !empty($user_data)) {
             </p>
           </div>
         </div>
-
         <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
           <div class="info-box">
             <i class="bx bx-share-alt"></i>
@@ -617,45 +561,30 @@ if (isset($user_data) && !empty($user_data)) {
               <?php if ($social_media['twitter'] != '') { ?>
                 <a href="https://twitter.com/<?= $social_media['twitter'] ?>" class="twitter"><i
                     class="bi bi-twitter"></i></a>
-                <?php
-              }
-              ?>
-
+                <?php } ?>
               <?php if ($social_media['facebook'] != '') { ?>
                 <a href="https://facebook.com/<?= $social_media['facebook'] ?>" class="facebook"><i
                     class="bi bi-facebook"></i></a>
-
-                <?php
-              }
-              if ($social_media['instagram'] != '') {
-                ?>
+                <?php }
+              if ($social_media['instagram'] != '') { ?>
                 <a href="https://instagram.com/<?= $social_media['instagram'] ?>" class="instagram"><i
                     class="bi bi-instagram"></i></a>
-                <?php
-              }
-              if ($social_media['skype'] != '') {
-                ?>
+                <?php }
+              if ($social_media['skype'] != '') { ?>
                 <a href="https://skype.com/<?= $social_media['skype'] ?>" class="google-plus"><i
                     class="bi bi-skype"></i></a>
-                <?php
-              }
-              if ($social_media['skype'] != '') {
-                ?>
+                <?php }
+              if ($social_media['skype'] != '') { ?>
                 <a href="https:/youtube.com/<?= $social_media['youtube'] ?>" class="youtube"><i
                     class="bi bi-youtube"></i></a>
-                <?php
-              }
-              if ($social_media['linkedin'] != '') {
-                ?>
+                <?php }
+              if ($social_media['linkedin'] != '') { ?>
                 <a href="https://linkedin.com/<?= $social_media['linkedin'] ?>" class="linkedin"><i
                     class="bi bi-linkedin"></i></a>
-                <?php
-              }
-              ?>
+                <?php }?>
             </div>
           </div>
         </div>
-
         <div class="col-md-6 mt-4 d-flex align-items-stretch">
           <div class="info-box">
             <i class="bx bx-envelope"></i>
@@ -674,17 +603,18 @@ if (isset($user_data) && !empty($user_data)) {
             </p>
           </div>
         </div>
+      </div> 
+      <div class="section-title" style="margin-top: 30px;">
+        <h2>Feedback</h2>
+        <p>Feedback Form</p>
       </div>
       <form action="forms/contact.php?user_id=<?= $_GET['user_id'] ?>" method="POST" class="mt-4">
         <div class="row">
-          <div class="info-boxx">
-            <h2 style="text-align: center; margin-bottom: 20px; font-weight: bold;">Feedback Form</h2>
-          </div>
           <div class="col-md-6 form-group mt-3">
             <input type="text" name="fullName" class="form-control gray-background" placeholder="Your Name" required>
           </div>
           <div class="col-md-6 form-group mt-3">
-            <input type="email" class="form-control gray-background" name="email" placeholder="Your Email" required />
+            <input type="email" class="form-control gray-background" name="email" placeholder="Your Email" required>
           </div>
           <div class="col-md-6 form-group mt-3">
             <input type="number" class="form-control gray-background" name="mobileNumber" placeholder="Mobile Number"
@@ -708,6 +638,7 @@ if (isset($user_data) && !empty($user_data)) {
     Copyright &copy; 2023 <a href="#">by Group 4 | All Rights Reserved.</a>
   </div>
 
+  <!-- SCRIPTS -->
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -716,11 +647,8 @@ if (isset($user_data) && !empty($user_data)) {
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
-
-
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
 
 </body>
-
 </html>
