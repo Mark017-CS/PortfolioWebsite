@@ -395,7 +395,7 @@ if (!$admin_data) {
                       <table class="table">
                         <thead>
                           <tr>
-                            <th style="width: 10px">#</th>
+                            <th>User ID</th>
                             <th>Fullname</th>
                             <th>Email</th>
                             <th>Password</th>
@@ -413,7 +413,7 @@ if (!$admin_data) {
                             ?>
                             <tr>
                               <td>
-                              <?= $c ?>
+                              <?= $pi['user_id'] ?>
                               </td>
                               <td>
                               <?= $pi['fullname'] ?>
@@ -445,6 +445,41 @@ if (!$admin_data) {
                   <?php
             } 
               ?>
+              <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                    <div class="card-body">                      
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">User ID</label>
+                        <input type="text" class="form-control" name="service_title">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Fullname</label>
+                        <input type="text" class="form-control" name="service_des" id="exampleInputEmail1">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Profile</label>
+                        <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Password</label>
+                        <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Code</label>
+                        <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
+                      </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <button type="submit" name="add-service" class="btn btn-primary">Add User</button>
+                    </div>
+                    <div class="card-footer">
+                      <button type="submit" name="add-service" class="btn btn-primary">Update User</button>
+                    </div>
+                  </form>
                 </div>         
           <!-- /.row (main row) -->
       </section>

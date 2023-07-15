@@ -83,6 +83,23 @@ if (isset($_POST['login'])) {
   <link rel="stylesheet" href="../user/dist/css/user.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  
+  <style>
+    .password-toggle-icon {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #999;
+      z-index: 1;
+      display: none;
+    }
+
+    .password-toggle-icon:hover {
+      color: #666;
+    }
+  </style>
 </head>
 
 <body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;" class="hold-transition login-page">
@@ -97,8 +114,7 @@ if (isset($_POST['login'])) {
 
         <form method="post">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" name="email" placeholder="Email" required
-              value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>">
+            <input type="email" class="form-control" name="email" placeholder="Email" required value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -106,20 +122,20 @@ if (isset($_POST['login'])) {
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" placeholder="Password" required
-              value="<?php echo isset($_COOKIE['password']) ? $_COOKIE['password'] : ''; ?>">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required value="<?php echo isset($_COOKIE['password']) ? $_COOKIE['password'] : ''; ?>">
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-lock"></span>
+                <span class="fas fa-lock" id="lockIcon"></span>
               </div>
             </div>
+            <span class="fas fa-eye password-toggle-icon" id="eyeIcon"></span>
           </div>
           <div class="form-check mb-3">
-            <input type="checkbox" class="form-check-input" id="showPassword">
-            <label class="form-check-label" for="showPassword">Show Password</label>
+            <input type="checkbox" class="form-check-input" id="rememberMe" name="remember" <?php echo isset($_COOKIE['email']) ? 'checked' : ''; ?>>
+            <label class="form-check-label" for="rememberMe">Remember Me</label>
           </div>
           <div class="row">
-            <div class="col-8">
+            <div class="col-6">
               <div class="icheck-primary">
                 <input type="radio" id="userLogin" name="login_type" value="user" checked>
                 <label for="userLogin">
@@ -127,7 +143,7 @@ if (isset($_POST['login'])) {
                 </label>
               </div>
             </div>
-            <div class="col-8">
+            <div class="col-6">
               <div class="icheck-primary">
                 <input type="radio" id="adminLogin" name="login_type" value="admin">
                 <label for="adminLogin">
@@ -136,7 +152,7 @@ if (isset($_POST['login'])) {
               </div>
             </div>
             <!-- /.col -->
-            <div class="col-4">
+            <div class="col-12">
               <button type="submit" name="login" class="btn btn-primary btn-block">Sign In</button>
             </div>
             <!-- /.col -->
@@ -162,17 +178,33 @@ if (isset($_POST['login'])) {
   <!-- user App -->
   <script src="../user/dist/js/userlte.min.js"></script>
   <script>
-    var passwordInput = document.querySelector('input[name="password"]');
-    var showPasswordCheckbox = document.getElementById('showPassword');
+    var passwordInput = document.querySelector('#password');
+    var lockIcon = document.getElementById('lockIcon');
+    var eyeIcon = document.getElementById('eyeIcon');
 
-    showPasswordCheckbox.addEventListener('change', function () {
-      if (this.checked) {
+    passwordInput.addEventListener('input', function () {
+      if (passwordInput.value !== '') {
+        lockIcon.style.display = 'none';
+        eyeIcon.style.display = 'block';
+      } else {
+        lockIcon.style.display = 'block';
+        eyeIcon.style.display = 'none';
+      }
+    });
+
+    eyeIcon.addEventListener('click', function () {
+      if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
       } else {
         passwordInput.type = 'password';
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
       }
     });
   </script>
 </body>
 
 </html>
+
