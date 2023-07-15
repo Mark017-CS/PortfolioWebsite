@@ -87,8 +87,7 @@ if (!$admin_data) {
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="admin.php?changebackground=true" class="brand-link">
-        <img src="../images/logo.png" alt="userLTE Logo" class="brand-image"
-          >
+        <img src="../images/logo.png" alt="userLTE Logo" class="brand-image">
         <span class="brand-text font-weight: bold;">ADMIN PANEL</span>
       </a>
       <!-- Sidebar -->
@@ -105,41 +104,45 @@ if (!$admin_data) {
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    <li class="nav-item menu-open">
-      <a href="admin.php?changebackground=true" class="nav-link <?php echo isset($_GET['homesetting']) ? 'active' : ''; ?>">
-        <i class="fa fa-th-large" aria-hidden="true"></i>
-        <p>
-          Home Section
-        </p>
-      </a>
-    </li>
-    <li class="nav-item menu-open">
-      <a href="admin.php?aboutsetting=true" class="nav-link <?php echo isset($_GET['aboutsetting']) ? 'active' : ''; ?>">
-        <i class="fa fa-home" aria-hidden="true"></i>
-        <p>
-          About Section
-        </p>
-      </a>
-    </li>
-    <li class="nav-item menu-open">
-      <a href="admin.php?servicesetting=true" class="nav-link <?php echo isset($_GET['servicesetting']) ? 'active' : ''; ?>">
-        <i class="fa fa-question-circle" aria-hidden="true"></i>
-        <p>
-          Services Section
-        </p>
-      </a>
-    </li>
-    <li class="nav-item menu-open">
-      <a href="admin.php?accountsetting=true" class="nav-link <?php echo isset($_GET['accountsetting']) ? 'active' : ''; ?>">
-        <i class="fa fa-users" aria-hidden="true"></i>
-        <p>
-          Users Section
-        </p>
-      </a>
-    </li>
-  </ul>
-</nav>
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item menu-open">
+              <a href="admin.php?changebackground=true"
+                class="nav-link <?php echo isset($_GET['homesetting']) ? 'active' : ''; ?>">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                <p>
+                  Home Section
+                </p>
+              </a>
+            </li>
+            <li class="nav-item menu-open">
+              <a href="admin.php?aboutsetting=true"
+                class="nav-link <?php echo isset($_GET['aboutsetting']) ? 'active' : ''; ?>">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <p>
+                  About Section
+                </p>
+              </a>
+            </li>
+            <li class="nav-item menu-open">
+              <a href="admin.php?servicesetting=true"
+                class="nav-link <?php echo isset($_GET['servicesetting']) ? 'active' : ''; ?>">
+                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                <p>
+                  Services Section
+                </p>
+              </a>
+            </li>
+            <li class="nav-item menu-open">
+              <a href="admin.php?accountsetting=true"
+                class="nav-link <?php echo isset($_GET['accountsetting']) ? 'active' : ''; ?>">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <p>
+                  Users Section
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
@@ -152,75 +155,75 @@ if (!$admin_data) {
         <div class="container-fluid">
           <!-- Main row -->
           <div class="row">
-          <?php
+            <?php
             if (isset($_GET['changebackground'])) {
               ?>
-                <div class="card card-primary col-lg-12">
+              <div class="card card-primary col-lg-12">
+                <div class="card-header">
+                  <h3 class="card-title">Manage Home Background</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Manage Home Background</h3>
+                    <h3 class="card-title">Home</h3>
                   </div>
-                   <!-- /.card-header -->
-                   <div class="card">
-                    <div class="card-header">
-                      <h3 class="card-title">Home</h3>
-                    </div>
                   <div class="card-body p-0">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Background Image</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          $q = "SELECT * from admin_homebg WHERE admin_id=$admin_id";
-                          $r = mysqli_query($db, $q);
-                          $c = 1;
-                          while ($pi = mysqli_fetch_array($r)) {
-                            ?>
-                            <tr>
-                              <td>
-                              <?= $c ?>
-                              </td>                             
-                              <td>
-                              <img src="../images/<?= $pi['background_img'] ?>" style="height: 170px; width: 200px;">
-                              </td>                                                      
-                            </tr>
-                            <?php
-                            $c++;
-                          }
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
-                    </div>
-                  <!-- form start -->
-                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
-                    <div class="card-body">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Choose Background Image</label>
-                        <input type="file" class="form-control" name="background">
-                      </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="width: 10px">#</th>
+                          <th>Background Image</th>
+                        </tr>
+                      </thead>
+                      <tbody>
                         <?php
-                        $query = "SELECT * FROM admin_homebg WHERE admin_id = $admin_id";
-                        $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);
-                        
-                        if ($row_count == 0) {
-                          // Display Add button
-                          echo '<button type="submit" name="add-background" class="btn btn-primary">Add Background</button>';
-                        } else {
-                          // Display Save Changes button
-                          echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
+                        $q = "SELECT * from admin_homebg WHERE admin_id=$admin_id";
+                        $r = mysqli_query($db, $q);
+                        $c = 1;
+                        while ($pi = mysqli_fetch_array($r)) {
+                          ?>
+                          <tr>
+                            <td>
+                              <?= $c ?>
+                            </td>
+                            <td>
+                              <img src="../images/<?= $pi['background_img'] ?>" style="height: 170px; width: 200px;">
+                            </td>
+                          </tr>
+                          <?php
+                          $c++;
                         }
                         ?>
-                      </div>
-                  </form>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+                <!-- form start -->
+                <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Choose Background Image</label>
+                      <input type="file" class="form-control" name="background">
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <?php
+                    $query = "SELECT * FROM admin_homebg WHERE admin_id = $admin_id";
+                    $result = mysqli_query($db, $query);
+                    $row_count = mysqli_num_rows($result);
+
+                    if ($row_count == 0) {
+                      // Display Add button
+                      echo '<button type="submit" name="add-background" class="btn btn-primary">Add Background</button>';
+                    } else {
+                      // Display Save Changes button
+                      echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
+                    }
+                    ?>
+                  </div>
+                </form>
+              </div>
               <?php
             } else if (isset($_GET['aboutsetting'])) {
               ?>
@@ -257,8 +260,8 @@ if (!$admin_data) {
                               <?= $about['about_desc'] ?>
                               </td>
                               <td>
-                              <img src="../images/<?= $about['about_img'] ?>" style="height: 70px; width: 100px;">
-                              </td>                            
+                                <img src="../images/<?= $about['about_img'] ?>" style="height: 70px; width: 100px;">
+                              </td>
                             </tr>
                             <?php
                             $c++;
@@ -267,38 +270,38 @@ if (!$admin_data) {
                         </tbody>
                       </table>
                     </div>
-                    </div>
-                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card-body -->
                   <!-- /.card-header -->
                   <!-- form start -->
-                  
+
                   <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
-                  <!-- <img src="../images/<?= $user_data['profile_pic'] ?>" class="col-2"> -->
+                    <!-- <img src="../images/<?= $user_data['profile_pic'] ?>" class="col-2"> -->
                     <div class="card-body">
                       <div class="form-group">
                         <label for="exampleInputEmail1">About Image</label>
                         <input type="file" class="form-control" name="profile">
-                      </div>                     
+                      </div>
                       <div class="form-group">
                         <label for="exampleInputPassword1">About Description</label><br>
                         <textarea cols="50" name="about_desc"></textarea>
                       </div>
                     </div>
                     <div class="card-footer">
-                        <?php
-                        $query = "SELECT * FROM admin_about WHERE admin_id = $admin_id";
-                        $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);
-                        
-                        if ($row_count == 0) {
-                          // Display Add SEO button
-                          echo '<button type="submit" name="add-about" class="btn btn-primary">Add About Details</button>';
-                        } else {
-                          // Display Save Changes button
-                          echo '<button type="submit" name="update-about" class="btn btn-primary">Save Changes</button>';
-                        }
-                        ?>
-                      </div>
+                      <?php
+                      $query = "SELECT * FROM admin_about WHERE admin_id = $admin_id";
+                      $result = mysqli_query($db, $query);
+                      $row_count = mysqli_num_rows($result);
+
+                      if ($row_count == 0) {
+                        // Display Add SEO button
+                        echo '<button type="submit" name="add-about" class="btn btn-primary">Add About Details</button>';
+                      } else {
+                        // Display Save Changes button
+                        echo '<button type="submit" name="update-about" class="btn btn-primary">Save Changes</button>';
+                      }
+                      ?>
+                    </div>
                   </form>
                 </div>
                 <?php
@@ -336,7 +339,7 @@ if (!$admin_data) {
                             <tr>
                               <td>
                               <?= $cc ?>
-                              </td>                           
+                              </td>
                               <td>
                               <?= $pii['service_title'] ?>
                               </td>
@@ -358,7 +361,7 @@ if (!$admin_data) {
                     <!-- /.card-body -->
                   </div>
                   <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
-                    <div class="card-body">                      
+                    <div class="card-body">
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Service Title</label>
                         <input type="text" class="form-control" name="service_title">
@@ -377,8 +380,8 @@ if (!$admin_data) {
                       <button type="submit" name="add-service" class="btn btn-primary">Add Service</button>
                     </div>
                   </form>
-                </div>             
-             
+                </div>
+
                 <?php
             } elseif (isset($_GET['accountsetting'])) {
               ?>
@@ -386,12 +389,12 @@ if (!$admin_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage User Accounts</h3>
                   </div>
-                   <!-- /.card-header -->
-                   <div class="card">
+                  <!-- /.card-header -->
+                  <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">User Accounts</h3>
                     </div>
-                  <div class="card-body p-0">
+                    <div class="card-body p-0">
                       <table class="table">
                         <thead>
                           <tr>
@@ -423,16 +426,16 @@ if (!$admin_data) {
                               </td>
                               <td>
                               <?= $pi['password'] ?>
-                              </td> 
+                              </td>
                               <td>
-                              <img src="../images/<?= $pi['user_profile'] ?>" style="height: 150px; width: 130px;">
-                              </td>    
+                                <img src="../images/<?= $pi['user_profile'] ?>" style="height: 150px; width: 130px;">
+                              </td>
                               <td>
                               <?= $pi['code'] ?>
-                              </td>  
+                              </td>
                               <td>
-                                 <a href="include/deleteuser.php?user_id=<?= $pi['user_id'] ?>">Delete</a>
-                              </td>                    
+                                <a href="include/deleteuser.php?user_id=<?= $pi['user_id'] ?>">Delete</a>
+                              </td>
                             </tr>
                             <?php
                             $c++;
@@ -441,101 +444,138 @@ if (!$admin_data) {
                         </tbody>
                       </table>
                     </div>
+                  </div>
+                  </div>
+                
+            <div class="card card-primary col-lg-12">
+              <div class="card-header">
+                <h3 class="card-title">Update User</h3>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">User Information</h3>
+                </div>
+                <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                  <div class="card-body">
+                    <div class="form-group col-6">
+                      <label for="exampleInputEmail1">User ID</label>
+                      <input type="text" class="form-control" name="user_id">
                     </div>
-                  <?php
-            } 
-              ?>
-              <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
-                    <div class="card-body">                      
-                      <div class="form-group col-6">
-                        <label for="exampleInputEmail1">User ID</label>
-                        <input type="text" class="form-control" name="service_title">
-                      </div>
-                      <div class="form-group col-6">
-                        <label for="exampleInputEmail1">Fullname</label>
-                        <input type="text" class="form-control" name="service_des" id="exampleInputEmail1">
-                      </div>
-                      <div class="form-group col-6">
-                        <label for="exampleInputEmail1">Profile</label>
-                        <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
-                      </div>
-                      <div class="form-group col-6">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
-                      </div>
-                      <div class="form-group col-6">
-                        <label for="exampleInputEmail1">Password</label>
-                        <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
-                      </div>
-                      <div class="form-group col-6">
-                        <label for="exampleInputEmail1">Code</label>
-                        <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
-                      </div>
+                    <div class="form-group col-6">
+                      <label for="exampleInputEmail1">Fullname</label>
+                      <input type="text" class="form-control" name="fullname" id="exampleInputEmail1">
                     </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                      <button type="submit" name="add-service" class="btn btn-primary">Add User</button>
+                    <div class="form-group col-6">
+                      <label for="exampleInputEmail1">Profile</label>
+                      <input type="file" class="form-control" name="profile" id="exampleInputEmail1">
                     </div>
-                    <div class="card-footer">
-                      <button type="submit" name="add-service" class="btn btn-primary">Update User</button>
+                    <div class="form-group col-6">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input type="text" class="form-control" name="email" id="exampleInputEmail1">
                     </div>
-                  </form>
-                </div>         
-          <!-- /.row (main row) -->
+                    <div class="form-group col-6">
+                      <label for="exampleInputEmail1">Password</label>
+                      <input type="text" class="form-control" name="password" id="exampleInputEmail1">
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <button type="submit" name="update-user" class="btn btn-primary">Update User</button>
+                  </div>
+                </form>
+              </div>
+              <div class="card-header">
+                <h3 class="card-title">Add User</h3>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">User Information</h3>
+                </div>
+                <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                  <div class="card-body">
+                    <!-- User ID field is removed for adding a new user -->
+                    <div class="form-group col-6">
+                      <label for="exampleInputEmail1">Fullname</label>
+                      <input type="text" class="form-control" name="fullname" id="exampleInputEmail1">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="exampleInputEmail1">Profile</label>
+                      <input type="file" class="form-control" name="profile" id="exampleInputEmail1">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input type="text" class="form-control" name="email" id="exampleInputEmail1">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="exampleInputEmail1">Password</label>
+                      <input type="text" class="form-control" name="password" id="exampleInputEmail1">
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <button type="submit" name="add-user" class="btn btn-primary">Add User</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <?php
+            }
+            ?>
+            <!-- /.row (main row) -->
       </section>
- 
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2023 <a href="#">Group 4</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b>1.0
-      </div>
-    </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-  </div>
-  <!-- ./wrapper -->
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2023 <a href="#">Group 4</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Version</b>1.0
+        </div>
+      </footer>
 
-  <!-- jQuery -->
-  <script src="../user/plugins/jquery/jquery.min.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="../user/plugins/jquery-ui/jquery-ui.min.js"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
-  <!-- Bootstrap 4 -->
-  <script src="../user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- ChartJS -->
-  <script src="../user/plugins/chart.js/Chart.min.js"></script>
-  <!-- Sparkline -->
-  <script src="../user/plugins/sparklines/sparkline.js"></script>
-  <!-- JQVMap -->
-  <script src="../user/plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="../user/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="../user/plugins/jquery-knob/jquery.knob.min.js"></script>
-  <!-- daterangepicker -->
-  <script src="../user/plugins/moment/moment.min.js"></script>
-  <script src="../user/plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="../user/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <!-- Summernote -->
-  <script src="../user/plugins/summernote/summernote-bs4.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="../user/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- userLTE App -->
-  <script src="../user/dist/js/userlte.js"></script>
-  <!-- userLTE dashboard demo (This is only for demo purposes) -->
-  <script src="../user/dist/js/pages/dashboard.js"></script>
-  <!-- userLTE for demo purposes -->
-  <script src="../user/dist/js/demo.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="../user/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../user/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="../user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../user/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../user/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../user/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../user/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../user/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../user/plugins/moment/moment.min.js"></script>
+    <script src="../user/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../user/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../user/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../user/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- userLTE App -->
+    <script src="../user/dist/js/userlte.js"></script>
+    <!-- userLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../user/dist/js/pages/dashboard.js"></script>
+    <!-- userLTE for demo purposes -->
+    <script src="../user/dist/js/demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
