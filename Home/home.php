@@ -131,13 +131,7 @@ $home = mysqli_fetch_array($resultHome);
   <!-- ======= Header ======= -->
   <header class="header " id="header">
     <div class="container">
-      <h1><a href="home.php">
-          <b style="color: #1DB954; font-style: italic; ">
-            <?= $home['home_title'] ?>
-          </b><b style="color: #FFF;">
-            <?= $home['home_title2'] ?>
-          </b></a>
-        </a></h1>
+      <h1><a href="home.php"><b style="color: #1DB954; font-style: italic; "><?= $home['home_title'] ?></b><b style="color: #FFF;"><?= $home['home_title2'] ?></b></a></a></h1>
       <h2>
         <?= $home['home_desc'] ?>
       </h2>
