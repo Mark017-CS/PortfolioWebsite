@@ -118,28 +118,6 @@ if (isset($_POST['add-user'])) {
   }
 }
 
-if (isset($_POST['add-admin'])) {
-  $name = mysqli_real_escape_string($db, $_POST['name']);
-  $email = mysqli_real_escape_string($db, $_POST['email']);
-  $password = mysqli_real_escape_string($db, $_POST['password']);
-  $imagename = time() . $_FILES['profile']['name'];
-  $imgtemp = $_FILES['profile']['tmp_name'];
-
-  if ($imgtemp == '') {
-    $imagename = 'default.jpg';
-  } else {
-    move_uploaded_file($imgtemp, "../../images/$imagename");
-  }
-
-  $query = "INSERT INTO admin (name, email, password, admin_prof) VALUES ('$name', '$email', '$password', '$imagename')";
-
-  $run = mysqli_query($db, $query);
-  if ($run) {
-    echo "<script>window.location.href='../admin.php?adminsetting=true';</script>";
-    exit();
-  }
-}
-
 if (isset($_POST['add-socialmedia'])) {
   $twitter = $_POST['twitter'];
   $facebook = $_POST['facebook'];
@@ -189,7 +167,6 @@ if (isset($_POST['update-home'])) {
 }
 
 if (isset($_POST['update-admin'])) {
-  $adminId = mysqli_real_escape_string($db, $_POST['admin_id']);
   $name = mysqli_real_escape_string($db, $_POST['name']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
@@ -205,7 +182,7 @@ if (isset($_POST['update-admin'])) {
     move_uploaded_file($imgtemp, "../../images/$imagename");
   }
 
-  $query = "UPDATE admin SET name='$name', email='$email', password='$password', admin_prof='$imagename' WHERE admin_id='$admin_id'";
+  $query = "UPDATE admin SET name='$name', email='$email', password='$password', admin_prof='$imagename'";
 
   $run = mysqli_query($db, $query);
   if ($run) {
@@ -213,6 +190,7 @@ if (isset($_POST['update-admin'])) {
     exit();
   }
 }
+
 
 if (isset($_POST['update-user'])) {
   $userId = mysqli_real_escape_string($db, $_POST['user_id']);

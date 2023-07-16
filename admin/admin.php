@@ -931,10 +931,6 @@ if (!$admin_data) {
               <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group col-6">
-                    <label for="exampleInputEmail1">Admin ID</label>
-                    <input type="text" class="form-control" name="admin_id">
-                  </div>
-                  <div class="form-group col-6">
                     <label for="exampleInputEmail1">Name</label>
                     <input type="text" class="form-control" name="name" id="exampleInputEmail1">
                   </div>
@@ -956,6 +952,7 @@ if (!$admin_data) {
                   <button type="submit" name="update-admin" class="btn btn-primary">Save Changes</button>
                 </div>
               </form>
+
             </div>
           </div>
           </section>
