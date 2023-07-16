@@ -35,6 +35,33 @@ if (isset($_POST['add-about'])) {
   }
 }
 
+if (isset($_POST['add-developer'])) {
+  $name = mysqli_real_escape_string($db, $_POST['Name']);
+  $desc = mysqli_real_escape_string($db, $_POST['Description']);
+  $social = mysqli_real_escape_string($db, $_POST['social']);
+  $imagename = time() . $_FILES['profile']['name'];
+  $imgtemp = $_FILES['profile']['tmp_name'];
+
+  if ($imgtemp == '') {
+    $q = "SELECT * FROM admin_developers WHERE  admin_id=$admin_id";
+    $r = mysqli_query($db, $q);
+    $d = mysqli_fetch_array($r);
+    $imagename = $d['deve_profile'];
+  } else {
+    move_uploaded_file($imgtemp, "../../images/$imagename");
+  }
+
+  $query = "INSERT INTO admin_developers (admin_id, Name, Description, deve_profile, social) ";
+  $query .= "VALUES ($admin_id, '$name', '$desc', '$imagename', '$social') ";
+  $query .= "ON DUPLICATE KEY UPDATE Name='$name', Description='$desc',  deve_profile='$imagename', social='$social'";
+
+  $run = mysqli_query($db, $query);
+  if ($run) {
+    echo "<script>window.location.href='../admin.php?aboutsetting=true';</script>";
+    exit();
+  }
+}
+
 
 if (isset($_POST['add-service'])) {
   $service_title = $_POST['service_title'];
@@ -91,6 +118,102 @@ if (isset($_POST['add-user'])) {
   }
 }
 
+if (isset($_POST['add-admin'])) {
+  $name = mysqli_real_escape_string($db, $_POST['name']);
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $password = mysqli_real_escape_string($db, $_POST['password']);
+  $imagename = time() . $_FILES['profile']['name'];
+  $imgtemp = $_FILES['profile']['tmp_name'];
+
+  if ($imgtemp == '') {
+    $imagename = 'default.jpg';
+  } else {
+    move_uploaded_file($imgtemp, "../../images/$imagename");
+  }
+
+  $query = "INSERT INTO admin (name, email, password, admin_prof) VALUES ('$name', '$email', '$password', '$imagename')";
+
+  $run = mysqli_query($db, $query);
+  if ($run) {
+    echo "<script>window.location.href='../admin.php?adminsetting=true';</script>";
+    exit();
+  }
+}
+
+if (isset($_POST['add-socialmedia'])) {
+  $twitter = $_POST['twitter'];
+  $facebook = $_POST['facebook'];
+  $instagram = $_POST['instagram'];
+  $skype = $_POST['skype'];
+  $linkedin = $_POST['linkedin'];
+
+  $query = "INSERT INTO admin_social (user_id, twitter, facebook, instagram, skype, linkedin) ";
+  $query .= "VALUES ($admin_id, '$twitter', '$facebook', '$instagram', '$skype', '$linkedin') ";
+  $query .= "ON DUPLICATE KEY UPDATE twitter='$twitter', facebook='$facebook', instagram='$instagram', skype='$skype', linkedin='$linkedin'";
+
+  $run = mysqli_query($db, $query);
+  if ($run) {
+    echo "<script>window.location.href='../admin.php?homesetting=true';</script>";
+    exit();
+  }
+}
+if (isset($_POST['update-socialmedia'])) {
+  $twitter = $_POST['twitter'];
+  $facebook = $_POST['facebook'];
+  $instagram = $_POST['instagram'];
+  $skype = $_POST['skype'];
+  $youtube = $_POST['youtube'];
+  $linkedin = $_POST['linkedin'];
+
+  $query = "UPDATE admin_social SET twitter='$twitter', facebook='$facebook', instagram='$instagram', skype='$skype', youtube='$youtube', linkedin='$linkedin' WHERE admin_id = $admin_id";
+
+  $run = mysqli_query($db, $query);
+  if ($run) {
+    echo "<script>window.location.href='../admin.php?homesetting=true';</script>";
+    exit();
+  }
+}
+
+if (isset($_POST['update-home'])) {
+  $home_title = $_POST['home_title'];
+  $home_title2 = $_POST['home_title2'];
+  $home_desc = $_POST['home_desc'];
+
+  $query = "UPDATE admin_home SET home_title='$home_title', home_title2='$home_title2', home_desc='$home_desc' WHERE admin_id = $admin_id";
+
+  $run = mysqli_query($db, $query);
+  if ($run) {
+    echo "<script>window.location.href='../admin.php?homesetting=true';</script>";
+    exit();
+  }
+}
+
+if (isset($_POST['update-admin'])) {
+  $adminId = mysqli_real_escape_string($db, $_POST['admin_id']);
+  $name = mysqli_real_escape_string($db, $_POST['name']);
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $password = mysqli_real_escape_string($db, $_POST['password']);
+  $imagename = time() . $_FILES['profile']['name'];
+  $imgtemp = $_FILES['profile']['tmp_name'];
+
+  if ($imgtemp == '') {
+    $q = "SELECT * FROM admin";
+    $r = mysqli_query($db, $q);
+    $d = mysqli_fetch_array($r);
+    $imagename = $d['admin_prof'];
+  } else {
+    move_uploaded_file($imgtemp, "../../images/$imagename");
+  }
+
+  $query = "UPDATE admin SET name='$name', email='$email', password='$password', admin_prof='$imagename' WHERE admin_id='$admin_id'";
+
+  $run = mysqli_query($db, $query);
+  if ($run) {
+    echo "<script>window.location.href='../admin.php?adminsetting=true';</script>";
+    exit();
+  }
+}
+
 if (isset($_POST['update-user'])) {
   $userId = mysqli_real_escape_string($db, $_POST['user_id']);
   $fullname = mysqli_real_escape_string($db, $_POST['fullname']);
@@ -132,7 +255,33 @@ if (isset($_POST['update-about'])) {
     move_uploaded_file($imgtemp, "../../images/$imagename");
   }
 
-  $query = "UPDATE about SET about_img='$imagename', about_desc='$desc' WHERE  admin_id = $admin_id";
+  $query = "UPDATE admin_about SET about_img='$imagename', about_desc='$desc' WHERE  admin_id = $admin_id";
+
+  $run = mysqli_query($db, $query);
+  if ($run) {
+    echo "<script>window.location.href='../admin.php?aboutsetting=true';</script>";
+    exit();
+  }
+}
+
+if (isset($_POST['update-developer'])) {
+  $Id = mysqli_real_escape_string($db, $_POST['id']);
+  $name = mysqli_real_escape_string($db, $_POST['Name']);
+  $desc = mysqli_real_escape_string($db, $_POST['Description']);
+  $social = mysqli_real_escape_string($db, $_POST['social']);
+  $imagename = time() . $_FILES['profile']['name'];
+  $imgtemp = $_FILES['profile']['tmp_name'];
+
+  if ($imgtemp == '') {
+    $q = "SELECT * FROM admin_developers";
+    $r = mysqli_query($db, $q);
+    $d = mysqli_fetch_array($r);
+    $imagename = $d['deve_profile'];
+  } else {
+    move_uploaded_file($imgtemp, "../../images/$imagename");
+  }
+
+  $query = "UPDATE admin_developers SET Name='$name', Description='$desc', deve_profile='$imagename', social='$social' WHERE id='$Id'";
 
   $run = mysqli_query($db, $query);
   if ($run) {

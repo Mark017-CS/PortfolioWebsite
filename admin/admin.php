@@ -8,11 +8,12 @@ if (!isset($_SESSION['isAdminLoggedIn'])) {
 
 $admin_id = $_SESSION['admin_id']; // Assuming the admin_id is stored in the session
 
-// Retrieve data for the specific admin based on admin_id
 $query = "SELECT * FROM admin 
           LEFT JOIN admin_about ON admin.admin_id = admin_about.admin_id 
           LEFT JOIN admin_homebg ON admin.admin_id = admin_homebg.admin_id 
           LEFT JOIN admin_services ON admin.admin_id = admin_services.admin_id 
+          LEFT JOIN admin_home ON admin.admin_id = admin_home.admin_id 
+          LEFT JOIN admin_social ON admin.admin_id = admin_social.admin_id 
           WHERE admin.admin_id = $admin_id";
 
 $run = mysqli_query($db, $query);
@@ -29,13 +30,14 @@ if (!$admin_data) {
 ?>
 
 
+
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>User Account | Dashboard</title>
+  <title>Admin Panel | Dashboard</title>
   <!-- Favicons -->
   <link href="../images/logo.png" rel="icon">
   <link href="../images/logo.png" rel="apple-touch-icon">
@@ -88,7 +90,7 @@ if (!$admin_data) {
       <!-- Brand Logo -->
       <a href="admin.php?changebackground=true" class="brand-link">
         <img src="../images/logo.png" alt="userLTE Logo" class="brand-image">
-        <span class="brand-text font-weight: bold;">ADMIN PANEL</span>
+        <span class="brand-text font-weight-bold">ADMIN PANEL</span>
       </a>
       <!-- Sidebar -->
       <div class="sidebar">
@@ -106,11 +108,20 @@ if (!$admin_data) {
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item menu-open">
-              <a href="admin.php?changebackground=true"
+              <a href="admin.php?homesetting=true"
                 class="nav-link <?php echo isset($_GET['homesetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-home" aria-hidden="true"></i>
                 <p>
                   Home Section
+                </p>
+              </a>
+            </li>
+            <li class="nav-item menu-open">
+              <a href="admin.php?changebackground=true"
+                class="nav-link <?php echo isset($_GET['changebackground']) ? 'active' : ''; ?>">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <p>
+                  Change Background
                 </p>
               </a>
             </li>
@@ -141,12 +152,23 @@ if (!$admin_data) {
                 </p>
               </a>
             </li>
+            <li class="nav-item menu-open">
+              <a href="admin.php?adminsetting=true"
+                class="nav-link <?php echo isset($_GET['adminsetting']) ? 'active' : ''; ?>">
+                <i class="fa fa-user-secret" aria-hidden="true"></i>
+                <p>
+                  Admin Section
+                </p>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
     </aside>
+
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -165,7 +187,7 @@ if (!$admin_data) {
                 <!-- /.card-header -->
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Home</h3>
+                    <h3 class="card-title">Background</h3>
                   </div>
                   <div class="card-body p-0">
                     <table class="table">
@@ -219,6 +241,194 @@ if (!$admin_data) {
                     } else {
                       // Display Save Changes button
                       echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
+                    }
+                    ?>
+                  </div>
+                </form>
+              </div>
+              <?php
+            } elseif (isset($_GET['homesetting'])) {
+              ?>
+              <div class="card card-primary col-lg-12">
+                <div class="card-header">
+                  <h3 class="card-title">Manage Home Details</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Home</h3>
+                  </div>
+                  <div class="card-body p-0">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="width: 10px">#</th>
+                          <th>Home Title 1</th>
+                          <th>Home Title 2</th>
+                          <th>Home Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $q = "SELECT * from admin_home WHERE admin_id=$admin_id";
+                        $r = mysqli_query($db, $q);
+                        $c = 1;
+                        while ($pi = mysqli_fetch_array($r)) {
+                          ?>
+                          <tr>
+                            <td>
+                              <?= $c ?>
+                            </td>
+                            <td>
+                              <?= $pi['home_title'] ?>
+                            </td>
+                            <td>
+                              <?= $pi['home_title2'] ?>
+                            </td>
+                            <td>
+                              <?= $pi['home_desc'] ?>
+                            </td>
+                          </tr>
+                          <?php
+                          $c++;
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- form start -->
+                <form role="form" action="include/adminConfig.php" method="post">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Title 1</label>
+                      <input type="text" class="form-control" name="home_title" id="exampleInputEmail1"
+                        placeholder="Enter Title 1">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Title 2</label>
+                      <input type="text" class="form-control" name="home_title2" id="exampleInputPassword1"
+                        placeholder="Enter Title 2">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Description</label>
+                      <input type="text" class="form-control" name="home_desc" id="exampleInputPassword1"
+                        placeholder="Enter Description">
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <button type="submit" name="update-home" class="btn btn-primary">Save Changes</button>';
+                  </div>
+                </form>
+              </div>
+              <div class="card card-primary col-lg-12">
+                <div class="card-header">
+                  <h3 class="card-title">Manage Social Media Details</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Social Media</h3>
+                  </div>
+                  <div class="card-body p-0">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="width: 10px">#</th>
+                          <th>Twitter</th>
+                          <th>Facebook</th>
+                          <th>Instagram</th>
+                          <th>Skype</th>
+                          <th>Youtube</th>
+                          <th>Linkedin</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $q = "SELECT * from admin_social WHERE admin_id=$admin_id";
+                        $r = mysqli_query($db, $q);
+                        $c = 1;
+                        while ($pi = mysqli_fetch_array($r)) {
+                          ?>
+                          <tr>
+                            <td>
+                              <?= $c ?>
+                            </td>
+                            <td>
+                              <?= $pi['twitter'] ?>
+                            </td>
+                            <td>
+                              <?= $pi['facebook'] ?>
+                            </td>
+                            <td>
+                              <?= $pi['instagram'] ?>
+                            </td>
+                            <td>
+                              <?= $pi['skype'] ?>
+                            </td>
+                            <td>
+                              <?= $pi['youtube'] ?>
+                            </td>
+                            <td>
+                              <?= $pi['linkedin'] ?>
+                            </td>
+                          </tr>
+                          <?php
+                          $c++;
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- form start -->
+                <form role="form" action="include/adminConfig.php" method="post">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Twitter</label>
+                      <input type="text" class="form-control" name="twitter" id="exampleInputEmail1"
+                        placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Facebook</label>
+                      <input type="text" class="form-control" name="facebook" id="exampleInputPassword1"
+                        placeholder="Enter Username">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Instagram</label>
+                      <input type="text" class="form-control" name="instagram" id="exampleInputPassword1"
+                        placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Skype</label>
+                      <input type="text" class="form-control" name="skype" id="exampleInputPassword1"
+                        placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Youtube</label>
+                      <input type="text" class="form-control" name="youtube" id="exampleInputPassword1"
+                        placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Linkedin</label>
+                      <input type="text" class="form-control" name="linkedin" id="exampleInputPassword1"
+                        placeholder="Enter username">
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <?php
+                    $query = "SELECT * FROM admin_social WHERE admin_id = $admin_id";
+                    $result = mysqli_query($db, $query);
+                    $row_count = mysqli_num_rows($result);
+
+                    if ($row_count == 0) {
+                      // Display Add button
+                      echo '<button type="submit" name="add-socialmedia" class="btn btn-primary">Add Social Media</button>';
+                    } else {
+                      // Display Save Changes button
+                      echo '<button type="submit" name="update-socialmedia" class="btn btn-primary">Save Changes</button>';
                     }
                     ?>
                   </div>
@@ -304,137 +514,51 @@ if (!$admin_data) {
                     </div>
                   </form>
                 </div>
-                <?php
-            } elseif (isset($_GET['servicesetting'])) {
-              ?>
                 <div class="card card-primary col-lg-12">
                   <div class="card-header">
-                    <h3 class="card-title">Manage Services</h3>
+                    <h3 class="card-title">Manage Developers</h3>
                   </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
                   <div class="card">
                     <div class="card-header">
-                      <h3 class="card-title">Services</h3>
+                      <h3 class="card-title">Developers</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
                       <table class="table">
                         <thead>
                           <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Service Title</th>
-                            <th>Service Description</th>
-                            <th>Service Link</th>
+                            <th style="width: 10px">Developer's ID</th>
+                            <th>Developer's Name</th>
+                            <th>Developer's Description</th>
+                            <th>Profile</th>
+                            <th>Faccebook Username</th>
                             <th style="width: 40px">Action</th>
                           </tr>
                         </thead>
                         <tbody>
                           <?php
-                          $qq = "SELECT * from admin_services WHERE admin_id = $admin_id";
-                          $rr = mysqli_query($db, $qq);
-                          $cc = 1;
-                          while ($pii = mysqli_fetch_array($rr)) {
-                            ?>
-                            <tr>
-                              <td>
-                              <?= $cc ?>
-                              </td>
-                              <td>
-                              <?= $pii['service_title'] ?>
-                              </td>
-                              <td>
-                              <?= $pii['service_des'] ?>
-                              </td>
-                              <td><a href="<?= $pii['service_link'] ?>" target="_blank">Open Link</a></td>
-                              <td>
-                                <a href="include/deleteservice.php?id=<?= $pii['id'] ?>">Delete</a>
-                              </td>
-                            </tr>
-                            <?php
-                            $cc++;
-                          }
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
-                    <!-- /.card-body -->
-                  </div>
-                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
-                    <div class="card-body">
-                      <div class="form-group col-6">
-                        <label for="exampleInputEmail1">Service Title</label>
-                        <input type="text" class="form-control" name="service_title">
-                      </div>
-                      <div class="form-group col-6">
-                        <label for="exampleInputEmail1">Service Description</label>
-                        <input type="text" class="form-control" name="service_des" id="exampleInputEmail1">
-                      </div>
-                      <div class="form-group col-6">
-                        <label for="exampleInputEmail1">Service Link</label>
-                        <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
-                      </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                      <button type="submit" name="add-service" class="btn btn-primary">Add Service</button>
-                    </div>
-                  </form>
-                </div>
-
-                <?php
-            } elseif (isset($_GET['accountsetting'])) {
-              ?>
-                <div class="card card-primary col-lg-12">
-                  <div class="card-header">
-                    <h3 class="card-title">Manage User Accounts</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card">
-                    <div class="card-header">
-                      <h3 class="card-title">User Accounts</h3>
-                    </div>
-                    <div class="card-body p-0">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th>User ID</th>
-                            <th>Fullname</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>User Profile</th>
-                            <th>Code</th>
-                            <th style="width: 40px">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          $q = "SELECT * from user";
+                          $q = "SELECT * from admin_developers WHERE admin_id=$admin_id";
                           $r = mysqli_query($db, $q);
-                          $c = 1;
-                          while ($pi = mysqli_fetch_array($r)) {
+                          while ($developers = mysqli_fetch_array($r)) {
                             ?>
                             <tr>
                               <td>
-                              <?= $pi['user_id'] ?>
+                              <?= $developers['id'] ?>
                               </td>
                               <td>
-                              <?= $pi['fullname'] ?>
+                              <?= $developers['Name'] ?>
                               </td>
                               <td>
-                              <?= $pi['email'] ?>
+                              <?= $developers['Description'] ?>
                               </td>
                               <td>
-                              <?= $pi['password'] ?>
+                                <img src="../images/<?= $developers['deve_profile'] ?>" style="height: 70px; width: 100px;">
                               </td>
                               <td>
-                                <img src="../images/<?= $pi['user_profile'] ?>" style="height: 150px; width: 130px;">
+                              <?= $developers['social'] ?>
                               </td>
                               <td>
-                              <?= $pi['code'] ?>
-                              </td>
-                              <td>
-                                <a href="include/deleteuser.php?user_id=<?= $pi['user_id'] ?>">Delete</a>
+                                <a href="include/deletedeveloper.php?id=<?= $developers['id'] ?>">Delete</a>
                               </td>
                             </tr>
                             <?php
@@ -445,84 +569,397 @@ if (!$admin_data) {
                       </table>
                     </div>
                   </div>
+                </div>
+                <!-- /.card-body -->
+                <!-- /.card-header -->
+                <!-- form start -->
+                <div class="card card-primary col-lg-12">
+                  <div class="card-header">
+                    <h3 class="card-title">Add a Developer</h3>
                   </div>
-                
-            <div class="card card-primary col-lg-12">
-              <div class="card-header">
-                <h3 class="card-title">Update User</h3>
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">Developers</h3>
+                    </div>
+                    <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                      <!-- <img src="../images/<?= $user_data['profile_pic'] ?>" class="col-2"> -->
+                      <div class="card-body">
+                        <div class="form-group col-6">
+                          <label for="exampleInputEmail1">Name</label>
+                          <input type="text" class="form-control" name="Name">
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="exampleInputEmail1">Description</label><br>
+                          <textarea cols="50" name="Description"></textarea>
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="exampleInputEmail1">Developer's Image</label>
+                          <input type="file" class="form-control" name="profile">
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="exampleInputPassword1">Facebook Username</label>
+                          <input type="text" class="form-control" name="social">
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <button type="submit" name="add-developer" class="btn btn-primary">Add Developer</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="card card-primary col-lg-12">
+                  <div class="card-header">
+                    <h3 class="card-title">Update Developer Information</h3>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">Developers</h3>
+                    </div>
+                    <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                      <div class="card-body">
+                        <div class="form-group col-6">
+                          <label for="exampleInputEmail1">Developer's ID</label>
+                          <input type="text" class="form-control" name="id">
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="exampleInputEmail1">Name</label>
+                          <input type="text" class="form-control" name="Name">
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="exampleInputEmail1">Description</label><br>
+                          <textarea cols="50" name="Description"></textarea>
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="exampleInputEmail1">Developer's Image</label>
+                          <input type="file" class="form-control" name="profile">
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="exampleInputPassword1">Facebook Username</label>
+                          <input type="text" class="form-control" name="social">
+                        </div>
+                      </div>
+                      <!-- /.card-body -->
+                      <div class="card-footer">
+                        <button type="submit" name="update-developer" class="btn btn-primary">Update Developer</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
-              <div class="card">
+              <?php
+            } elseif (isset($_GET['servicesetting'])) {
+              ?>
+              <div class="card card-primary col-lg-12">
                 <div class="card-header">
-                  <h3 class="card-title">User Information</h3>
+                  <h3 class="card-title">Manage Services</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Services</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body p-0">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="width: 10px">#</th>
+                          <th>Service Title</th>
+                          <th>Service Description</th>
+                          <th>Service Link</th>
+                          <th style="width: 40px">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $qq = "SELECT * from admin_services WHERE admin_id = $admin_id";
+                        $rr = mysqli_query($db, $qq);
+                        $cc = 1;
+                        while ($pii = mysqli_fetch_array($rr)) {
+                          ?>
+                          <tr>
+                            <td>
+                            <?= $cc ?>
+                            </td>
+                            <td>
+                            <?= $pii['service_title'] ?>
+                            </td>
+                            <td>
+                            <?= $pii['service_des'] ?>
+                            </td>
+                            <td><a href="<?= $pii['service_link'] ?>" target="_blank">Open Link</a></td>
+                            <td>
+                              <a href="include/deleteservice.php?id=<?= $pii['id'] ?>">Delete</a>
+                            </td>
+                          </tr>
+                          <?php
+                          $cc++;
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
                 </div>
                 <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
                   <div class="card-body">
                     <div class="form-group col-6">
-                      <label for="exampleInputEmail1">User ID</label>
-                      <input type="text" class="form-control" name="user_id">
+                      <label for="exampleInputEmail1">Service Title</label>
+                      <input type="text" class="form-control" name="service_title">
                     </div>
                     <div class="form-group col-6">
-                      <label for="exampleInputEmail1">Fullname</label>
-                      <input type="text" class="form-control" name="fullname" id="exampleInputEmail1">
+                      <label for="exampleInputEmail1">Service Description</label>
+                      <input type="text" class="form-control" name="service_des" id="exampleInputEmail1">
                     </div>
                     <div class="form-group col-6">
-                      <label for="exampleInputEmail1">Profile</label>
-                      <input type="file" class="form-control" name="profile" id="exampleInputEmail1">
-                    </div>
-                    <div class="form-group col-6">
-                      <label for="exampleInputEmail1">Email</label>
-                      <input type="text" class="form-control" name="email" id="exampleInputEmail1">
-                    </div>
-                    <div class="form-group col-6">
-                      <label for="exampleInputEmail1">Password</label>
-                      <input type="text" class="form-control" name="password" id="exampleInputEmail1">
+                      <label for="exampleInputEmail1">Service Link</label>
+                      <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
                     </div>
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
-                    <button type="submit" name="update-user" class="btn btn-primary">Update User</button>
+                    <button type="submit" name="add-service" class="btn btn-primary">Add Service</button>
                   </div>
                 </form>
               </div>
-              <div class="card-header">
-                <h3 class="card-title">Add User</h3>
-              </div>
-              <div class="card">
+
+              <?php
+            } elseif (isset($_GET['accountsetting'])) {
+              ?>
+              <div class="card card-primary col-lg-12">
                 <div class="card-header">
-                  <h3 class="card-title">User Information</h3>
+                  <h3 class="card-title">Manage User Accounts</h3>
                 </div>
-                <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
-                  <div class="card-body">
-                    <!-- User ID field is removed for adding a new user -->
-                    <div class="form-group col-6">
-                      <label for="exampleInputEmail1">Fullname</label>
-                      <input type="text" class="form-control" name="fullname" id="exampleInputEmail1">
-                    </div>
-                    <div class="form-group col-6">
-                      <label for="exampleInputEmail1">Profile</label>
-                      <input type="file" class="form-control" name="profile" id="exampleInputEmail1">
-                    </div>
-                    <div class="form-group col-6">
-                      <label for="exampleInputEmail1">Email</label>
-                      <input type="text" class="form-control" name="email" id="exampleInputEmail1">
-                    </div>
-                    <div class="form-group col-6">
-                      <label for="exampleInputEmail1">Password</label>
-                      <input type="text" class="form-control" name="password" id="exampleInputEmail1">
-                    </div>
+                <!-- /.card-header -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">User Accounts</h3>
                   </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer">
-                    <button type="submit" name="add-user" class="btn btn-primary">Add User</button>
+                  <div class="card-body p-0">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>User ID</th>
+                          <th>Fullname</th>
+                          <th>Email</th>
+                          <th>Password</th>
+                          <th>User Profile</th>
+                          <th>Code</th>
+                          <th style="width: 40px">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $q = "SELECT * from user";
+                        $r = mysqli_query($db, $q);
+                        $c = 1;
+                        while ($pi = mysqli_fetch_array($r)) {
+                          ?>
+                          <tr>
+                            <td>
+                            <?= $pi['user_id'] ?>
+                            </td>
+                            <td>
+                            <?= $pi['fullname'] ?>
+                            </td>
+                            <td>
+                            <?= $pi['email'] ?>
+                            </td>
+                            <td>
+                            <?= $pi['password'] ?>
+                            </td>
+                            <td>
+                              <img src="../images/<?= $pi['user_profile'] ?>" style="height: 150px; width: 130px;">
+                            </td>
+                            <td>
+                            <?= $pi['code'] ?>
+                            </td>
+                            <td>
+                              <a href="include/deleteuser.php?user_id=<?= $pi['user_id'] ?>">Delete</a>
+                            </td>
+                          </tr>
+                          <?php
+                          $c++;
+                        }
+                        ?>
+                      </tbody>
+                    </table>
                   </div>
-                </form>
+                </div>
+              </div>
+
+              <div class="card card-primary col-lg-12">
+                <div class="card-header">
+                  <h3 class="card-title">Update User</h3>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">User Information</h3>
+                  </div>
+                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                    <div class="card-body">
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">User ID</label>
+                        <input type="text" class="form-control" name="user_id">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Fullname</label>
+                        <input type="text" class="form-control" name="fullname" id="exampleInputEmail1">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Profile</label>
+                        <input type="file" class="form-control" name="profile" id="exampleInputEmail1">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="text" class="form-control" name="email" id="exampleInputEmail1">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Password</label>
+                        <input type="text" class="form-control" name="password" id="exampleInputEmail1">
+                      </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <button type="submit" name="update-user" class="btn btn-primary">Update User</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="card-header">
+                  <h3 class="card-title">Add User</h3>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">User Information</h3>
+                  </div>
+                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                    <div class="card-body">
+                      <!-- User ID field is removed for adding a new user -->
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Fullname</label>
+                        <input type="text" class="form-control" name="fullname" id="exampleInputEmail1">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Profile</label>
+                        <input type="file" class="form-control" name="profile" id="exampleInputEmail1">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="text" class="form-control" name="email" id="exampleInputEmail1">
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Password</label>
+                        <input type="text" class="form-control" name="password" id="exampleInputEmail1">
+                      </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <button type="submit" name="add-user" class="btn btn-primary">Add User</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- /.row (main row) -->
+          </section>
+          <?php
+            } elseif (isset($_GET['adminsetting'])) {
+              ?>
+          <div class="card card-primary col-lg-12">
+            <div class="card-header">
+              <h3 class="card-title">Manage Admin Information</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Admin Account</h3>
+              </div>
+              <div class="card-body p-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Admin ID</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Password</th>
+                      <th>Admin Profile</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $q = "SELECT * from admin";
+                    $r = mysqli_query($db, $q);
+                    $c = 1;
+                    while ($pi = mysqli_fetch_array($r)) {
+                      ?>
+                      <tr>
+                        <td>
+                        <?= $pi['admin_id'] ?>
+                        </td>
+                        <td>
+                        <?= $pi['name'] ?>
+                        </td>
+                        <td>
+                        <?= $pi['email'] ?>
+                        </td>
+                        <td>
+                        <?= $pi['password'] ?>
+                        </td>
+                        <td>
+                          <img src="../images/<?= $pi['admin_prof'] ?>" style="height: 150px; width: 130px;">
+                        </td>
+                      </tr>
+                      <?php
+                      $c++;
+                    }
+                    ?>
+                  </tbody>
+                </table>
               </div>
             </div>
-            <?php
-            }
-            ?>
-            <!-- /.row (main row) -->
-      </section>
+          </div>
+
+          <div class="card card-primary col-lg-12">
+            <div class="card-header">
+              <h3 class="card-title">Update Admin</h3>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Admin Information</h3>
+              </div>
+              <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                  <div class="form-group col-6">
+                    <label for="exampleInputEmail1">Admin ID</label>
+                    <input type="text" class="form-control" name="admin_id">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" class="form-control" name="name" id="exampleInputEmail1">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleInputEmail1">Profile</label>
+                    <input type="file" class="form-control" name="profile" id="exampleInputEmail1">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="text" class="form-control" name="email" id="exampleInputEmail1">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleInputEmail1">Password</label>
+                    <input type="text" class="form-control" name="password" id="exampleInputEmail1">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" name="update-admin" class="btn btn-primary">Save Changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          </section>
+        <?php } ?>
 
       <!-- /.content-wrapper -->
       <footer class="main-footer">

@@ -52,7 +52,7 @@ if (isset($_POST['login'])) {
       setcookie('email', '', time() - 3600, '/');
       setcookie('password', '', time() - 3600, '/');
 
-      header("Location: ../admin/admin.php?changebackground=true");
+      header("Location: ../admin/admin.php?homesetting=true");
       exit();
     } else {
       echo "<script>alert('Incorrect email id or password!')</script>";
@@ -83,7 +83,7 @@ if (isset($_POST['login'])) {
   <link rel="stylesheet" href="../user/dist/css/user.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  
+
   <style>
     .password-toggle-icon {
       cursor: pointer;
@@ -102,7 +102,8 @@ if (isset($_POST['login'])) {
   </style>
 </head>
 
-<body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;" class="hold-transition login-page">
+<body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;"
+  class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
       <a href="../Home/home.php"><b style="color: #1DB954;">Art</b><b style="color: #FFF;">Abode</b></a>
@@ -114,7 +115,8 @@ if (isset($_POST['login'])) {
 
         <form method="post">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" name="email" placeholder="Email" required value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>">
+            <input type="email" class="form-control" name="email" placeholder="Email" required
+              value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -122,7 +124,8 @@ if (isset($_POST['login'])) {
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required value="<?php echo isset($_COOKIE['password']) ? $_COOKIE['password'] : ''; ?>">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required
+              value="<?php echo isset($_COOKIE['password']) ? $_COOKIE['password'] : ''; ?>">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock" id="lockIcon"></span>
@@ -207,4 +210,3 @@ if (isset($_POST['login'])) {
 </body>
 
 </html>
-

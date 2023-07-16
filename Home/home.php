@@ -26,6 +26,16 @@ $pii = mysqli_fetch_array($resultHomeAbout);
 $queryService = "SELECT * FROM admin_services";
 $resultService = mysqli_query($db, $queryService);
 $piii = mysqli_fetch_array($resultService);
+
+// Fetch data from the admin socials table
+$querySocial = "SELECT * FROM admin_social";
+$resultSocial = mysqli_query($db, $querySocial);
+$social = mysqli_fetch_array($resultSocial);
+
+// Fetch data from the admin home table
+$queryHome = "SELECT * FROM admin_home";
+$resultHome = mysqli_query($db, $queryHome);
+$home = mysqli_fetch_array($resultHome);
 ?>
 
 <!DOCTYPE html>
@@ -83,26 +93,32 @@ $piii = mysqli_fetch_array($resultService);
     color: #FFF !important;
     text-shadow: lightgreen;
   }
+
   .gray-background::placeholder {
     color: black;
   }
+
   .gray-background {
     color: black;
   }
+
   .gray-background {
     background-color: gray;
     color: white;
   }
+
   .gray-background:focus {
     background-color: gray;
     color: white;
   }
+
   .background-image {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    opacity: 0.3;
     z-index: -1;
     background: url('../images/<?= $pi['background_img'] ?>') top right no-repeat;
     background-size: cover;
@@ -113,45 +129,56 @@ $piii = mysqli_fetch_array($resultService);
 <body>
   <div class="background-image"></div>
   <!-- ======= Header ======= -->
-    <header class="header " id="header">
-      <div class="container">
-        <h1><a href="home.php">
-            <b style="color: #1DB954; font-style: italic; ">Art</b><b style="color: #FFF;">Abode</b></a>
-          </a></h1>
-        <h2> Step into our <span>WORLD OF DESIGN</span> where <span>IMAGINATION</span><br> meets <span>REALITY!</span>
-          Greetings! Welcome to our Portfolio Website!</h2>
-        <!-- navbar -->
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link active" href="#header">Home</a></li>
-            <li><a class="nav-link" href="#about">About Us</a></li>
-            <li><a class="nav-link" href="#services">Services</a></li>
-            <li><a class="nav-link" href="#portfolio">Portfolios</a></li>
-            <li><a class="nav-link" href="#contact">Contact</a></li>
-            <?php
-            session_start(); // Start the session
-            if (isset($_SESSION['user_id'])) {
-              // User is logged in
-              echo '<li><a href="account.php" target="_blank"><b class="navbar-link">ACCOUNT</b></a></li>';
-              echo '<li><a href="../components/logout.php"><b class="navbar-link">Logout</b></a></li>';
-            } else {
-              // User is not logged in
-              echo '<li><a href="../components/register.php"><b class="navbar-link">Register</b></a></li>';
-              echo '<li><a href="../components/login.php"><b class="navbar-link">Login</b></a></li>';
-            }?>
-          </ul>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-        <div class="social-links">
-          <a href="https://twitter.com/" class="twitter" target="_blank"><i class="bi bi-twitter"></i></a>
-          <a href="https://facebook.com/" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
-          <a href="https://instagram.com/" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-          <a href="https://skype.com/" class="google-plus" target="_blank"><i class="bi bi-skype"></i></a>
-          <a href="https://youtube.com/" class="youtube" target="_blank"><i class="bi bi-youtube"></i></a>
-          <a href="https://linkedin.com/" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
-        </div>
+  <header class="header " id="header">
+    <div class="container">
+      <h1><a href="home.php">
+          <b style="color: #1DB954; font-style: italic; ">
+            <?= $home['home_title'] ?>
+          </b><b style="color: #FFF;">
+            <?= $home['home_title2'] ?>
+          </b></a>
+        </a></h1>
+      <h2>
+        <?= $home['home_desc'] ?>
+      </h2>
+      <!-- navbar -->
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link active" href="#header">Home</a></li>
+          <li><a class="nav-link" href="#about">About Us</a></li>
+          <li><a class="nav-link" href="#services">Services</a></li>
+          <li><a class="nav-link" href="#portfolio">Portfolios</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+          <?php
+          session_start(); // Start the session
+          if (isset($_SESSION['user_id'])) {
+            // User is logged in
+            echo '<li><a href="account.php" target="_blank"><b class="navbar-link">ACCOUNT</b></a></li>';
+            echo '<li><a href="../components/logout.php"><b class="navbar-link">Logout</b></a></li>';
+          } else {
+            // User is not logged in
+            echo '<li><a href="../components/register.php"><b class="navbar-link">Register</b></a></li>';
+            echo '<li><a href="../components/login.php"><b class="navbar-link">Login</b></a></li>';
+          } ?>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+      <div class="social-links">
+        <a href="https://twitter.com/<?= $social['twitter'] ?>" class="twitter" target="_blank"><i
+            class="bi bi-twitter"></i></a>
+        <a href="https://facebook.com/<?= $social['facebook'] ?>" class="facebook" target="_blank"><i
+            class="bi bi-facebook"></i></a>
+        <a href="https://instagram.com/<?= $social['instagram'] ?>" class="instagram" target="_blank"><i
+            class="bi bi-instagram"></i></a>
+        <a href="https://skype.com/<?= $social['skype'] ?>" class="google-plus" target="_blank"><i
+            class="bi bi-skype"></i></a>
+        <a href="https://youtube.com/<?= $social['youtube'] ?>" class="youtube" target="_blank"><i
+            class="bi bi-youtube"></i></a>
+        <a href="https://linkedin.com/<?= $social['linkedin'] ?>" class="linkedin" target="_blank"><i
+            class="bi bi-linkedin"></i></a>
       </div>
-    </header><!-- End Header -->
+    </div>
+  </header><!-- End Header -->
 
   <!-- ======= About Section ======= -->
   <section id="about" class="about">
@@ -172,6 +199,44 @@ $piii = mysqli_fetch_array($resultService);
         </div>
       </div>
     </div><!-- End About Us-->
+    <div class="developers">
+      <div class="container">
+        <div class="section-title">
+          <h2>Developers</h2>
+          <p>The Developers</p>
+        </div>
+        <div class="row developers-container">
+          <?php
+          $query = "SELECT * FROM admin_developers";
+          $result = mysqli_query($db, $query);
+          while ($developers = mysqli_fetch_array($result)) {
+            ?>
+            <div class="col-lg-4 col-md-6 developers-item">
+              <div class="developers-wrap">
+                <img src="../images/<?= $developers['deve_profile'] ?>" class="img-fluid developers-image" alt="">
+                <div class="developers-info">
+                  <h4>
+                    <?= $developers['Name'] ?>
+                  </h4>
+                  <p>
+                    <?= $developers['Description'] ?>
+                  </p>
+                  <div class="developers-links">
+                    <a href="../images/<?= $developers['deve_profile'] ?>" data-gallery="portfolioGallery"
+                      class="portfolio-lightbox" title="<?= $developers['Name'] ?>" target="_blank">
+                      <i class="bx bx-plus"></i>
+                    </a>
+                    <a href="https://facebook.com/<?= $developers['social'] ?>" target="_blank"
+                      data-gallery="portfolioGallery">
+                      <i class="bx bx-link"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php } ?>
+        </div>
+      </div>
   </section><!-- End About Section -->
 
   <!-- ======= Services Section ======= -->
@@ -189,14 +254,15 @@ $piii = mysqli_fetch_array($resultService);
           ?>
           <div class="col-lg-4 col-md-6" style="margin-top: 30px;">
             <div class="icon-box">
-              <div class="icon"><i class="bx"></i></div>
+              <div class="icon"><i class="bx bx-briefcase"></i></div>
               <h4><a href="<?= $services['service_link'] ?>" target="_blank"><?= $services['service_title'] ?></a></h4>
-              <p>
+              <p class="service-description">
                 <?= $services['service_des'] ?>
               </p>
             </div>
           </div>
-          <?php } ?>
+
+        <?php } ?>
       </div>
     </div>
   </section>
@@ -238,8 +304,12 @@ $piii = mysqli_fetch_array($resultService);
             <div class="portfolio-wrap">
               <img src="../images/<?= $portfolio['user_profile'] ?>" class="img-fluid portfolio-image" alt="">
               <div class="portfolio-info">
-                <h4><?= $portfolio['fullname'] ?></h4>
-                <p><?= $portfolio['subtitle'] ?></p>
+                <h4>
+                  <?= $portfolio['fullname'] ?>
+                </h4>
+                <p>
+                  <?= $portfolio['subtitle'] ?>
+                </p>
                 <div class="portfolio-links">
                   <a href="../images/<?= $portfolio['user_profile'] ?>" data-gallery="portfolioGallery"
                     class="portfolio-lightbox" title="<?= $portfolio['fullname'] ?>" target="_blank">
@@ -253,11 +323,12 @@ $piii = mysqli_fetch_array($resultService);
               </div>
             </div>
           </div>
-          <?php } ?>
+        <?php } ?>
       </div>
     </div>
   </section>
   <!-- End Portfolio Section -->
+
 
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
@@ -266,7 +337,7 @@ $piii = mysqli_fetch_array($resultService);
         <h2>Contact</h2>
         <p>Contact Us</p>
       </div>
-      <form action="forms/contact.php?user_id=<?= $_GET['user_id'] ?>" method="POST" class="mt-4">
+      <form action="contact.php" method="POST" class="mt-4">
         <div class="row">
           <div class="col-md-6 form-group mt-3">
             <input type="text" name="fullName" class="form-control gray-background" placeholder="Your Name" required>
@@ -307,6 +378,10 @@ $piii = mysqli_fetch_array($resultService);
   <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
   <script src="../assets/js/main.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+
+
 
 </body>
 

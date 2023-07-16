@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $message = $_POST["message"];
   
   // Retrieve admin ID from query parameter
-  $admin_id = $_GET["admin_id"];
+  $admin_id = $_GET["user_id"];
 
   // Configure PHPMailer with your Gmail SMTP credentials
   require '../../vendor/autoload.php';
@@ -30,11 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $mail->Subject = $subject;
   $mail->Body = "Name: $fullName\nEmail: $email\nMobile Number: $mobileNumber\n\n$message";
 
-  // Send the email
   if ($mail->send()) {
-    echo '<script>alert("Your message has been sent. Thank you!"); window.location.href = "../portfolio.php?admin_id=' . $admin_id . '";</script>';
+    echo '<script>alert("Your message has been sent. Thank you!"); window.location.href = "../portfolio.php?user_id=' . $_GET['user_id'] . '";</script>';
   } else {
-    echo '<script>alert("Message could not be sent. Please try again later."); window.location.href = "../portfolio.php?admin_id=' . $admin_id . '";</script>';
+    echo '<script>alert("Message could not be sent. Please try again later."); window.location.href = "../portfolio.php?user_id=' . $_GET['user_id'] . '";</script>';
   }
-}
+}  
 ?>

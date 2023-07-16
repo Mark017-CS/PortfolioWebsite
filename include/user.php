@@ -213,11 +213,12 @@ if (isset($_POST['add-socialmedia'])) {
   $facebook = $_POST['facebook'];
   $instagram = $_POST['instagram'];
   $skype = $_POST['skype'];
+  $youtube = $_POST['youtube'];
   $linkedin = $_POST['linkedin'];
 
-  $query = "INSERT INTO social_media (user_id, twitter, facebook, instagram, skype, linkedin) ";
-  $query .= "VALUES ($userId, '$twitter', '$facebook', '$instagram', '$skype', '$linkedin') ";
-  $query .= "ON DUPLICATE KEY UPDATE twitter='$twitter', facebook='$facebook', instagram='$instagram', skype='$skype', linkedin='$linkedin'";
+  $query = "INSERT INTO social_media (user_id, twitter, facebook, instagram, skype, youtube,linkedin) ";
+  $query .= "VALUES ($userId, '$twitter', '$facebook', '$instagram', '$skype','$youtube', '$linkedin') ";
+  $query .= "ON DUPLICATE KEY UPDATE twitter='$twitter', facebook='$facebook', instagram='$instagram', skype='$skype', youtube='$youtube', linkedin='$linkedin'";
 
   $run = mysqli_query($db, $query);
   if ($run) {
@@ -383,9 +384,10 @@ if (isset($_POST['update-socialmedia'])) {
   $facebook = $_POST['facebook'];
   $instagram = $_POST['instagram'];
   $skype = $_POST['skype'];
+  $youtube = $_POST['youtube'];
   $linkedin = $_POST['linkedin'];
 
-  $query = "UPDATE social_media SET twitter='$twitter', facebook='$facebook', instagram='$instagram', skype='$skype', linkedin='$linkedin' WHERE user_id = $userId";
+  $query = "UPDATE social_media SET twitter='$twitter', facebook='$facebook', instagram='$instagram', skype='$skype', youtube='$youtube', linkedin='$linkedin' WHERE user_id = $userId";
 
   $run = mysqli_query($db, $query);
   if ($run) {

@@ -105,6 +105,11 @@ if (isset($user_data) && !empty($user_data)) {
     color: #fff;
     overflow-y: scroll;
   }
+  .navbar-link {
+    font-weight: bold;
+    color: #FFF !important;
+    text-shadow: lightgreen;
+  }
  .gray-background::placeholder {
     color: black;
   }
@@ -163,10 +168,8 @@ if (isset($user_data) && !empty($user_data)) {
           <?php if (isset($section_control['contact_section']) && $section_control['contact_section']) { ?>
             <li><a class="nav-link" href="#contact">Contact</a></li>
           <?php } ?>
-          <li><a class="nav-link" href="home.php"
-              style="display: inline-block; padding: 0.5rem .5rem; background: #1db954;
-                    border-radius: 2rem; box-shadow: 0 0 .5rem #1db954; font-size: .5rem;  color: var(--second-bg-color); transition: 0.5s ease;">Go Back
-              →</a>
+          <li><a class="nav-link" href="home.php"><b class="navbar-link">Go Back
+              →</b></a>
           </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -472,9 +475,9 @@ if (isset($user_data) && !empty($user_data)) {
           ?>
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="icon-box">
-              <div class="icon"><i class="bx"></i></div>
+              <div class="icon"><i class="bx bx-briefcase"></i></div>
               <h4><a href="<?= $services['service_link'] ?>" target="_blank"><?= $services['service_name'] ?></a></h4>
-              <p>
+              <p class="service-description">
                 <?= $services['service_desc'] ?>
               </p>
             </div>

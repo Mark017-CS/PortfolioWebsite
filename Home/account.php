@@ -42,7 +42,7 @@ if (!$user_data) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>User Account | Dashboard</title>
+  <title>User Panel | Dashboard</title>
   <!-- Favicons -->
   <link href="../images/logo.png" rel="icon">
   <link href="../images/logo.png" rel="apple-touch-icon">
@@ -96,7 +96,7 @@ if (!$user_data) {
       <a href="account.php" class="brand-link">
         <img src="../images/logo.png" alt="userLTE Logo" class="brand-image"
           >
-        <span class="brand-text font-weight: bold;">ACCOUNT PANEL</span>
+        <span class="brand-text font-weight: bold;">USER PANEL</span>
       </a>
       <!-- Sidebar -->
       <div class="sidebar">
@@ -155,7 +155,7 @@ if (!$user_data) {
             </li>
             <li class="nav-item menu-open">
               <a href="account.php?servicesetting=true" class="nav-link">
-                <i class="fa fa-th-large" aria-hidden="true"></i>
+                <i class="fa fa-briefcase" aria-hidden="true"></i>
                 <p>
                   Service Setting
                 </p>
@@ -1235,6 +1235,11 @@ if (!$user_data) {
                       <div class="form-group">
                         <label for="exampleInputPassword1">Skype</label>
                         <input type="text" class="form-control" name="skype" 
+                          id="exampleInputPassword1" placeholder="Enter username">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Youtube</label>
+                        <input type="text" class="form-control" name="youtube" 
                           id="exampleInputPassword1" placeholder="Enter username">
                       </div>
                       <div class="form-group">
