@@ -170,7 +170,7 @@ $home = mysqli_fetch_array($resultHome);
             class="bi bi-facebook"></i></a>
         <a href="https://instagram.com/<?= $social['instagram'] ?>" class="instagram" target="_blank"><i
             class="bi bi-instagram"></i></a>
-        <a href="https://skype.com/<?= $social['skype'] ?>" class="google-plus" target="_blank"><i
+        <a href="https://join.skype.com/<?= $social['skype'] ?>" class="google-plus" target="_blank"><i
             class="bi bi-skype"></i></a>
         <a href="https://youtube.com/<?= $social['youtube'] ?>" class="youtube" target="_blank"><i
             class="bi bi-youtube"></i></a>
@@ -246,7 +246,7 @@ $home = mysqli_fetch_array($resultHome);
         <h2>Services</h2>
         <p>Our Services</p>
       </div>
-      <div class="row">
+      <div class="row services-container">
         <?php
         $query55 = "SELECT * FROM admin_services";
         $run55 = mysqli_query($db, $query55);
@@ -273,7 +273,7 @@ $home = mysqli_fetch_array($resultHome);
     <div class="container">
       <div class="section-title">
         <h2>Portfolios</h2>
-        <p>Users</p>
+        <p>Portfolios</p>
       </div>
       <!-- Filter Section -->
       <div class="row">

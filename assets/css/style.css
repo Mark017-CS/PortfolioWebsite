@@ -745,16 +745,22 @@ section .container {
   justify-content: center;
 }
 
+.services-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 64px; /* Adjust this value according to your needs */
+  height: 64px;
 }
 
 .service-description {
   text-align: center;
-  margin-top: 10px; /* Add margin at the top to create space between title and description */
+  margin-top: 10px; 
 }
 
 .services .icon-box .icon {
@@ -874,6 +880,12 @@ section .container {
   border-radius: 4px;
 }
 
+.developers-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .developers #developers-flters li:hover,
 .developers #developers-flters li.filter-active {
   background: #18d26e;
@@ -936,7 +948,7 @@ section .container {
 
 .developers .developers-image {
   width: 100%;
-  height: 400px; /* Adjust the height as needed */
+  height: 350px; /* Adjust the height as needed */
   object-fit: cover;
 }
 
@@ -1172,7 +1184,7 @@ section .container {
 
 .portfolio-image {
   width: 1000%;
-  height: 400px; /* Adjust the height as needed */
+  height: 350px; /* Adjust the height as needed */
   object-fit: cover;
 }
 

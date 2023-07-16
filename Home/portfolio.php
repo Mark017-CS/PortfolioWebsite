@@ -193,7 +193,7 @@ if (isset($user_data) && !empty($user_data)) {
           <?php } ?>
 
           <?php if (isset($social_media['skype']) && $social_media['skype'] != '') { ?>
-            <a href="https://skype.com/<?= $social_media['skype'] ?>" class="google-plus"><i class="bi bi-skype"></i></a>
+            <a href="https://join.skype.com/<?= $social_media['skype'] ?>" class="google-plus"><i class="bi bi-skype"></i></a>
           <?php } ?>
 
           <?php if (isset($social_media['youtube']) && $social_media['youtube'] != '') { ?>
