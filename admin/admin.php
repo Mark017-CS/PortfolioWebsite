@@ -452,6 +452,8 @@ if (!$admin_data) {
                           <tr>
                             <th style="width: 10px">#</th>
                             <th>About Description</th>
+                            <th>MIssion</th>
+                            <th>Vision</th>
                             <th>About Image</th>
                           </tr>
                         </thead>
@@ -468,6 +470,12 @@ if (!$admin_data) {
                               </td>
                               <td>
                               <?= $about['about_desc'] ?>
+                              </td>
+                              <td>
+                              <?= $about['mission'] ?>
+                              </td>
+                              <td>
+                              <?= $about['vision'] ?>
                               </td>
                               <td>
                                 <img src="../images/<?= $about['about_img'] ?>" style="height: 70px; width: 100px;">
@@ -495,6 +503,14 @@ if (!$admin_data) {
                       <div class="form-group">
                         <label for="exampleInputPassword1">About Description</label><br>
                         <textarea cols="50" name="about_desc"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Mision</label><br>
+                        <textarea cols="50" name="mission"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Vision</label><br>
+                        <textarea cols="50" name="vision"></textarea>
                       </div>
                     </div>
                     <div class="card-footer">

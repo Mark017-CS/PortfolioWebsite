@@ -194,6 +194,42 @@ $home = mysqli_fetch_array($resultHome);
         </div>
       </div>
     </div><!-- End About Us-->
+     <!-- ======= Mission ======= -->
+    <div class="about-me container">
+      <div class="section-title">
+      <h2>Our Mission</h2>
+        <p>Mission</p>
+      </div>
+      <div class="row">
+      
+        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <p style="text-align: center;">
+            <?= $pii['mission'] ?>
+          </p>
+        </div>
+        <div class="col-lg-4" data-aos="fade-right">
+        <img src="images/mission.png" class="img-fluid" alt="">
+      </div>
+      </div>
+    </div><!-- End Mission-->
+    <!-- ======= Vision ======= -->
+    <div class="about-me container">
+      <div class="section-title">
+      <h2>Our Vision</h2>
+        <p>Vision</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-right">
+          <img src="images/vision.png" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <p style="text-align: center;">
+            <?= $pii['vision'] ?>
+          </p>
+        </div>
+      </div>
+    </div><!-- End Vision-->
+    <!-- Developers-->
     <div class="developers">
       <div class="container">
         <div class="section-title">

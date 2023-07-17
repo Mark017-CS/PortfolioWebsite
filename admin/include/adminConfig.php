@@ -221,6 +221,8 @@ if (isset($_POST['update-user'])) {
 
 if (isset($_POST['update-about'])) {
   $desc = mysqli_real_escape_string($db, $_POST['about_desc']);
+  $mission = mysqli_real_escape_string($db, $_POST['mission']);
+  $vision = mysqli_real_escape_string($db, $_POST['vision']);
   $imagename = time() . $_FILES['profile']['name'];
   $imgtemp = $_FILES['profile']['tmp_name'];
 
@@ -233,7 +235,7 @@ if (isset($_POST['update-about'])) {
     move_uploaded_file($imgtemp, "../../images/$imagename");
   }
 
-  $query = "UPDATE admin_about SET about_img='$imagename', about_desc='$desc' WHERE  admin_id = $admin_id";
+  $query = "UPDATE admin_about SET about_img='$imagename',mission='$mission', vision='$vision',  about_desc='$desc' WHERE  admin_id = $admin_id";
 
   $run = mysqli_query($db, $query);
   if ($run) {

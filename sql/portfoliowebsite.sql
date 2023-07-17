@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2023 at 06:20 PM
+-- Generation Time: Jul 17, 2023 at 08:01 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -75,6 +75,8 @@ CREATE TABLE `admin_about` (
   `admin_id` int(11) NOT NULL,
   `id` int(11) NOT NULL,
   `about_desc` text NOT NULL,
+  `mission` text NOT NULL,
+  `vision` text NOT NULL,
   `about_img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -82,8 +84,8 @@ CREATE TABLE `admin_about` (
 -- Dumping data for table `admin_about`
 --
 
-INSERT INTO `admin_about` (`admin_id`, `id`, `about_desc`, `about_img`) VALUES
-(1, 1, 'Welcome to our team of talented undergraduate developers! We are a group of passionate individuals who share a love for software development and programming. Our team is made up of experienced developers with a diverse set of skills, ranging from front-end development to data science. We strive to create innovative and user-friendly applications that make a difference in the world. Our team believes that collaboration is the key to success. We work closely together to develop new ideas, solve complex problems, and create solutions that meet the needs of our clients. We are always looking for new challenges and opportunities to learn and grow. We are proud of our commitment to delivering high-quality work that exceeds our client\'s expectations. Our dedication to detail and quality ensures that our applications are reliable, efficient, and easy to use. We are committed to delivering exceptional service and support to our clients, and we take pride in the relationships we have built with them.\r\nThank you for taking the time to learn more about us. We look forward to working with you and creating exceptional solutions together.', '1689496642about.png');
+INSERT INTO `admin_about` (`admin_id`, `id`, `about_desc`, `mission`, `vision`, `about_img`) VALUES
+(1, 1, 'At Art Abode, we believe in the transformative power of art and its ability to inspire, connect, and change the world. Our platform is dedicated to providing visual artists with a comprehensive online presence that reflects their unique artistic vision and showcases their talent to a global audience.\r\n\r\nAs a team of passionate individuals who appreciate and understand the challenges faced by artists, we have created a portfolio website that goes beyond a mere collection of images. We strive to create a dynamic and immersive experience where artists can tell their stories, share their artistic journey, and captivate viewers with their creativity.\r\n\r\nOur platform is designed to be intuitive and user-friendly, making it easy for artists to build and customize their portfolios without the need for technical expertise. We provide a range of customizable templates and tools that enable artists to curate their work, organize their projects, and create a compelling online presence.\r\n\r\nWe are committed to fostering a supportive community where artists can connect, collaborate, and learn from one another. We believe in the power of networking and aim to facilitate meaningful connections between artists, art enthusiasts, and industry professionals. Through our platform, we strive to create opportunities for artists to gain exposure, receive feedback, and explore new avenues for their artistic endeavors.\r\n\r\nAbove all, we are dedicated to the success and growth of artists. We provide resources, guides, and educational materials to help artists navigate the art world, develop their skills, and establish their professional careers. We are constantly evolving our platform to incorporate the latest technological advancements and industry trends, ensuring that our artists have access to cutting-edge tools and features.\r\n\r\nJoin us at Art Abode and become part of a vibrant community that celebrates and empowers visual artists. Together, let\'s shape the future of art and make a lasting impact in the creative world.', 'Our mission is to provide visual artists with a powerful online platform to showcase their talent, creativity, and unique perspectives. We aim to empower artists by creating a portfolio website that acts as a virtual gallery, allowing them to connect with a global audience and establish their presence in the digital art community. We are committed to fostering a supportive and inclusive environment that celebrates diversity and encourages artistic growth.', 'Our vision is to be the premier destination for visual artists to exhibit their work and build their professional careers. We strive to be a hub of inspiration and collaboration, connecting artists with art enthusiasts, collectors, and industry professionals. Through our portfolio website, we envision a world where artists can gain recognition, opportunities, and financial stability by leveraging the power of technology and the reach of the internet. We aspire to be at the forefront of innovation, constantly evolving our platform to meet the changing needs of artists in the digital age.', '1689573099about.png');
 
 -- --------------------------------------------------------
 
