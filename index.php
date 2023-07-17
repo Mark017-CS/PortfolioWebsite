@@ -207,7 +207,7 @@ $home = mysqli_fetch_array($resultHome);
             <?= $pii['mission'] ?>
           </p>
         </div>
-        <div class="col-lg-4" data-aos="fade-right">
+        <div class="col-lg-4" style="justify-content: center; align-items: center;" data-aos="fade-right">
         <img src="images/mission.png" style="height: 250px; width: 250px;" class="img-fluid" alt="">
       </div>
       </div>
@@ -219,7 +219,7 @@ $home = mysqli_fetch_array($resultHome);
         <p>Vision</p>
       </div>
       <div class="row">
-        <div class="col-lg-4" data-aos="fade-right">
+        <div class="col-lg-4"   style="justify-content: center; align-items: center;"  data-aos="fade-right">
           <img src="images/vision.png" style="height: 250px; width: 250px;" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
