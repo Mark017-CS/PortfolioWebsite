@@ -208,7 +208,7 @@ $home = mysqli_fetch_array($resultHome);
           </p>
         </div>
         <div class="col-lg-4" data-aos="fade-right">
-        <img src="images/mission.png" class="img-fluid" alt="">
+        <img src="images/mission.png" style="height: 250px; width: 250px;" class="img-fluid" alt="">
       </div>
       </div>
     </div><!-- End Mission-->
@@ -220,7 +220,7 @@ $home = mysqli_fetch_array($resultHome);
       </div>
       <div class="row">
         <div class="col-lg-4" data-aos="fade-right">
-          <img src="images/vision.png" class="img-fluid" alt="">
+          <img src="images/vision.png" style="height: 250px; width: 250px;" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
           <p style="text-align: center;">
