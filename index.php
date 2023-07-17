@@ -1,5 +1,5 @@
 <?php
-require('../include/db.php');
+require('include/db.php');
 
 // Retrieve data from the user table
 $query = "SELECT user_id, user_profile FROM user";
@@ -50,8 +50,8 @@ $home = mysqli_fetch_array($resultHome);
   </title>
 
   <!-- Favicons -->
-  <link href="../images/logo.png" rel="icon">
-  <link href="../images/logo.png" rel="apple-touch-icon">
+  <link href="images/logo.png" rel="icon">
+  <link href="images/logo.png" rel="apple-touch-icon">
 
   <!-- box icons -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -62,15 +62,16 @@ $home = mysqli_fetch_array($resultHome);
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+
   <script>
     window.onload = function () {
       if (performance.navigation.type === 1) {
@@ -120,7 +121,7 @@ $home = mysqli_fetch_array($resultHome);
     left: 0;
     opacity: 0.3;
     z-index: -1;
-    background: url('../images/<?= $pi['background_img'] ?>') top right no-repeat;
+    background: url('images/<?= $pi['background_img'] ?>') top right no-repeat;
     background-size: cover;
   }
 </style>
@@ -131,7 +132,7 @@ $home = mysqli_fetch_array($resultHome);
   <!-- ======= Header ======= -->
   <header class="header " id="header">
     <div class="container">
-      <h1><a href="home.php"><b style="color: #1DB954; font-style: italic; "><?= $home['home_title'] ?></b><b style="color: #FFF;"><?= $home['home_title2'] ?></b></a></a></h1>
+      <h1><a href="index.php"><b style="color: #1DB954; font-style: italic; "><?= $home['home_title'] ?></b><b style="color: #FFF;"><?= $home['home_title2'] ?></b></a></a></h1>
       <h2>
         <?= $home['home_desc'] ?>
       </h2>
@@ -147,12 +148,12 @@ $home = mysqli_fetch_array($resultHome);
           session_start(); // Start the session
           if (isset($_SESSION['user_id'])) {
             // User is logged in
-            echo '<li><a href="account.php" target="_blank"><b class="navbar-link">ACCOUNT</b></a></li>';
-            echo '<li><a href="../components/logout.php"><b class="navbar-link">Logout</b></a></li>';
+            echo '<li><a href="Home/account.php" target="_blank"><b class="navbar-link">ACCOUNT</b></a></li>';
+            echo '<li><a href="components/logout.php"><b class="navbar-link">Logout</b></a></li>';
           } else {
             // User is not logged in
-            echo '<li><a href="../components/register.php"><b class="navbar-link">Register</b></a></li>';
-            echo '<li><a href="../components/login.php"><b class="navbar-link">Login</b></a></li>';
+            echo '<li><a href="components/register.php"><b class="navbar-link">Register</b></a></li>';
+            echo '<li><a href="components/login.php"><b class="navbar-link">Login</b></a></li>';
           } ?>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -184,7 +185,7 @@ $home = mysqli_fetch_array($resultHome);
       </div>
       <div class="row">
         <div class="col-lg-4" data-aos="fade-right">
-          <img src="../images/<?= $pii['about_img'] ?>" class="img-fluid" alt="">
+          <img src="images/<?= $pii['about_img'] ?>" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
           <p style="text-align: justify;">
@@ -207,7 +208,7 @@ $home = mysqli_fetch_array($resultHome);
             ?>
             <div class="col-lg-4 col-md-6 developers-item">
               <div class="developers-wrap">
-                <img src="../images/<?= $developers['deve_profile'] ?>" class="img-fluid developers-image" alt="">
+                <img src="images/<?= $developers['deve_profile'] ?>" class="img-fluid developers-image" alt="">
                 <div class="developers-info">
                   <h4>
                     <?= $developers['Name'] ?>
@@ -216,7 +217,7 @@ $home = mysqli_fetch_array($resultHome);
                     <?= $developers['Description'] ?>
                   </p>
                   <div class="developers-links">
-                    <a href="../images/<?= $developers['deve_profile'] ?>" data-gallery="portfolioGallery"
+                    <a href="images/<?= $developers['deve_profile'] ?>" data-gallery="portfolioGallery"
                       class="portfolio-lightbox" title="<?= $developers['Name'] ?>" target="_blank">
                       <i class="bx bx-plus"></i>
                     </a>
@@ -296,7 +297,7 @@ $home = mysqli_fetch_array($resultHome);
           ?>
           <div class="col-lg-4 col-md-6 portfolio-item <?= $nameStartingLetter ?>">
             <div class="portfolio-wrap">
-              <img src="../images/<?= $portfolio['user_profile'] ?>" class="img-fluid portfolio-image" alt="">
+              <img src="images/<?= $portfolio['user_profile'] ?>" class="img-fluid portfolio-image" alt="">
               <div class="portfolio-info">
                 <h4>
                   <?= $portfolio['fullname'] ?>
@@ -305,11 +306,11 @@ $home = mysqli_fetch_array($resultHome);
                   <?= $portfolio['subtitle'] ?>
                 </p>
                 <div class="portfolio-links">
-                  <a href="../images/<?= $portfolio['user_profile'] ?>" data-gallery="portfolioGallery"
+                  <a href="images/<?= $portfolio['user_profile'] ?>" data-gallery="portfolioGallery"
                     class="portfolio-lightbox" title="<?= $portfolio['fullname'] ?>" target="_blank">
                     <i class="bx bx-plus"></i>
                   </a>
-                  <a href="portfolio.php?user_id=<?= $portfolio['user_id'] ?>" target="_blank"
+                  <a href="Home/portfolio.php?user_id=<?= $portfolio['user_id'] ?>" target="_blank"
                     data-gallery="portfolioGallery">
                     <i class="bx bx-link"></i>
                   </a>
@@ -331,7 +332,7 @@ $home = mysqli_fetch_array($resultHome);
         <h2>Contact</h2>
         <p>Contact Us</p>
       </div>
-      <form action="contact.php" method="POST" class="mt-4">
+      <form action="Home/contact.php" method="POST" class="mt-4">
         <div class="row">
           <div class="col-md-6 form-group mt-3">
             <input type="text" name="fullName" class="form-control gray-background" placeholder="Your Name" required>
@@ -364,18 +365,15 @@ $home = mysqli_fetch_array($resultHome);
   </div>
 
   <!-- SCRIPTS -->
-  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="../assets/vendor/php-email-form/validate.js"></script>
-  <script src="../assets/js/main.js"></script>
-  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
-
-
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
 </body>
 

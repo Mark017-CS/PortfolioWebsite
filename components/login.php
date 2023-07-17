@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
         setcookie('password', '', time() - 3600, '/');
       }
 
-      header("Location: ../Home/home.php");
+      header("Location: ../index.php");
       exit();
     } else {
       echo "<script>alert('Incorrect email id or password!')</script>";
@@ -106,7 +106,7 @@ if (isset($_POST['login'])) {
   class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="../Home/home.php"><b style="color: #1DB954;">Art</b><b style="color: #FFF;">Abode</b></a>
+      <a href="../index.php"><b style="color: #1DB954;">Art</b><b style="color: #FFF;">Abode</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">

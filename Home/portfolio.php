@@ -142,7 +142,7 @@ if (isset($user_data) && !empty($user_data)) {
   <header class="header " id="header">
     <div class="container">
 
-      <a href="./home.php" class="logo"
+      <a href="../index.php" class="logo"
         style=" display: flex; align-items: center; text-decoration: none; font-size: 1.5rem; color: var(--text-color);margin-bottom: 20px; margin-top: -100px; margin-left: -40px; font-weight: 600; cursor: pointer;"><b
           style="color: #1DB954; font-style: italic; ">Art </b><b style="color: #FFF;">Abode</b></a>
       <h1><a href="portfolio.php"><?= isset($home['title']) ? $home['title'] : '' ?></a></h1>
@@ -168,7 +168,7 @@ if (isset($user_data) && !empty($user_data)) {
           <?php if (isset($section_control['contact_section']) && $section_control['contact_section']) { ?>
             <li><a class="nav-link" href="#contact">Contact</a></li>
           <?php } ?>
-          <li><a class="nav-link" href="home.php"><b class="navbar-link">Go Back
+          <li><a class="nav-link" href="../index.php"><b class="navbar-link">Go Back
               →</b></a>
           </li>
         </ul>

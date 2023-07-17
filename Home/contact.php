@@ -29,9 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Send the email
   if ($mail->send()) {
-    echo '<script>alert("Message sent successfully. Thank you for contacting us."); window.location.href = "home.php";</script>';
+    echo '<script>alert("Message sent successfully. Thank you for contacting us."); window.location.href = "../index.php";</script>';
   } else {
-    echo '<script>alert("Message could not be sent. Please try again later."); window.location.href = "home.php";</script>';
+    echo '<script>alert("Message could not be sent. Please try again later."); window.location.href = "../index.php";</script>';
   }
 }
 ?>

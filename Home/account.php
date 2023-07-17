@@ -82,7 +82,7 @@ if (!$user_data) {
         <!-- Messages Dropdown Menu -->
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item">
-          <a class="nav-link" href="home.php">
+          <a class="nav-link" href="../index.php">
             Return Home
           </a>
         </li>

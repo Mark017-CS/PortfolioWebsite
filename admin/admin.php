@@ -77,7 +77,7 @@ if (!$admin_data) {
         <!-- Messages Dropdown Menu -->
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item">
-          <a class="nav-link" href="../Home/home.php">
+          <a class="nav-link" href="../components/logout.php">
             Logout
           </a>
         </li>

@@ -1,7 +1,13 @@
 <?php
 session_start();
 error_reporting(0);
-$db = mysqli_connect('localhost', 'root', '', 'portfoliowebsite') or die("databse not connected!")
+
+    $server = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "portfoliowebsite";
+
+$db = mysqli_connect($server, $username,  $password, $dbname) or die("databse not connected!")
 
 
     ?>

@@ -101,7 +101,7 @@ if (isset($_POST['submit'])) {
     <!-- form section start -->
     <div class="login-box">
         <div class="login-logo">
-            <a href="../Home/home.php"><b style="color: #1DB954;">Art</b><b style="color: #FFF;">Abode</b></a>
+            <a href="../index.php"><b style="color: #1DB954;">Art</b><b style="color: #FFF;">Abode</b></a>
         </div>
         <!-- /form -->
         <<div class="card">

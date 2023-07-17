@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;" class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="../Home/home.php"><b style="color: #1db954">Art</b><b style="color: #fff">Abode</b></a>
+      <a href="../index.php"><b style="color: #1db954">Art</b><b style="color: #fff">Abode</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">

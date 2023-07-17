@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 <body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;" class="hold-transition login-page">
   <div class="register-box">
     <div class="register-logo">
-      <a href="../Home/home.php"><b style="color: #1db954">Art</b><b style="color: #fff">Abode</b></a>
+      <a href="../index.php"><b style="color: #1db954">Art</b><b style="color: #fff">Abode</b></a>
     </div>
 
     <div class="card">
