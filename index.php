@@ -253,12 +253,12 @@ $home = mysqli_fetch_array($resultHome);
                     <?= $developers['Description'] ?>
                   </p>
                   <div class="developers-links">
-                    <a href="images/<?= $developers['deve_profile'] ?>" data-gallery="portfolioGallery"
+                    <a href="images/<?= $developers['deve_profile'] ?>" data-gallery="portfoliosGallery"
                       class="portfolio-lightbox" title="<?= $developers['Name'] ?>" target="_blank">
                       <i class="bx bx-plus"></i>
                     </a>
                     <a href="https://facebook.com/<?= $developers['social'] ?>" target="_blank"
-                      data-gallery="portfolioGallery">
+                      data-gallery="portfoliosGallery">
                       <i class="bx bx-link"></i>
                     </a>
                   </div>
