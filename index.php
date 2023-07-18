@@ -406,7 +406,8 @@ $home = mysqli_fetch_array($resultHome);
   <!-- End Contact Section -->
 
   <div class="credits">
-    Copyright &copy; 2023 <a href="#">by Group 4 | All Rights Reserved.</a>
+  For concerns Email Us @ <a href="mailto:portfoliowebsite617@gmail.com?subject=Subject%20Here&body=Your%20message%20goes%20here">portfoliowebsite617@gmail.com</a> |
+  Copyright &copy; 2023 <a href="#">by Group 4 | All Rights Reserved.</a>
   </div>
 
   <!-- SCRIPTS -->
