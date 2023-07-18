@@ -182,7 +182,7 @@ $home = mysqli_fetch_array($resultHome);
           <img src="images/<?= $pii['about_img'] ?>" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <p style="text-align: justify;">\
+          <p style="text-align: justify;">
             <?= $pii['about_desc'] ?>
           </p>
         </div>

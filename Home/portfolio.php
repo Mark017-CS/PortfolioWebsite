@@ -67,20 +67,16 @@ if (isset($user_data) && !empty($user_data)) {
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>
     <?= $home['title'] ?>
   </title>
   <meta content="<?= $seo['description'] ?>" name="description">
   <meta content="<?= $seo['keywords'] ?>" name="keywords">
-
   <!-- Favicons -->
   <link href="../images/<?= $seo['siteicon'] ?>" rel="icon">
   <link href="../images/<?= $seo['siteicon'] ?>" rel="apple-touch-icon">
-
   <!-- box icons -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -135,6 +131,7 @@ if (isset($user_data) && !empty($user_data)) {
     right: 0;
     bottom: 0;
     left: 0;
+    opacity: 0.3;
     z-index: -1;
     background: url('../assets/img/<?= $site_background['background_img'] ?>') top right no-repeat;
     background-size: cover;
