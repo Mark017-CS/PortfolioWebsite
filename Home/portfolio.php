@@ -85,7 +85,8 @@ if (isset($user_data) && !empty($user_data)) {
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -105,25 +106,31 @@ if (isset($user_data) && !empty($user_data)) {
     color: #fff;
     overflow-y: scroll;
   }
+
   .navbar-link {
     font-weight: bold;
     color: #FFF !important;
     text-shadow: lightgreen;
   }
- .gray-background::placeholder {
+
+  .gray-background::placeholder {
     color: black;
   }
+
   .gray-background {
     color: black;
   }
+
   .gray-background {
     background-color: gray;
     color: white;
   }
+
   .gray-background:focus {
     background-color: gray;
     color: white;
   }
+
   .background-image {
     position: fixed;
     top: 0;
@@ -145,8 +152,12 @@ if (isset($user_data) && !empty($user_data)) {
       <a href="../index.php" class="logo"
         style=" display: flex; align-items: center; text-decoration: none; font-size: 1.5rem; color: var(--text-color);margin-bottom: 20px; margin-top: -100px; margin-left: -40px; font-weight: 600; cursor: pointer;"><b
           style="color: #1DB954; font-style: italic; ">Art </b><b style="color: #FFF;">Abode</b></a>
-      <h1><a href="portfolio.php"><?= isset($home['title']) ? $home['title'] : '' ?></a></h1>
-      <h2><?= isset($home['subtitle']) ? $home['subtitle'] : '' ?></h2>
+      <h1><a href="portfolio.php">
+          <?= isset($home['title']) ? $home['title'] : '' ?>
+        </a></h1>
+      <h2>
+        <?= isset($home['subtitle']) ? $home['subtitle'] : '' ?>
+      </h2>
       <!-- navbar -->
       <nav id="navbar" class="navbar">
         <ul>
@@ -169,7 +180,7 @@ if (isset($user_data) && !empty($user_data)) {
             <li><a class="nav-link" href="#contact">Contact</a></li>
           <?php } ?>
           <li><a class="nav-link" href="../index.php"><b class="navbar-link">Go Back
-              →</b></a>
+                →</b></a>
           </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -193,7 +204,8 @@ if (isset($user_data) && !empty($user_data)) {
           <?php } ?>
 
           <?php if (isset($social_media['skype']) && $social_media['skype'] != '') { ?>
-            <a href="https://join.skype.com/<?= $social_media['skype'] ?>" class="google-plus"><i class="bi bi-skype"></i></a>
+            <a href="https://join.skype.com/<?= $social_media['skype'] ?>" class="google-plus"><i
+                class="bi bi-skype"></i></a>
           <?php } ?>
 
           <?php if (isset($social_media['youtube']) && $social_media['youtube'] != '') { ?>
@@ -312,7 +324,7 @@ if (isset($user_data) && !empty($user_data)) {
               <p>Awards</p>
             </div>
           </div>
-          <?php } ?>
+        <?php } ?>
       </div>
     </div><!-- End Counts -->
 
@@ -338,7 +350,7 @@ if (isset($user_data) && !empty($user_data)) {
                   aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
-            <?php } ?>
+          <?php } ?>
         </div>
       </div>
     </div><!-- End Skills -->
@@ -362,7 +374,7 @@ if (isset($user_data) && !empty($user_data)) {
               </h3>
             </div>
           </div>
-          <?php } ?>
+        <?php } ?>
       </div>
     </div><!-- End Interests -->
 
@@ -394,7 +406,7 @@ if (isset($user_data) && !empty($user_data)) {
                 </h4>
               </div>
             </div><!-- End testimonial item -->
-            <?php } ?>
+          <?php } ?>
         </div>
         <div class="swiper-pagination"></div>
       </div>
@@ -431,7 +443,7 @@ if (isset($user_data) && !empty($user_data)) {
                 <?= $resume['about_exp'] ?>
               </p>
             </div>
-            <?php } ?>
+          <?php } ?>
         </div>
         <div class="col-lg-6">
           <h3 class="resume-title">Professional Experience</h3>
@@ -454,7 +466,7 @@ if (isset($user_data) && !empty($user_data)) {
                 <?= $resume['about_exp'] ?>
               </p>
             </div>
-            <?php } ?>
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -482,7 +494,7 @@ if (isset($user_data) && !empty($user_data)) {
               </p>
             </div>
           </div>
-          <?php } ?>
+        <?php } ?>
       </div>
     </div>
   </section><!-- End Services Section -->
@@ -534,7 +546,7 @@ if (isset($user_data) && !empty($user_data)) {
               </div>
             </div>
           </div>
-          <?php } ?>
+        <?php } ?>
       </div>
     </div>
   </section><!-- End Portfolio Section -->
@@ -564,27 +576,27 @@ if (isset($user_data) && !empty($user_data)) {
               <?php if ($social_media['twitter'] != '') { ?>
                 <a href="https://twitter.com/<?= $social_media['twitter'] ?>" class="twitter"><i
                     class="bi bi-twitter"></i></a>
-                <?php } ?>
+              <?php } ?>
               <?php if ($social_media['facebook'] != '') { ?>
                 <a href="https://facebook.com/<?= $social_media['facebook'] ?>" class="facebook"><i
                     class="bi bi-facebook"></i></a>
-                <?php }
+              <?php }
               if ($social_media['instagram'] != '') { ?>
                 <a href="https://instagram.com/<?= $social_media['instagram'] ?>" class="instagram"><i
                     class="bi bi-instagram"></i></a>
-                <?php }
+              <?php }
               if ($social_media['skype'] != '') { ?>
                 <a href="https://skype.com/<?= $social_media['skype'] ?>" class="google-plus"><i
                     class="bi bi-skype"></i></a>
-                <?php }
+              <?php }
               if ($social_media['skype'] != '') { ?>
                 <a href="https:/youtube.com/<?= $social_media['youtube'] ?>" class="youtube"><i
                     class="bi bi-youtube"></i></a>
-                <?php }
+              <?php }
               if ($social_media['linkedin'] != '') { ?>
                 <a href="https://linkedin.com/<?= $social_media['linkedin'] ?>" class="linkedin"><i
                     class="bi bi-linkedin"></i></a>
-                <?php }?>
+              <?php } ?>
             </div>
           </div>
         </div>
@@ -593,7 +605,8 @@ if (isset($user_data) && !empty($user_data)) {
             <i class="bx bx-envelope"></i>
             <h3>Email Me</h3>
             <p>
-              <?= $contact['email'] ?>
+              <a href="mailto:<?= $contact['email'] ?>?subject=Subject%20Here&body=Your%20message%20goes%20here"
+                class="email-link"><?= $contact['email'] ?></a>
             </p>
           </div>
         </div>
@@ -606,7 +619,7 @@ if (isset($user_data) && !empty($user_data)) {
             </p>
           </div>
         </div>
-      </div> 
+      </div>
       <div class="section-title" style="margin-top: 30px;">
         <h2>Feedback</h2>
         <p>Feedback Form</p>
@@ -638,10 +651,12 @@ if (isset($user_data) && !empty($user_data)) {
   </section><!-- End Contact Section -->
 
   <div class="credits">
-  For concerns Email Us @ <a href="mailto:portfoliowebsite617@gmail.com?subject=Subject%20Here&body=Your%20message%20goes%20here">portfoliowebsite617@gmail.com</a> |
-  Copyright &copy; 2023 <a href="#">by Group 4 | All Rights Reserved.</a>
+    For concerns Email Us @ <a
+      href="mailto:portfoliowebsite617@gmail.com?subject=Subject%20Here&body=Your%20message%20goes%20here">portfoliowebsite617@gmail.com</a>
+    |
+    Copyright &copy; 2023 <a href="#">by Group 4 | All Rights Reserved.</a>
   </div>
- 
+
 
 
   <!-- SCRIPTS -->
@@ -657,4 +672,5 @@ if (isset($user_data) && !empty($user_data)) {
   <script src="../assets/js/main.js"></script>
 
 </body>
+
 </html>

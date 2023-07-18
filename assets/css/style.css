@@ -1420,6 +1420,15 @@ section .container {
   margin: 0 0 0 68px;
 }
 
+.contact .info-box .email-link {
+  color: #fff;
+  transition: 0.3s;
+}
+
+.contact .info-box .email-link:hover {
+  color: #18d26e; 
+}
+
 .contact .info-box .social-links {
   margin: 10px 0 0 68px;
   display: flex;
