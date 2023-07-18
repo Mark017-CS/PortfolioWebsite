@@ -1129,6 +1129,29 @@ section .container {
   padding: 2px 15px;
 }
 
+.filter-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px; 
+  color: #1DB954; 
+  margin-bottom: 20px; 
+}
+
+.filter-options {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .filter-icon {
+    display: block; 
+  }
+
+  .filter-options {
+    display: none; 
+  }
+}
+
 .portfolio #portfolio-flters li {
   cursor: pointer;
   display: inline-block;

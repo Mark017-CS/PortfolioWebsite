@@ -68,7 +68,7 @@ $home = mysqli_fetch_array($resultHome);
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -132,7 +132,11 @@ $home = mysqli_fetch_array($resultHome);
   <!-- ======= Header ======= -->
   <header class="header " id="header">
     <div class="container">
-      <h1><a href="index.php"><b style="color: #1DB954; font-style: italic; "><?= $home['home_title'] ?></b><b style="color: #FFF;"><?= $home['home_title2'] ?></b></a></a></h1>
+      <h1><a href="index.php"><b style="color: #1DB954; font-style: italic; ">
+            <?= $home['home_title'] ?>
+          </b><b style="color: #FFF;">
+            <?= $home['home_title2'] ?>
+          </b></a></a></h1>
       <h2>
         <?= $home['home_desc'] ?>
       </h2>
@@ -194,32 +198,32 @@ $home = mysqli_fetch_array($resultHome);
         </div>
       </div>
     </div><!-- End About Us-->
-     <!-- ======= Mission ======= -->
+    <!-- ======= Mission ======= -->
     <div class="about-me container">
       <div class="section-title">
-      <h2>Our Mission</h2>
+        <h2>Our Mission</h2>
         <p>Mission</p>
       </div>
       <div class="row">
-      
+
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
           <p style="text-align: justify;">
             <?= $pii['mission'] ?>
           </p>
         </div>
         <div class="col-lg-4" style="justify-content: center; align-items: center;" data-aos="fade-right">
-        <img src="images/mission.png" style="height: 250px; width: 250px;" class="img-fluid" alt="">
-      </div>
+          <img src="images/mission.png" style="height: 250px; width: 250px;" class="img-fluid" alt="">
+        </div>
       </div>
     </div><!-- End Mission-->
     <!-- ======= Vision ======= -->
     <div class="about-me container">
       <div class="section-title">
-      <h2>Our Vision</h2>
+        <h2>Our Vision</h2>
         <p>Vision</p>
       </div>
       <div class="row">
-        <div class="col-lg-4"   style="justify-content: center; align-items: center;"  data-aos="fade-right">
+        <div class="col-lg-4" style="justify-content: center; align-items: center;" data-aos="fade-right">
           <img src="images/vision.png" style="height: 250px; width: 250px;" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
@@ -307,20 +311,25 @@ $home = mysqli_fetch_array($resultHome);
         <p>Portfolios</p>
       </div>
       <!-- Filter Section -->
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <?php
-            // Generate filter buttons for all letters from A to Z
-            for ($i = 65; $i <= 90; $i++) {
-              $letter = chr($i);
-              echo '<li data-filter=".' . $letter . '">' . $letter . '</li>';
-            } ?>
-          </ul>
+      <div class="filter-icon" onclick="toggleFilterOptions()">
+        <i class="fas fa-filter"></i> Filter  <i class="arrow-icon fas fa-angle-down"></i>
+      </div>
+      <div class="filter-options">
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <?php
+              // Generate filter buttons for all letters from A to Z
+              for ($i = 65; $i <= 90; $i++) {
+                $letter = chr($i);
+                echo '<li data-filter=".' . $letter . '">' . $letter . '</li>';
+              }
+              ?>
+            </ul>
+          </div>
         </div>
       </div>
-      <!-- End Filter Section -->
 
       <div class="row portfolio-container">
         <?php
@@ -410,7 +419,21 @@ $home = mysqli_fetch_array($resultHome);
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
+  <script>
+    function toggleFilterOptions() {
+      var filterOptions = document.querySelector(".filter-options");
+      var arrowIcon = document.querySelector(".arrow-icon");
+      if (filterOptions.style.display === "none") {
+        filterOptions.style.display = "block";
+        arrowIcon.classList.remove("fa-angle-down");
+        arrowIcon.classList.add("fa-angle-up");
+      } else {
+        filterOptions.style.display = "none";
+        arrowIcon.classList.remove("fa-angle-up");
+        arrowIcon.classList.add("fa-angle-down");
+      }
+    }
+  </script>
 </body>
 
 </html>
