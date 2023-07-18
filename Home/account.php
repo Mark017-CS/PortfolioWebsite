@@ -5,7 +5,7 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
   exit;
 }
 
-$user_id = $_SESSION['user_id']; // Assuming the user_id is stored in the session
+$user_id = $_SESSION['user_id'];
 
 // Retrieve data for the specific user based on user_id
 $query = "SELECT * FROM user 
@@ -79,8 +79,6 @@ if (!$user_data) {
       </ul>
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-        <!-- Messages Dropdown Menu -->
-        <!-- Notifications Dropdown Menu -->
         <li class="nav-item">
           <a class="nav-link" href="../index.php">
             Return Home
@@ -202,17 +200,10 @@ if (!$user_data) {
       <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
       <br>
-      <!-- /.content-header -->
-      <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-         <!-- /.row -->
-          <!-- Main row -->
           <div class="row">
             <?php
             if (isset($_GET['homesetting'])) { ?>
@@ -224,7 +215,6 @@ if (!$user_data) {
                     <div class="card-header">
                       <h3 class="card-title">Home</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body p-0">
                       <table class="table">
                         <thead>
@@ -264,8 +254,6 @@ if (!$user_data) {
                       </table>
                     </div>
                     </div>
-                    <!-- /.card-body -->
-                <!-- /.card-header -->
                 <!-- form start -->
                 <form role="form" action="../include/user.php" method="post">
                   <div class="card-body">
@@ -289,8 +277,6 @@ if (!$user_data) {
                       <label class="form-check-label" for="exampleCheck1">Show Social Icons</label>
                     </div>
                   </div>
-                  <!-- /.card-body -->
-
                   <div class="card-footer">
                         <?php
                         $query = "SELECT * FROM home WHERE user_id = $user_id";
@@ -363,12 +349,8 @@ if (!$user_data) {
                       </table>
                     </div>
                     </div>
-                    <!-- /.card-body -->
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  
+                  <!-- form start -->               
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
-                  <!-- <img src="../images/<?= $user_data['profile_pic'] ?>" class="col-2"> -->
                     <div class="card-body">
                       <div class="form-group">
                         <label for="exampleInputEmail1">About Profile Pic</label>
@@ -397,10 +379,8 @@ if (!$user_data) {
                         $row_count = mysqli_num_rows($result);
                         
                         if ($row_count == 0) {
-                          // Display Add SEO button
                           echo '<button type="submit" name="add-about" class="btn btn-primary">Add About Details</button>';
                         } else {
-                          // Display Save Changes button
                           echo '<button type="submit" name="update-about" class="btn btn-primary">Save Changes</button>';
                         }
                         ?>
@@ -411,13 +391,10 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Skills</h3>
                   </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Skills</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body p-0">
                       <table class="table">
                         <thead>
@@ -462,7 +439,6 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    <!-- /.card-body -->
                   </div>
                   <form role="form" action="../include/user.php" method="post">
                     <div class="card-body">
@@ -476,7 +452,6 @@ if (!$user_data) {
                           id="exampleInputEmail1">
                       </div>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                       <button type="submit" name="add-skill" class="btn btn-primary">Add Skill</button>
                     </div>
@@ -486,13 +461,10 @@ if (!$user_data) {
                 <div class="card-header">
                     <h3 class="card-title">Manage Interests</h3>
                   </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Interests</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body p-0">
                       <table class="table">
                         <thead>
@@ -527,7 +499,6 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    <!-- /.card-body -->
                   </div>
                   <form role="form" action="../include/user.php" method="post">
                     <div class="card-body">
@@ -536,7 +507,6 @@ if (!$user_data) {
                         <input type="text" class="form-control" name="inter_name">
                       </div>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                       <button type="submit" name="add-interest" class="btn btn-primary">Add Interest</button>
                     </div>
@@ -546,7 +516,6 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Counts</h3>
                   </div>
-                  <!-- /.card-header -->
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Counts</h3>
@@ -618,7 +587,6 @@ if (!$user_data) {
                           id="exampleInputPassword1" placeholder="Enter Awards">
                       </div>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                         <?php
                         $query = "SELECT * FROM counts WHERE user_id = $user_id";
@@ -626,10 +594,8 @@ if (!$user_data) {
                         $row_count = mysqli_num_rows($result);
                         
                         if ($row_count == 0) {
-                          // Display Add button
                           echo '<button type="submit" name="add-counts" class="btn btn-primary">Add Counts Details</button>';
                         } else {
-                          // Display Save Changes button
                           echo '<button type="submit" name="update-counts" class="btn btn-primary">Save Changes</button>';
                         }
                         ?>
@@ -686,7 +652,6 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    <!-- /.card-body -->
                   </div>
                   <form role="form" action="../include/user.php" method="post">
                     <div class="card-body">
@@ -699,7 +664,6 @@ if (!$user_data) {
                         <input type="text" class="form-control" name="value" id="exampleInputEmail1">
                       </div>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                       <button type="submit" name="add-pi" class="btn btn-primary">Add Personal Info</button>
                     </div>
@@ -709,8 +673,6 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Testimonials</h3>
                   </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Testimonials</h3>
@@ -761,10 +723,7 @@ if (!$user_data) {
                           ?>
                         </tbody>
                       </table>
-                    </div>
-                
-                  <!-- /.card-header -->
-                  <!-- form start -->     
+                    </div>   
                   </div>       
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
@@ -802,13 +761,10 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Resume</h3>
                   </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Education & Work</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body p-0">
                       <table class="table">
                         <thead>
@@ -850,7 +806,6 @@ if (!$user_data) {
                               </td>
                               <td>
                                 <a href="../include/deleteresume.php?id=<?= $pi['id'] ?>">Delete</a>
-
                               </td>
                             </tr>
                             <?php
@@ -860,7 +815,6 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    <!-- /.card-body -->
                   </div>
                 <form role="form" action="../include/user.php" method="post">
                     <div class="card-body">
@@ -889,13 +843,11 @@ if (!$user_data) {
                         <input type="text" class="form-control" name="about" id="exampleInputEmail1">
                       </div>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                       <button type="submit" name="add-resume" class="btn btn-primary">Add Details</button>
                     </div>
                   </form>
                 </div>
-
                 <?php
             } elseif (isset($_GET['portfoliosetting'])) {
               ?>
@@ -903,13 +855,10 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Artworks</h3>
                   </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Your Projects</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body p-0">
                       <table class="table">
                         <thead>
@@ -952,7 +901,6 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    <!-- /.card-body -->
                   </div>
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
@@ -981,7 +929,6 @@ if (!$user_data) {
                         <input type="text" class="form-control" name="project_link" id="exampleInputEmail1">
                       </div>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                       <button type="submit" name="add-project" class="btn btn-primary">Add Project</button>
                     </div>
@@ -994,13 +941,10 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Services</h3>
                   </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Your Service</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body p-0">
                       <table class="table">
                         <thead>
@@ -1041,7 +985,6 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    <!-- /.card-body -->
                   </div>
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">                      
@@ -1058,7 +1001,6 @@ if (!$user_data) {
                         <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
                       </div>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                       <button type="submit" name="add-service" class="btn btn-primary">Add Service</button>
                     </div>
@@ -1071,7 +1013,6 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Contact Details</h3>
                   </div>
-                  <!-- /.card-header -->
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Contact Details</h3>
@@ -1116,8 +1057,6 @@ if (!$user_data) {
                     </div>
                     </div>
                   <!-- form start -->
-                  <!-- /.card-header -->
-                  <!-- form start -->
                   <form role="form" action="../include/user.php" method="post">
                     <div class="card-body">
                       <div class="form-group">
@@ -1136,18 +1075,14 @@ if (!$user_data) {
                           id="exampleInputPassword1" placeholder="Enter mobile no">
                       </div>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                         <?php
                         $query = "SELECT * FROM contact WHERE user_id = $user_id";
                         $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);
-                        
+                        $row_count = mysqli_num_rows($result);                      
                         if ($row_count == 0) {
-                          // Display Add button
                           echo '<button type="submit" name="add-contact" class="btn btn-primary">Add Contact Details</button>';
                         } else {
-                          // Display Save Changes button
                           echo '<button type="submit" name="update-contact" class="btn btn-primary">Save Changes</button>';
                         }
                         ?>
@@ -1158,7 +1093,6 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Social Media Details</h3>
                   </div>
-                   <!-- /.card-header -->
                    <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Social Media</h3>
@@ -1253,13 +1187,10 @@ if (!$user_data) {
                         <?php
                         $query = "SELECT * FROM social_media WHERE user_id = $user_id";
                         $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);
-                        
+                        $row_count = mysqli_num_rows($result);                       
                         if ($row_count == 0) {
-                          // Display Add button
                           echo '<button type="submit" name="add-socialmedia" class="btn btn-primary">Add Social Media</button>';
                         } else {
-                          // Display Save Changes button
                           echo '<button type="submit" name="update-socialmedia" class="btn btn-primary">Save Changes</button>';
                         }
                         ?>
@@ -1273,7 +1204,6 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Site Background</h3>
                   </div>
-                   <!-- /.card-header -->
                    <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Account</h3>
@@ -1310,7 +1240,6 @@ if (!$user_data) {
                     </div>
                     </div>
                   <!-- form start -->
-                  <!-- <img src="../assets/img/<?= $user_data['background_img'] ?>" class="col-6"> -->
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                       <div class="form-group">
@@ -1326,10 +1255,8 @@ if (!$user_data) {
                         $row_count = mysqli_num_rows($result);
                         
                         if ($row_count == 0) {
-                          // Display Add button
                           echo '<button type="submit" name="add-background" class="btn btn-primary">Add Background</button>';
                         } else {
-                          // Display Save Changes button
                           echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
                         }
                         ?>
@@ -1343,7 +1270,6 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage SEO</h3>
                   </div>
-                  <!-- /.card-header -->
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">SEO</h3>
@@ -1392,7 +1318,6 @@ if (!$user_data) {
                     </div>
                     </div>
                   <!-- form start -->
-                  <!-- <img src="../images/<?= $user_data['siteicon'] ?>" class="col-2"> -->
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                       <div class="form-group">
@@ -1420,10 +1345,8 @@ if (!$user_data) {
                         $row_count = mysqli_num_rows($result);
                         
                         if ($row_count == 0) {
-                          // Display Add button
                           echo '<button type="submit" name="add-seo" class="btn btn-primary">Add SEO</button>';
                         } else {
-                          // Display Save Changes button
                           echo '<button type="submit" name="update-seo" class="btn btn-primary">Save Changes</button>';
                         }
                         ?>
@@ -1437,7 +1360,6 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Account</h3>
                   </div>
-                   <!-- /.card-header -->
                    <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Account</h3>
@@ -1490,7 +1412,6 @@ if (!$user_data) {
                     </div>
                     </div>
                   <!-- form start -->
-                  <!-- <img src="../images/<?= $user_data['user_profile'] ?>" class="col-2"> -->
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                       <div class="form-group">
@@ -1518,10 +1439,8 @@ if (!$user_data) {
                         $row_count = mysqli_num_rows($result);
                         
                         if ($row_count == 0) {
-                          // Display Add button
                           echo '<button type="submit" name="add-account" class="btn btn-primary">Add User Details</button>';
                         } else {
-                          // Display Save Changes button
                           echo '<button type="submit" name="update-account" class="btn btn-primary">Save Changes</button>';
                         }
                         ?>
@@ -1535,12 +1454,10 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Section Control</h3>
                   </div>
-                  <!-- form start -->
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Section Control</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body p-0">
                       <table class="table">
                         <thead>
@@ -1659,10 +1576,8 @@ if (!$user_data) {
                         $row_count = mysqli_num_rows($result);
                         
                         if ($row_count == 0) {
-                          // Display Add SEO button
                           echo '<button type="submit" name="add-section" class="btn btn-primary">Add Section</button>';
                         } else {
-                          // Display Save Changes button
                           echo '<button type="submit" name="update-section" class="btn btn-primary">Save Changes</button>';
                         }
                         ?>
@@ -1673,12 +1588,9 @@ if (!$user_data) {
             }
             ?>
           </div>
-          <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
+        </div>
       </section>
-      <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
     <footer class="main-footer">
       <strong>Copyright &copy; 2023 <a href="#">Group 4</a>.</strong>
       All rights reserved.
@@ -1723,11 +1635,8 @@ if (!$user_data) {
   <script src="../user/plugins/summernote/summernote-bs4.min.js"></script>
   <!-- overlayScrollbars -->
   <script src="../user/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- userLTE App -->
   <script src="../user/dist/js/userlte.js"></script>
-  <!-- userLTE dashboard demo (This is only for demo purposes) -->
   <script src="../user/dist/js/pages/dashboard.js"></script>
-  <!-- userLTE for demo purposes -->
   <script src="../user/dist/js/demo.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

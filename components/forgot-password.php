@@ -5,13 +5,10 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
     die();
 }
 
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
 require '../vendor/autoload.php';
 require '../include/db.php';
 
@@ -26,19 +23,17 @@ if (isset($_POST['submit'])) {
 
         if ($query) {
             echo "<div style='display: none;'>";
-            //Create an instance; passing `true` enables exceptions
             $mail = new PHPMailer(true);
 
             try {
-                //Server settings
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER; //Enable verbose debug output
-                $mail->isSMTP(); //Send using SMTP
-                $mail->Host = 'smtp.gmail.com'; //Set the SMTP server to send through
-                $mail->SMTPAuth = true; //Enable SMTP authentication
-                $mail->Username = 'portfoliowebsite617@gmail.com'; //SMTP username
-                $mail->Password = 'taozuurruhkkgqzp'; //SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
-                $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'portfoliowebsite617@gmail.com';
+                $mail->Password = 'taozuurruhkkgqzp';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $mail->Port = 465;
 
                 //Recipients
                 $mail->setFrom('portfoliowebsite617@gmail.com', 'Art Abode');
@@ -61,7 +56,6 @@ if (isset($_POST['submit'])) {
         $msg = "<div class='alert alert-danger'>$email - This email address do not found.</div>";
     }
 }
-
 ?>
 
 
@@ -76,7 +70,6 @@ if (isset($_POST['submit'])) {
     <link href="../images/logo.png" rel="apple-touch-icon">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../user/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -90,25 +83,21 @@ if (isset($_POST['submit'])) {
     <!--/Style-CSS -->
     <link rel="stylesheet" href="../css/style.css" type="text/css" media="all" />
     <!--//Style-CSS -->
-
-
     <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
 
 </head>
 
-<body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;" class="hold-transition login-page">
-
+<body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;"
+    class="hold-transition login-page">
     <!-- form section start -->
     <div class="login-box">
         <div class="login-logo">
             <a href="../index.php"><b style="color: #1DB954;">Art</b><b style="color: #FFF;">Abode</b></a>
         </div>
         <!-- /form -->
-        <<div class="card">
+        <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password. </p>
-
-
                 <?php echo $msg; ?>
                 <form action="" method="post">
                     <div class="input-group mb-3">
@@ -119,27 +108,20 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
                     </div>
-
                     <button name="submit" class="btn btn-primary btn-block" type="submit">Send Reset Link</button>
                 </form>
                 <div class="social-icons">
                     <p><br><br>Back to <a href="login.php">Login</a>.</p>
                 </div>
             </div>
+        </div>
     </div>
-    </div>
-    <!-- //form -->
-    </div>
-    </div>
-    </div>
-    <!-- //form section start -->
 
     <script src="../js/jquery.min.js"></script>
     <!-- jQuery -->
     <script src="../user/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- user App -->
     <script src="../user/dist/js/userlte.min.js"></script>
 </body>
 

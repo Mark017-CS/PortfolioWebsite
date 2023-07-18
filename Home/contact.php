@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $subject = $_POST["subject"];
   $message = $_POST["message"];
 
-  // Configure PHPMailer with your Gmail SMTP credentials
+
   require '../../vendor/autoload.php';
 
   $mail = new PHPMailer\PHPMailer\PHPMailer();

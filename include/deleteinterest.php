@@ -12,7 +12,6 @@ $userId = $_SESSION['user_id'];
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
   
-  // Add a condition to delete the data based on the user_id of the logged-in user
   $query = "DELETE FROM interests WHERE id=$id AND user_id=$userId";
   $run = mysqli_query($db, $query);
   

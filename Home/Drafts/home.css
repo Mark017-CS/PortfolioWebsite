@@ -72,12 +72,6 @@ section {
   cursor: default;
 }
 
-.logo-image {
-  width: 50px; /* Adjust the width to match the desired size of your logo */
-  height: auto; /* Adjust the height if necessary */
-  margin-right: 10px; /* Add some spacing between the logo and the text */
-}
-
 .headings {
   margin-bottom: 3rem;
   text-align: center;
@@ -92,7 +86,7 @@ section {
 .navbar a {
   font-size: 1.8rem;
   color: var(--text-color);
-  margin-left: 2rem; /* Reduce the margin for smaller screens */
+  margin-left: 2rem; 
   transition: 0.3s;
   position: relative;
 }
@@ -100,7 +94,7 @@ section {
 .navbar2 a {
   font-size: 1rem;
   color: var(--text-color);
-  margin-left: 0.5rem; /* Reduce the margin for smaller screens */
+  margin-left: 0.5rem;
   transition: 0.3s;
 }
 
@@ -124,15 +118,15 @@ section {
 
 .navbar2.responsive {
   display: flex;
-  flex-direction: column; /* Change the direction to stack vertically */
-  align-items: flex-start; /* Align items to the start of the column */
+  flex-direction: column;
+  align-items: flex-start;
   padding: 1rem;
 }
 
 .navbar2.responsive a {
   font-size: 1.6rem;
   color: var(--text-color);
-  margin: 0.5rem 0; /* Adjust the margin for vertical spacing */
+  margin: 0.5rem 0;
   transition: 0.3s;
 }
 
@@ -169,7 +163,7 @@ section {
 .navbar a:hover:before,
 .navbar .active:before {
   visibility: visible;
-  width: 30px; /* Adjust the width of the line based on the content */
+  width: 30px; 
 }
 
 .navbar a:hover,
@@ -305,33 +299,33 @@ span {
 }
 @media (max-width: 768px) {
   .about {
-    flex-direction: column; /* Updated */
+    flex-direction: column;
   }
 
   .about-img img {
-    width: 100%; /* Updated */
+    width: 100%; 
     max-width: 100%;
-    margin-bottom: 2rem; /* Added */
+    margin-bottom: 2rem;
   }
 
   .about-content {
-    flex: 1 1 100%; /* Updated */
-    max-width: 100%; /* Updated */
+    flex: 1 1 100%; 
+    max-width: 100%;
   }
 
   .heading {
-    font-size: 3rem; /* Updated */
+    font-size: 3rem; 
   }
 
   .about-content h2 {
-    font-size: 2.8rem; /* Updated */
+    font-size: 2.8rem; 
     text-align: center;
   }
 
   .about-content p {
-    font-size: 1.4rem; /* Updated */
-    text-align: center; /* Updated */
-    text-indent: 0; /* Updated */
+    font-size: 1.4rem; 
+    text-align: center;
+    text-indent: 0; 
   }
 }
 
@@ -583,9 +577,6 @@ span {
   .header {
     padding: 2rem 5%;
   }
-  .navbar {
-    /* Remove the display: none; property */
-  }
 
   .navbar2 {
     display: flex;
@@ -594,7 +585,7 @@ span {
   }
 
   .navbar2 a {
-    margin: 0 0.8rem; /* Adjust the margin as desired */
+    margin: 0 0.8rem; 
   }
 
   #menu-icon {
@@ -608,24 +599,24 @@ span {
 
   .home-img {
     margin-right: 0;
-    margin-bottom: 2rem; /* Reduce the margin for smaller screens */
+    margin-bottom: 2rem;
     justify-content: center;
     align-items: center;
   }
 
   .home-img img {
     width: 100%;
-    max-width: 100%; /* Set a maximum width for the image */
+    max-width: 100%; 
     justify-content: center;
     align-items: center;
   }
 
   .home-content h3 {
-    font-size: 3rem; /* Adjust the font size as desired */
+    font-size: 3rem; 
   }
 
   .home-content h1 {
-    font-size: 4rem; /* Adjust the font size as desired */
+    font-size: 4rem;
   }
 }
 

@@ -1,13 +1,10 @@
 <?php
 require('../include/db.php');
 
-// Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  // Get the form inputs
   $password = $_POST['password'];
   $confirmPassword = $_POST['confirm_password'];
 
-  // Validate the inputs
   $errors = [];
   if (empty($password)) {
     $errors[] = "Password is required.";
@@ -19,19 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors[] = "Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, and one number.";
   }
 
-  // If there are no errors, update the password in the database
   if (empty($errors)) {
-    // Retrieve the email from the form
     $email = $_POST['email'];
 
-    // Update the password in the database
     $updateQuery = "UPDATE user SET password = '$password' WHERE email = '$email'";
     if (mysqli_query($conn, $updateQuery)) {
-      // Password updated successfully
       header("Location: login.php");
       exit();
     } else {
-      // Failed to update the password
       $errors[] = "Failed to update the password. Please try again.";
     }
   }
@@ -49,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <link href="../images/logo.png" rel="apple-touch-icon">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../user/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -62,18 +53,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;" class="hold-transition login-page">
+<body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;"
+  class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
       <a href="../index.php"><b style="color: #1db954">Art</b><b style="color: #fff">Abode</b></a>
     </div>
-    <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg">
           You are only one step away from your new password, recover your password now.
         </p>
-
         <form action="" method="post">
           <div class="input-group mb-3">
             <input type="email" class="form-control" name="email" placeholder="Email" required>
@@ -103,10 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="col-12">
               <button type="submit" class="btn btn-primary btn-block">Change password</button>
             </div>
-            <!-- /.col -->
           </div>
         </form>
-
         <?php if (!empty($errors)) { ?>
           <div class="alert alert-danger mt-3">
             <?php foreach ($errors as $error) {
@@ -114,21 +102,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } ?>
           </div>
         <?php } ?>
-
         <p class="mt-3 mb-1">
           <a href="login.php">Login</a>
         </p>
       </div>
-      <!-- /.login-card-body -->
     </div>
   </div>
-  <!-- /.login-box -->
 
   <!-- jQuery -->
   <script src="../user/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="../user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- user App -->
   <script src="../user/dist/js/user.min.js"></script>
 </body>
 

@@ -6,7 +6,6 @@ if (isset($_GET['user_id'])) {
   // Retrieve the user_id from the URL parameter
   $user_id = $_GET['user_id'];
 
-  // Retrieve the portfolio data from the 'portfolio' table
   $portfolio_query = "SELECT * FROM portfolio WHERE user_id = $user_id";
   $portfolio_run = mysqli_query($db, $portfolio_query);
   $user_data['portfolio'] = mysqli_fetch_assoc($portfolio_run);
@@ -15,7 +14,6 @@ if (isset($_GET['user_id'])) {
   $services_run = mysqli_query($db, $services_query);
   $user_data['services'] = mysqli_fetch_assoc($services_run);
 
-  // Retrieve data from other tables
   $user_query = "SELECT * FROM user WHERE user_id = $user_id";
   $user_run = mysqli_query($db, $user_query);
   $user_data['user'] = mysqli_fetch_assoc($user_run);
@@ -48,7 +46,6 @@ if (isset($_GET['user_id'])) {
   $seo_run = mysqli_query($db, $seo_query);
   $user_data['seo'] = mysqli_fetch_assoc($seo_run);
 
-  // Retrieve the resume data from the 'resume' table
   $resume_query = "SELECT * FROM resume WHERE user_id = $user_id";
   $resume_run = mysqli_query($db, $resume_query);
   $user_data['resume'] = mysqli_fetch_assoc($resume_run);
@@ -184,7 +181,8 @@ if (isset($user_data) && !empty($user_data)) {
           </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
+      <!-- .navbar -->
 
       <?php if (isset($home['showicons']) && $home['showicons']) { ?>
         <div class="social-links">
@@ -219,7 +217,8 @@ if (isset($user_data) && !empty($user_data)) {
         </div>
       <?php } ?>
     </div>
-  </header><!-- End Header -->
+  </header>
+  <!-- End Header -->
 
   <!-- ======= About Section ======= -->
   <section id="about" class="about">
@@ -282,7 +281,8 @@ if (isset($user_data) && !empty($user_data)) {
           </p>
         </div>
       </div>
-    </div><!-- End About Me -->
+    </div>
+    <!-- End About Me -->
 
     <!-- ======= Counts ======= -->
     <div class="counts container">
@@ -405,14 +405,15 @@ if (isset($user_data) && !empty($user_data)) {
                   <?= $testimonials['position'] ?>
                 </h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
           <?php } ?>
         </div>
         <div class="swiper-pagination"></div>
       </div>
       <div class="owl-carousel testimonials-carousel"></div>
     </div><!-- End Testimonials -->
-  </section><!-- End About Section -->
+  </section>
+  <!-- End About Section -->
 
   <!-- ======= Resume Section ======= -->
   <section id="resume" class="resume">
@@ -470,7 +471,8 @@ if (isset($user_data) && !empty($user_data)) {
         </div>
       </div>
     </div>
-  </section><!-- End Resume Section -->
+  </section>
+  <!-- End Resume Section -->
 
   <!-- ======= Services Section ======= -->
   <section id="services" class="services">
@@ -497,7 +499,8 @@ if (isset($user_data) && !empty($user_data)) {
         <?php } ?>
       </div>
     </div>
-  </section><!-- End Services Section -->
+  </section>
+  <!-- End Services Section -->
 
   <!-- ======= Portfolio Section ======= -->
   <section id="portfolio" class="portfolio">
@@ -549,7 +552,8 @@ if (isset($user_data) && !empty($user_data)) {
         <?php } ?>
       </div>
     </div>
-  </section><!-- End Portfolio Section -->
+  </section>
+  <!-- End Portfolio Section -->
 
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
@@ -648,7 +652,8 @@ if (isset($user_data) && !empty($user_data)) {
           <input type="submit" value="Send Message" class="btn btn-green" />
         </div>
       </form>
-  </section><!-- End Contact Section -->
+  </section>
+  <!-- End Contact Section -->
 
   <div class="credits">
     For concerns Email Us @ <a
@@ -656,8 +661,6 @@ if (isset($user_data) && !empty($user_data)) {
     |
     Copyright &copy; 2023 <a href="#">by Group 4 | All Rights Reserved.</a>
   </div>
-
-
 
   <!-- SCRIPTS -->
   <!-- Vendor JS Files -->

@@ -1,20 +1,17 @@
 <?php
 require('../include/db.php');
 
-// Check if the user clicked the login button
 if (isset($_POST['login'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
 
   if ($_POST['login_type'] == 'user') {
-    // Check if the email and password are valid for user login
     $query = "SELECT * FROM user WHERE email='$email' && password='$password'";
     $run = mysqli_query($db, $query);
     $row_count = mysqli_num_rows($run);
 
     if ($row_count > 0) {
-      // Login successful
-      session_start(); // Start the session
+      session_start();
       $data = mysqli_fetch_array($run);
       $_SESSION['user_id'] = $data['user_id']; // Store the user ID in the session
       $_SESSION['isUserLoggedIn'] = true; // Set the session variable to indicate that the user is logged in
@@ -43,7 +40,7 @@ if (isset($_POST['login'])) {
 
     if ($row_count > 0) {
       // Login successful
-      session_start(); // Start the session
+      session_start();
       $data = mysqli_fetch_array($run);
       $_SESSION['admin_id'] = $data['admin_id']; // Store the admin ID in the session
       $_SESSION['isAdminLoggedIn'] = true; // Set the session variable to indicate that the admin is logged in
@@ -72,7 +69,6 @@ if (isset($_POST['login'])) {
   <link href="../images/logo.png" rel="apple-touch-icon">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../user/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -108,11 +104,9 @@ if (isset($_POST['login'])) {
     <div class="login-logo">
       <a href="../index.php"><b style="color: #1DB954;">Art</b><b style="color: #FFF;">Abode</b></a>
     </div>
-    <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to manage your PORTFOLIO</p>
-
         <form method="post">
           <div class="input-group mb-3">
             <input type="email" class="form-control" name="email" placeholder="Email" required
@@ -154,14 +148,11 @@ if (isset($_POST['login'])) {
                 </label>
               </div>
             </div>
-            <!-- /.col -->
             <div class="col-12">
               <button type="submit" name="login" class="btn btn-primary btn-block">Sign In</button>
             </div>
-            <!-- /.col -->
           </div>
         </form>
-        <!-- /.social-auth-links -->
         <p class="mb-1">
           <a href="forgot-password.php">I forgot my password</a>
         </p>
@@ -169,16 +160,13 @@ if (isset($_POST['login'])) {
           <a href="register.php" class="text-center">Register</a>
         </p>
       </div>
-      <!-- /.login-card-body -->
     </div>
   </div>
-  <!-- /.login-box -->
 
   <!-- jQuery -->
   <script src="../user/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="../user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- user App -->
   <script src="../user/dist/js/userlte.min.js"></script>
   <script>
     var passwordInput = document.querySelector('#password');

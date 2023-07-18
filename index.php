@@ -44,23 +44,16 @@ $home = mysqli_fetch_array($resultHome);
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>
-    Art Abode
-  </title>
-
+  <title>Art Abode</title>
   <!-- Favicons -->
   <link href="images/logo.png" rel="icon">
   <link href="images/logo.png" rel="apple-touch-icon">
-
   <!-- box icons -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
-
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -71,7 +64,6 @@ $home = mysqli_fetch_array($resultHome);
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
   <script>
     window.onload = function () {
       if (performance.navigation.type === 1) {
@@ -80,52 +72,51 @@ $home = mysqli_fetch_array($resultHome);
       }
     };
   </script>
+  <style>
+    body {
+      font-family: "Open Sans", sans-serif;
+      background-color: #040404;
+      color: #fff;
+      overflow-y: scroll;
+    }
+
+    .navbar-link {
+      font-weight: bold;
+      color: #FFF !important;
+      text-shadow: lightgreen;
+    }
+
+    .gray-background::placeholder {
+      color: black;
+    }
+
+    .gray-background {
+      color: black;
+    }
+
+    .gray-background {
+      background-color: gray;
+      color: white;
+    }
+
+    .gray-background:focus {
+      background-color: gray;
+      color: white;
+    }
+
+    .background-image {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: 0.3;
+      z-index: -1;
+      background: url('images/<?= $pi['background_img'] ?>') top right no-repeat;
+      background-size: cover;
+    }
+  </style>
 </head>
-<style>
-  body {
-    font-family: "Open Sans", sans-serif;
-    background-color: #040404;
-    color: #fff;
-    overflow-y: scroll;
-  }
-
-  .navbar-link {
-    font-weight: bold;
-    color: #FFF !important;
-    text-shadow: lightgreen;
-  }
-
-  .gray-background::placeholder {
-    color: black;
-  }
-
-  .gray-background {
-    color: black;
-  }
-
-  .gray-background {
-    background-color: gray;
-    color: white;
-  }
-
-  .gray-background:focus {
-    background-color: gray;
-    color: white;
-  }
-
-  .background-image {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0.3;
-    z-index: -1;
-    background: url('images/<?= $pi['background_img'] ?>') top right no-repeat;
-    background-size: cover;
-  }
-</style>
-
 
 <body>
   <div class="background-image"></div>
@@ -149,19 +140,18 @@ $home = mysqli_fetch_array($resultHome);
           <li><a class="nav-link" href="#portfolio">Portfolios</a></li>
           <li><a class="nav-link" href="#contact">Contact</a></li>
           <?php
-          session_start(); // Start the session
+          session_start();
           if (isset($_SESSION['user_id'])) {
-            // User is logged in
             echo '<li><a href="Home/account.php" target="_blank"><b class="navbar-link">ACCOUNT</b></a></li>';
             echo '<li><a href="components/logout.php"><b class="navbar-link">Logout</b></a></li>';
           } else {
-            // User is not logged in
             echo '<li><a href="components/register.php"><b class="navbar-link">Register</b></a></li>';
             echo '<li><a href="components/login.php"><b class="navbar-link">Login</b></a></li>';
           } ?>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+
       <div class="social-links">
         <a href="https://twitter.com/<?= $social['twitter'] ?>" class="twitter" target="_blank"><i
             class="bi bi-twitter"></i></a>
@@ -192,7 +182,7 @@ $home = mysqli_fetch_array($resultHome);
           <img src="images/<?= $pii['about_img'] ?>" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <p style="text-align: justify;">
+          <p style="text-align: justify;">\
             <?= $pii['about_desc'] ?>
           </p>
         </div>
@@ -205,7 +195,6 @@ $home = mysqli_fetch_array($resultHome);
         <p>Mission</p>
       </div>
       <div class="row">
-
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
           <p style="text-align: justify;">
             <?= $pii['mission'] ?>
@@ -258,13 +247,10 @@ $home = mysqli_fetch_array($resultHome);
                   </p>
                   <div class="developers-links">
                     <a href="images/<?= $developers['deve_profile'] ?>" data-gallery="portfoliosGallery"
-                      class="portfolio-lightbox" title="<?= $developers['Name'] ?>" target="_blank">
-                      <i class="bx bx-plus"></i>
-                    </a>
+                      class="portfolio-lightbox" title="<?= $developers['Name'] ?>" target="_blank"><i
+                        class="bx bx-plus"></i></a>
                     <a href="https://facebook.com/<?= $developers['social'] ?>" target="_blank"
-                      data-gallery="portfoliosGallery">
-                      <i class="bx bx-link"></i>
-                    </a>
+                      data-gallery="portfoliosGallery"><i class="bx bx-link"></i></a>
                   </div>
                 </div>
               </div>
@@ -296,7 +282,6 @@ $home = mysqli_fetch_array($resultHome);
               </p>
             </div>
           </div>
-
         <?php } ?>
       </div>
     </div>
@@ -312,7 +297,7 @@ $home = mysqli_fetch_array($resultHome);
       </div>
       <!-- Filter Section -->
       <div class="filter-icon" onclick="toggleFilterOptions()">
-        <i class="fas fa-filter"></i> Filter  <i class="arrow-icon fas fa-angle-down"></i>
+        <i class="fas fa-filter"></i> Filter <i class="arrow-icon fas fa-angle-down"></i>
       </div>
       <div class="filter-options">
         <div class="row">
@@ -320,7 +305,6 @@ $home = mysqli_fetch_array($resultHome);
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
               <?php
-              // Generate filter buttons for all letters from A to Z
               for ($i = 65; $i <= 90; $i++) {
                 $letter = chr($i);
                 echo '<li data-filter=".' . $letter . '">' . $letter . '</li>';
@@ -330,7 +314,6 @@ $home = mysqli_fetch_array($resultHome);
           </div>
         </div>
       </div>
-
       <div class="row portfolio-container">
         <?php
         $query = "SELECT a.user_id, a.fullname, a.user_profile, h.subtitle
@@ -352,13 +335,10 @@ $home = mysqli_fetch_array($resultHome);
                 </p>
                 <div class="portfolio-links">
                   <a href="images/<?= $portfolio['user_profile'] ?>" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="<?= $portfolio['fullname'] ?>" target="_blank">
-                    <i class="bx bx-plus"></i>
-                  </a>
+                    class="portfolio-lightbox" title="<?= $portfolio['fullname'] ?>" target="_blank"><i
+                      class="bx bx-plus"></i></a>
                   <a href="Home/portfolio.php?user_id=<?= $portfolio['user_id'] ?>" target="_blank"
-                    data-gallery="portfolioGallery">
-                    <i class="bx bx-link"></i>
-                  </a>
+                    data-gallery="portfolioGallery"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -368,7 +348,6 @@ $home = mysqli_fetch_array($resultHome);
     </div>
   </section>
   <!-- End Portfolio Section -->
-
 
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
@@ -406,8 +385,9 @@ $home = mysqli_fetch_array($resultHome);
   <!-- End Contact Section -->
 
   <div class="credits">
-  For concerns Email Us @ <a href="mailto:portfoliowebsite617@gmail.com?subject=Subject%20Here&body=Your%20message%20goes%20here">portfoliowebsite617@gmail.com</a> |
-  Copyright &copy; 2023 <a href="#">by Group 4 | All Rights Reserved.</a>
+    For concerns Email Us @ <a
+      href="mailto:portfoliowebsite617@gmail.com?subject=Subject%20Here&body=Your%20message%20goes%20here">portfoliowebsite617@gmail.com</a>
+    | Copyright &copy; 2023 <a href="#">by Group 4 | All Rights Reserved.</a>
   </div>
 
   <!-- SCRIPTS -->

@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve admin ID from query parameter
   $admin_id = $_GET["user_id"];
 
-  // Configure PHPMailer with your Gmail SMTP credentials
+  
   require '../../vendor/autoload.php';
 
   $mail = new PHPMailer\PHPMailer\PHPMailer();

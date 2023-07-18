@@ -6,7 +6,7 @@ if (!isset($_SESSION['isAdminLoggedIn'])) {
   exit;
 }
 
-$admin_id = $_SESSION['admin_id']; // Assuming the admin_id is stored in the session
+$admin_id = $_SESSION['admin_id'];
 
 $query = "SELECT * FROM admin 
           LEFT JOIN admin_about ON admin.admin_id = admin_about.admin_id 
@@ -167,9 +167,6 @@ if (!$admin_data) {
       </div>
       <!-- /.sidebar -->
     </aside>
-
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <br>
@@ -236,10 +233,8 @@ if (!$admin_data) {
                     $row_count = mysqli_num_rows($result);
 
                     if ($row_count == 0) {
-                      // Display Add button
                       echo '<button type="submit" name="add-background" class="btn btn-primary">Add Background</button>';
                     } else {
-                      // Display Save Changes button
                       echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
                     }
                     ?>
@@ -424,10 +419,8 @@ if (!$admin_data) {
                     $row_count = mysqli_num_rows($result);
 
                     if ($row_count == 0) {
-                      // Display Add button
                       echo '<button type="submit" name="add-socialmedia" class="btn btn-primary">Add Social Media</button>';
                     } else {
-                      // Display Save Changes button
                       echo '<button type="submit" name="update-socialmedia" class="btn btn-primary">Save Changes</button>';
                     }
                     ?>
@@ -489,12 +482,8 @@ if (!$admin_data) {
                       </table>
                     </div>
                   </div>
-                  <!-- /.card-body -->
-                  <!-- /.card-header -->
                   <!-- form start -->
-
                   <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
-                    <!-- <img src="../images/<?= $user_data['profile_pic'] ?>" class="col-2"> -->
                     <div class="card-body">
                       <div class="form-group">
                         <label for="exampleInputEmail1">About Image</label>
@@ -520,10 +509,8 @@ if (!$admin_data) {
                       $row_count = mysqli_num_rows($result);
 
                       if ($row_count == 0) {
-                        // Display Add SEO button
                         echo '<button type="submit" name="add-about" class="btn btn-primary">Add About Details</button>';
                       } else {
-                        // Display Save Changes button
                         echo '<button type="submit" name="update-about" class="btn btn-primary">Save Changes</button>';
                       }
                       ?>
@@ -586,8 +573,6 @@ if (!$admin_data) {
                     </div>
                   </div>
                 </div>
-                <!-- /.card-body -->
-                <!-- /.card-header -->
                 <!-- form start -->
                 <div class="card card-primary col-lg-12">
                   <div class="card-header">
@@ -598,7 +583,6 @@ if (!$admin_data) {
                       <h3 class="card-title">Developers</h3>
                     </div>
                     <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
-                      <!-- <img src="../images/<?= $user_data['profile_pic'] ?>" class="col-2"> -->
                       <div class="card-body">
                         <div class="form-group col-6">
                           <label for="exampleInputEmail1">Name</label>
@@ -669,13 +653,10 @@ if (!$admin_data) {
                 <div class="card-header">
                   <h3 class="card-title">Manage Services</h3>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title">Services</h3>
                   </div>
-                  <!-- /.card-header -->
                   <div class="card-body p-0">
                     <table class="table">
                       <thead>
@@ -716,7 +697,6 @@ if (!$admin_data) {
                       </tbody>
                     </table>
                   </div>
-                  <!-- /.card-body -->
                 </div>
                 <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
                   <div class="card-body">
@@ -733,13 +713,11 @@ if (!$admin_data) {
                       <input type="text" class="form-control" name="service_link" id="exampleInputEmail1">
                     </div>
                   </div>
-                  <!-- /.card-body -->
                   <div class="card-footer">
                     <button type="submit" name="add-service" class="btn btn-primary">Add Service</button>
                   </div>
                 </form>
               </div>
-
               <?php
             } elseif (isset($_GET['accountsetting'])) {
               ?>
@@ -804,7 +782,6 @@ if (!$admin_data) {
                   </div>
                 </div>
               </div>
-
               <div class="card card-primary col-lg-12">
                 <div class="card-header">
                   <h3 class="card-title">Update User</h3>
@@ -851,7 +828,6 @@ if (!$admin_data) {
                   </div>
                   <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
-                      <!-- User ID field is removed for adding a new user -->
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Fullname</label>
                         <input type="text" class="form-control" name="fullname" id="exampleInputEmail1">
@@ -869,15 +845,12 @@ if (!$admin_data) {
                         <input type="text" class="form-control" name="password" id="exampleInputEmail1">
                       </div>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                       <button type="submit" name="add-user" class="btn btn-primary">Add User</button>
                     </div>
                   </form>
                 </div>
               </div>
-
-              <!-- /.row (main row) -->
           </section>
           <?php
             } elseif (isset($_GET['adminsetting'])) {
@@ -886,7 +859,6 @@ if (!$admin_data) {
             <div class="card-header">
               <h3 class="card-title">Manage Admin Information</h3>
             </div>
-            <!-- /.card-header -->
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Admin Account</h3>
@@ -963,18 +935,14 @@ if (!$admin_data) {
                     <input type="text" class="form-control" name="password" id="exampleInputEmail1">
                   </div>
                 </div>
-                <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" name="update-admin" class="btn btn-primary">Save Changes</button>
                 </div>
               </form>
-
             </div>
           </div>
           </section>
         <?php } ?>
-
-      <!-- /.content-wrapper -->
       <footer class="main-footer">
         <strong>Copyright &copy; 2023 <a href="#">Group 4</a>.</strong>
         All rights reserved.
@@ -982,14 +950,11 @@ if (!$admin_data) {
           <b>Version</b>1.0
         </div>
       </footer>
-
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
       </aside>
       <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
 
     <!-- jQuery -->
     <script src="../user/plugins/jquery/jquery.min.js"></script>
@@ -1019,11 +984,8 @@ if (!$admin_data) {
     <script src="../user/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="../user/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- userLTE App -->
     <script src="../user/dist/js/userlte.js"></script>
-    <!-- userLTE dashboard demo (This is only for demo purposes) -->
     <script src="../user/dist/js/pages/dashboard.js"></script>
-    <!-- userLTE for demo purposes -->
     <script src="../user/dist/js/demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

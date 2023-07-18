@@ -8,6 +8,4 @@ error_reporting(0);
     $dbname = "portfoliowebsite";
 
 $db = mysqli_connect($server, $username,  $password, $dbname) or die("databse not connected!")
-
-
     ?>

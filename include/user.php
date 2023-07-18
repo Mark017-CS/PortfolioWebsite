@@ -1,5 +1,3 @@
-
-
 <?php
 require('db.php');
 
@@ -11,6 +9,7 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
 
 $userId = $_SESSION['user_id'];
 
+// Add Section
 if (isset($_POST['add-section'])) {
   $home = $_POST['home'] ?? 0;
   $about = $_POST['about'] ?? 0;
@@ -30,6 +29,7 @@ if (isset($_POST['add-section'])) {
   }
 }
 
+// Add Home Details
 if (isset($_POST['add-home'])) {
   $title = $_POST['title'];
   $subtitle = $_POST['subtitle'];
@@ -49,7 +49,7 @@ if (isset($_POST['add-home'])) {
   }
 }
 
-
+// Add About Details
 if (isset($_POST['add-about'])) {
   $title = mysqli_real_escape_string($db, $_POST['abouttitle']);
   $subtitle = mysqli_real_escape_string($db, $_POST['aboutsubtitle']);
@@ -77,6 +77,7 @@ if (isset($_POST['add-about'])) {
   }
 }
 
+// Add Testimonial
 if (isset($_POST['add-testimonial'])) {
   $testimonial = mysqli_real_escape_string($db, $_POST['testimonial']);
   $test_name = mysqli_real_escape_string($db, $_POST['test_name']);
@@ -104,7 +105,7 @@ if (isset($_POST['add-testimonial'])) {
   }
 }
 
-
+// Add Interest
 if (isset($_POST['add-interest'])) {
   $inter_name = $_POST['inter_name'];
   $query = "INSERT INTO interests (inter_name, user_id) VALUES ('$inter_name',  $userId)";
@@ -116,6 +117,7 @@ if (isset($_POST['add-interest'])) {
   }
 }
 
+// Add Skill
 if (isset($_POST['add-skill'])) {
   $skillname = $_POST['skillname'];
   $skilllevel = $_POST['skilllevel'];
@@ -128,6 +130,7 @@ if (isset($_POST['add-skill'])) {
   }
 }
 
+// Add Personal Information (about section)
 if (isset($_POST['add-pi'])) {
   $label = $_POST['label'];
   $value = $_POST['value'];
@@ -140,6 +143,7 @@ if (isset($_POST['add-pi'])) {
   }
 }
 
+// Add Artwork / Project
 if (isset($_POST['add-project'])) {
   $type = $_POST['type'];
   $project_name = $_POST['project_name'];
@@ -159,6 +163,7 @@ if (isset($_POST['add-project'])) {
   }
 }
 
+// Add Service
 if (isset($_POST['add-service'])) {
   $service_name = $_POST['service_name'];
   $service_desc = $_POST['service_desc'];
@@ -175,6 +180,7 @@ if (isset($_POST['add-service'])) {
   }
 }
 
+// Add Counts
 if (isset($_POST['add-counts'])) {
   $happy_clients = $_POST['happy_clients'];
   $projects = $_POST['projects'];
@@ -192,6 +198,7 @@ if (isset($_POST['add-counts'])) {
   }
 }
 
+// Add contact Details
 if (isset($_POST['add-contact'])) {
   $address = mysqli_real_escape_string($db, $_POST['address']);
   $email = $_POST['email'];
@@ -208,6 +215,7 @@ if (isset($_POST['add-contact'])) {
   }
 }
 
+// Add Social Media Details
 if (isset($_POST['add-socialmedia'])) {
   $twitter = $_POST['twitter'];
   $facebook = $_POST['facebook'];
@@ -227,6 +235,7 @@ if (isset($_POST['add-socialmedia'])) {
   }
 }
 
+// Add Portfolio Background
 if (isset($_POST['add-background'])) {
   $imagename = time() . $_FILES['background']['name'];
   $imgtemp = $_FILES['background']['tmp_name'];
@@ -244,6 +253,7 @@ if (isset($_POST['add-background'])) {
   }
 }
 
+// Add SEO Details
 if (isset($_POST['add-seo'])) {
   $title = mysqli_real_escape_string($db, $_POST['page_title']);
   $keyword = mysqli_real_escape_string($db, $_POST['keyword']);
@@ -271,6 +281,7 @@ if (isset($_POST['add-seo'])) {
   }
 }
 
+// Add Account Details
 if (isset($_POST['add-account'])) {
   $fullname = mysqli_real_escape_string($db, $_POST['fullname']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -298,7 +309,7 @@ if (isset($_POST['add-account'])) {
   }
 }
 
-
+// Update Section Details
 if (isset($_POST['update-section'])) {
   $home = $_POST['home'] ?? 0;
   $about = $_POST['about'] ?? 0;
@@ -315,6 +326,8 @@ if (isset($_POST['update-section'])) {
     exit();
   }
 }
+
+// Update Home Details
 if (isset($_POST['update-home'])) {
   $title = mysqli_real_escape_string($db, $_POST['title']);
   $subtitle = mysqli_real_escape_string($db, $_POST['subtitle']);
@@ -328,6 +341,8 @@ if (isset($_POST['update-home'])) {
     exit();
   }
 }
+
+// Update about Details
 if (isset($_POST['update-about'])) {
   $title = mysqli_real_escape_string($db, $_POST['abouttitle']);
   $subtitle = mysqli_real_escape_string($db, $_POST['aboutsubtitle']);
@@ -352,6 +367,8 @@ if (isset($_POST['update-about'])) {
     exit();
   }
 }
+
+// Update Count Details
 if (isset($_POST['update-counts'])) {
   $happy_clients = $_POST['happy_clients'];
   $projects = $_POST['projects'];
@@ -366,6 +383,8 @@ if (isset($_POST['update-counts'])) {
     exit();
   }
 }
+
+// Update Contact Details
 if (isset($_POST['update-contact'])) {
   $address = mysqli_real_escape_string($db, $_POST['address']);
   $email = $_POST['email'];
@@ -379,6 +398,8 @@ if (isset($_POST['update-contact'])) {
     exit();
   }
 }
+
+// Update Social Media Details
 if (isset($_POST['update-socialmedia'])) {
   $twitter = $_POST['twitter'];
   $facebook = $_POST['facebook'];
@@ -409,6 +430,8 @@ if (isset($_POST['update-background'])) {
     exit();
   }
 }
+
+// Update SEO Details
 if (isset($_POST['update-seo'])) {
   $title = mysqli_real_escape_string($db, $_POST['page_title']);
   $keyword = mysqli_real_escape_string($db, $_POST['keyword']);
@@ -433,6 +456,8 @@ if (isset($_POST['update-seo'])) {
     exit();
   }
 }
+
+// Update Details Details
 if (isset($_POST['update-account'])) {
   $fullname = mysqli_real_escape_string($db, $_POST['fullname']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -457,5 +482,4 @@ if (isset($_POST['update-account'])) {
     exit();
   }
 }
-
 ?>

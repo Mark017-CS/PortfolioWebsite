@@ -9,7 +9,7 @@ if (!isset($_SESSION['isAdminLoggedIn'])) {
 
 $admin_id = $_SESSION['admin_id'];
 
-
+// Add Website About Details
 if (isset($_POST['add-about'])) {
   $desc = mysqli_real_escape_string($db, $_POST['about_desc']);
   $imagename = time() . $_FILES['profile']['name'];
@@ -35,6 +35,7 @@ if (isset($_POST['add-about'])) {
   }
 }
 
+// Add Website Developer
 if (isset($_POST['add-developer'])) {
   $name = mysqli_real_escape_string($db, $_POST['Name']);
   $desc = mysqli_real_escape_string($db, $_POST['Description']);
@@ -62,7 +63,7 @@ if (isset($_POST['add-developer'])) {
   }
 }
 
-
+// Add Website Service
 if (isset($_POST['add-service'])) {
   $service_title = $_POST['service_title'];
   $service_des = $_POST['service_des'];
@@ -79,6 +80,7 @@ if (isset($_POST['add-service'])) {
   }
 }
 
+// Add Website Background
 if (isset($_POST['add-background'])) {
   $imagename = time() . $_FILES['background']['name'];
   $imgtemp = $_FILES['background']['tmp_name'];
@@ -96,6 +98,7 @@ if (isset($_POST['add-background'])) {
   }
 }
 
+// Add Website User
 if (isset($_POST['add-user'])) {
   $fullname = mysqli_real_escape_string($db, $_POST['fullname']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -118,6 +121,7 @@ if (isset($_POST['add-user'])) {
   }
 }
 
+// Add Website Social Media Details
 if (isset($_POST['add-socialmedia'])) {
   $twitter = $_POST['twitter'];
   $facebook = $_POST['facebook'];
@@ -135,6 +139,8 @@ if (isset($_POST['add-socialmedia'])) {
     exit();
   }
 }
+
+// Update Website Social Media
 if (isset($_POST['update-socialmedia'])) {
   $twitter = $_POST['twitter'];
   $facebook = $_POST['facebook'];
@@ -152,6 +158,7 @@ if (isset($_POST['update-socialmedia'])) {
   }
 }
 
+// Update Website Home Details
 if (isset($_POST['update-home'])) {
   $home_title = $_POST['home_title'];
   $home_title2 = $_POST['home_title2'];
@@ -166,6 +173,7 @@ if (isset($_POST['update-home'])) {
   }
 }
 
+// Update Website Admin Details
 if (isset($_POST['update-admin'])) {
   $name = mysqli_real_escape_string($db, $_POST['name']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -191,7 +199,7 @@ if (isset($_POST['update-admin'])) {
   }
 }
 
-
+// Update Website Users
 if (isset($_POST['update-user'])) {
   $userId = mysqli_real_escape_string($db, $_POST['user_id']);
   $fullname = mysqli_real_escape_string($db, $_POST['fullname']);
@@ -218,7 +226,7 @@ if (isset($_POST['update-user'])) {
   }
 }
 
-
+// Update Website About Details
 if (isset($_POST['update-about'])) {
   $desc = mysqli_real_escape_string($db, $_POST['about_desc']);
   $mission = mysqli_real_escape_string($db, $_POST['mission']);
@@ -244,6 +252,7 @@ if (isset($_POST['update-about'])) {
   }
 }
 
+// Update Website Developers
 if (isset($_POST['update-developer'])) {
   $Id = mysqli_real_escape_string($db, $_POST['id']);
   $name = mysqli_real_escape_string($db, $_POST['Name']);
@@ -270,7 +279,7 @@ if (isset($_POST['update-developer'])) {
   }
 }
 
-
+// Update Website Background
 if (isset($_POST['update-background'])) {
   $imagename = time() . $_FILES['background']['name'];
   $imgtemp = $_FILES['background']['tmp_name'];

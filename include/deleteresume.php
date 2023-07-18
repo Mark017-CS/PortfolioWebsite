@@ -11,8 +11,7 @@ $userId = $_SESSION['user_id'];
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
-  
-  // Modify the query to include the user_id condition
+
   $query = "DELETE FROM resume WHERE id=$id AND user_id=$userId";
   
   $run = mysqli_query($db, $query);

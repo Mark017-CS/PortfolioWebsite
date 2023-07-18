@@ -970,7 +970,7 @@ section .container {
 
 .developers .developers-image {
   width: 100%;
-  height: 400px; /* Adjust the height as needed */
+  height: 400px;
   object-fit: cover;
 }
 
@@ -1229,7 +1229,7 @@ section .container {
 
 .portfolio-image {
   width: 1000%;
-  height: 400px; /* Adjust the height as needed */
+  height: 400px;
   object-fit: cover;
 }
 
