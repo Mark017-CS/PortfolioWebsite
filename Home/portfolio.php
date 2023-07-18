@@ -150,7 +150,7 @@ if (isset($user_data) && !empty($user_data)) {
       <a href="../index.php" class="logo"
         style=" display: flex; align-items: center; text-decoration: none; font-size: 1.5rem; color: var(--text-color);margin-bottom: 20px; margin-top: -100px; margin-left: -40px; font-weight: 600; cursor: pointer;"><b
           style="color: #1DB954; font-style: italic; ">Art </b><b style="color: #FFF;">Abode</b></a>
-      <h1><a href="portfolio.php">
+      <h1><a href="portfolio.php?user_id=<?= $portfolio['user_id'] ?>">
           <?= isset($home['title']) ? $home['title'] : '' ?>
         </a></h1>
       <h2>

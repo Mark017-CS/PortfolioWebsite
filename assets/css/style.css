@@ -868,7 +868,7 @@ section .container {
 
 .services .icon-box:hover h4 a,
 .services .icon-box:hover p {
-  color: #fff;
+  color: #000000;
 }
 
 /*--------------------------------------------------------------

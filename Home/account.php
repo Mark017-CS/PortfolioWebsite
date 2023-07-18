@@ -103,7 +103,7 @@ if (!$user_data) {
             <img src="../images/<?= $user_data['user_profile'] ?>" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="../Home/portfolio.php?user_id=<?= $user_id ?>" class="d-block">
+            <a href="portfolio.php?user_id=<?= $user_id ?>" class="d-block">
               <?= $user_data['fullname'] ?>
             </a>
           </div>
