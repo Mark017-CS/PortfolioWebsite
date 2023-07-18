@@ -92,6 +92,7 @@ if (isset($user_data) && !empty($user_data)) {
   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
 
@@ -509,20 +510,31 @@ if (isset($user_data) && !empty($user_data)) {
         <h2>Artworks</h2>
         <p>My Works</p>
       </div>
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-photography">Photography</li>
-            <li data-filter=".filter-drawing">Drawing</li>
-            <li data-filter=".filter-graphic-design">Graphic Design</li>
-            <li data-filter=".filter-mixed-media">Mixed Media</li>
-            <li data-filter=".filter-line-art">Line Art</li>
-            <li data-filter=".filter-sculpture">Sculpture</li>
-            <li data-filter=".filter-painting">Painting</li>
-          </ul>
+
+      <!-- Filter Icon -->
+      <div class="filter-icon" onclick="toggleFilterOptions()">
+        <i class="fas fa-filter"></i> Filter <i class="arrow-icon fas fa-angle-down"></i>
+      </div>
+
+      <!-- Filter Options -->
+      <div class="filter-options" style="display: none;">
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-photography">Photography</li>
+              <li data-filter=".filter-drawing">Drawing</li>
+              <li data-filter=".filter-graphic-design">Graphic Design</li>
+              <li data-filter=".filter-mixed-media">Mixed Media</li>
+              <li data-filter=".filter-line-art">Line Art</li>
+              <li data-filter=".filter-sculpture">Sculpture</li>
+              <li data-filter=".filter-painting">Painting</li>
+            </ul>
+          </div>
         </div>
       </div>
+
+      <!-- Portfolio Items -->
       <div class="row portfolio-container">
         <?php
         $query5 = "SELECT * FROM portfolio WHERE user_id = $user_id";
@@ -542,9 +554,13 @@ if (isset($user_data) && !empty($user_data)) {
                 </p>
                 <div class="portfolio-links">
                   <a href="../images/<?= $portfolio['project_pic'] ?>" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="<?= $portfolio['project_name'] ?>"><i class="bx bx-plus"></i></a>
+                    class="portfolio-lightbox" title="<?= $portfolio['project_name'] ?>">
+                    <i class="bx bx-plus"></i>
+                  </a>
                   <a href="<?= $portfolio['project_link'] ?>" data-gallery="portfolioGallery"
-                    class="portfolio-details-lightbox"><i class="bx bx-link"></i></a>
+                    class="portfolio-details-lightbox">
+                    <i class="bx bx-link"></i>
+                  </a>
                 </div>
               </div>
             </div>
@@ -673,7 +689,21 @@ if (isset($user_data) && !empty($user_data)) {
   <script src="../assets/vendor/php-email-form/validate.js"></script>
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
-
+  <script>
+    function toggleFilterOptions() {
+      var filterOptions = document.querySelector(".filter-options");
+      var arrowIcon = document.querySelector(".arrow-icon");
+      if (filterOptions.style.display === "none") {
+        filterOptions.style.display = "block";
+        arrowIcon.classList.remove("fa-angle-down");
+        arrowIcon.classList.add("fa-angle-up");
+      } else {
+        filterOptions.style.display = "none";
+        arrowIcon.classList.remove("fa-angle-up");
+        arrowIcon.classList.add("fa-angle-down");
+      }
+    }
+  </script>
 </body>
 
 </html>
