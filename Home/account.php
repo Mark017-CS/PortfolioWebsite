@@ -907,13 +907,31 @@ if (!$user_data) {
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Select Type</label><br>
                         <select name="type" class="form-control">
-                          <option value="SOFTWARE">PAINTING</option>
-                          <option value="APP">PHOTOGRAPHY</option>
-                          <option value="WEBSITE">DRAWING</option>
-                          <option value="IDEA">SCULPTURE</option>
-                          <option value="PRODUCT">GRAPHIC DESIGN</option>
-                          <option value="VIDEO">LINE ART</option>
-                          <option value="ANIMATION">MIXED MEDIA</option>
+                          <option value="VISUAL ART">VISUAL ART (General)</option>
+                          <option value="PAINTING">PAINTING</option>
+                          <option value="PHOTOGRAPHY">PHOTOGRAPHY</option>
+                          <option value="DRAWING">DRAWING</option>
+                          <option value="SCULPTURE">SCULPTURE</option>
+                          <option value="GRAPHIC DESIGN">GRAPHIC DESIGN</option>
+                          <option value="LINE ART">LINE ART</option>
+                          <option value="MIXED MEDIA">MIXED MEDIA</option>
+                          <option value="PRINTMAKING">PRINTMAKING</option>
+                          <option value="COLLAGE">COLLAGE</option>
+                          <option value="CERAMICS">CERAMICS</option>
+                          <option value="ILLUSTRATION">ILLUSTRATION</option>
+                          <option value="DIGITAL ART">DIGITAL ART</option>
+                          <option value="MOSAIC">MOSAIC</option>
+                          <option value="CALLIGRAPHY">CALLIGRAPHY</option>
+                          <option value="INSTALLATION ART">INSTALLATION ART</option>
+                          <option value="TEXTILE ART">TEXTILE ART</option>
+                          <option value="CARPENTRY">CARPENTRY</option>
+                          <option value="POTTERY">POTTERY</option>
+                          <option value="MURAL">MURAL</option>
+                          <option value="FASHION DESIGN">FASHION DESIGN</option>
+                          <option value="TAPESTRY">TAPESTRY</option>
+                          <option value="QUILTING">QUILTING</option>
+                          <option value="LANDSCAPING">LANDSCAPING</option>   
+                          <option value="PORTRAIT">PORTRAIT</option>                         
                         </select>
                       </div>
                       <div class="form-group col-6">

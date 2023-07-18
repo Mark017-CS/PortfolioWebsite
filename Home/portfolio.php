@@ -518,7 +518,8 @@ if (isset($user_data) && !empty($user_data)) {
         <div class="row">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter="*" class="filter-active">All</li>             
+              <li data-filter=".filter-visual-art">Visual Art</li>
               <li data-filter=".filter-photography">Photography</li>
               <li data-filter=".filter-drawing">Drawing</li>
               <li data-filter=".filter-graphic-design">Graphic Design</li>
@@ -526,6 +527,23 @@ if (isset($user_data) && !empty($user_data)) {
               <li data-filter=".filter-line-art">Line Art</li>
               <li data-filter=".filter-sculpture">Sculpture</li>
               <li data-filter=".filter-painting">Painting</li>
+              <li data-filter=".filter-printmaking">Printmaking</li>
+              <li data-filter=".filter-collage">Collage</li>
+              <li data-filter=".filter-ceramics">Ceramics</li>
+              <li data-filter=".filter-illustration">Illustration</li>
+              <li data-filter=".filter-digital-art">Digital Art</li>
+              <li data-filter=".filter-mosaic">Mosaic</li>
+              <li data-filter=".filter-calligraphy">Calligraphy</li>
+              <li data-filter=".filter-installation-art">Installation Art</li>
+              <li data-filter=".filter-textile-art">Textile Art</li>
+              <li data-filter=".filter-carpentry">Carpentry</li>
+              <li data-filter=".filter-pottery">Pottery</li>
+              <li data-filter=".filter-mural">Mural</li>
+              <li data-filter=".filter-fashion-design">Fashion Design</li>
+              <li data-filter=".filter-tapestry">Tapestry</li>
+              <li data-filter=".filter-quilting">Quilting</li>
+              <li data-filter=".filter-landscaping">Landscaping</li>
+              <li data-filter=".filter-portrait">Portrait</li>
             </ul>
           </div>
         </div>
