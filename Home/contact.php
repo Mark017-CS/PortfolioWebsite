@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $message = $_POST["message"];
 
 
-  require '../../vendor/autoload.php';
+  require '../vendor/autoload.php';
 
   $mail = new PHPMailer\PHPMailer\PHPMailer();
   $mail->isSMTP();
