@@ -356,7 +356,7 @@ $home = mysqli_fetch_array($resultHome);
         <h2>Contact</h2>
         <p>Contact Us</p>
       </div>
-      <form action="Home/contact.php" method="POST" class="mt-4">
+      <form action="" method="POST" class="mt-4">
         <div class="row">
           <div class="col-md-6 form-group mt-3">
             <input type="text" name="fullName" class="form-control gray-background" placeholder="Your Name" required>
@@ -377,9 +377,13 @@ $home = mysqli_fetch_array($resultHome);
             required></textarea>
         </div>
         <div class="text-center">
-          <input type="submit" value="Send Message" class="btn btn-green" />
+          <a href="mailto:portfoliowebsite617@gmail.com?subject=Contact%20Form%20Submission&body=Name%3A%20%0DEmail%3A%20%0DMobile%20Number%3A%20%0DSubject%3A%20%0D%0DYour%20Message%3A%20%0D"
+            class="btn btn-primary mt-3">
+            Send Email
+          </a>
         </div>
       </form>
+      <!-- Add this link below the form to create the email link -->
     </div>
   </section>
   <!-- End Contact Section -->
@@ -414,6 +418,36 @@ $home = mysqli_fetch_array($resultHome);
         arrowIcon.classList.add("fa-angle-down");
       }
     }
+  </script>
+  <script>
+    // JavaScript function to generate the email link with form data and clear placeholders
+    function generateEmailLinkAndClearPlaceholders() {
+      const fullName = document.getElementsByName('fullName')[0];
+      const email = document.getElementsByName('email')[0];
+      const mobileNumber = document.getElementsByName('mobileNumber')[0];
+      const subject = document.getElementsByName('subject')[0];
+      const message = document.getElementsByName('message')[0];
+
+      const emailBody = `Name: ${fullName.value}\nEmail: ${email.value}\nMobile Number: ${mobileNumber.value}\nSubject: ${subject.value}\n\nYour Message: ${message.value}`;
+      const encodedEmailBody = encodeURIComponent(emailBody);
+
+      const mailtoLink = `mailto:portfoliowebsite617@gmail.com?subject=Contact%20Form%20Submission&body=${encodedEmailBody}`;
+
+      // Clear input field values after generating the email link
+      fullName.value = '';
+      email.value = '';
+      mobileNumber.value = '';
+      subject.value = '';
+      message.value = '';
+
+      return mailtoLink;
+    }
+
+    // Attach the JavaScript function to the "Send Email" button's click event
+    document.querySelector('.btn-primary').addEventListener('click', function () {
+      const mailtoLink = generateEmailLinkAndClearPlaceholders();
+      this.href = mailtoLink;
+    });
   </script>
 </body>
 
