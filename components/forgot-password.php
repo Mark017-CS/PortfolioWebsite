@@ -5,58 +5,29 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
     die();
 }
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-require '../vendor/autoload.php';
-require '../include/db.php';
+require '../include/db.php'; 
 
 $msg = "";
 
 if (isset($_POST['submit'])) {
+    // Retrieve form data
+    $user_id = mysqli_real_escape_string($db, $_POST['user_id']);
+    $fullname = mysqli_real_escape_string($db, $_POST['fullname']);
     $email = mysqli_real_escape_string($db, $_POST['email']);
-    $code = mysqli_real_escape_string($db, md5(rand()));
 
-    if (mysqli_num_rows(mysqli_query($db, "SELECT * FROM user WHERE email='{$email}'")) > 0) {
-        $query = mysqli_query($db, "UPDATE user SET code='{$code}' WHERE email='{$email}'");
+    // Check if the provided credentials match the data in the database
+    $query = mysqli_query($db, "SELECT * FROM user WHERE user_id='{$user_id}' AND fullname='{$fullname}' AND email='{$email}'");
 
-        if ($query) {
-            echo "<div style='display: none;'>";
-            $mail = new PHPMailer(true);
-
-            try {
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'portfoliowebsite617@gmail.com';
-                $mail->Password = 'taozuurruhkkgqzp';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                $mail->Port = 465;
-
-                //Recipients
-                $mail->setFrom('portfoliowebsite617@gmail.com', 'Art Abode');
-                $mail->addAddress($email);
-
-                //Content
-                $mail->isHTML(true); //Set email format to HTML
-                $mail->Subject = 'no reply';
-                $mail->Body = 'You have requested to reset your password. Please click the link below to proceed: <br><br> <b><a href="http://localhost/portfoliowebsite/recover-password.php?reset=' . $code . '"> http://localhost/E3/change-password.php?reset=' . $code . ' </a></b> <br><br> If you did not request a password reset, please ignore this email.<br><br> Best regards,<br> Art Abode';
-
-                $mail->send();
-                echo 'Message has been sent';
-            } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            }
-            echo "</div>";
-            $msg = "<div class='alert alert-info'>We've send a verification link on your email address.</div>";
-        }
+    if (mysqli_num_rows($query) > 0) {
+        // If the credentials match, redirect the user to recover-password.php
+        header("Location: recover-password.php?user_id={$user_id}");
+        exit();
     } else {
-        $msg = "<div class='alert alert-danger'>$email - This email address do not found.</div>";
+        $msg = "<div class='alert alert-danger'>Invalid credentials. Please check your User ID, Fullname, and Email.</div>";
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -84,7 +55,6 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../css/style.css" type="text/css" media="all" />
     <!--//Style-CSS -->
     <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body style="background-image: url('../images/GGB.jpg'); background-size: cover; background-position: center;"
@@ -100,6 +70,22 @@ if (isset($_POST['submit'])) {
                 <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password. </p>
                 <?php echo $msg; ?>
                 <form action="" method="post">
+                <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="user_id" placeholder="Enter Your User ID" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-key"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="fullname" placeholder="Enter Your Fullname" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" name="email" placeholder="Enter Your Email" required>
                         <div class="input-group-append">

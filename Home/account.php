@@ -105,10 +105,17 @@ if (!$user_data) {
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
             <img src="../images/<?= $user_data['user_profile'] ?>" class="img-circle elevation-2" alt="User Image">
-          </div>
+          </div>        
           <div class="info">
             <a href="portfolio.php?user_id=<?= $user_id ?>" class="d-block">
-              <?= $user_data['fullname'] ?>
+            <?= $user_data['fullname'] ?>
+            </a>
+          </div>         
+        </div>
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info" style="justify-content: center; align-items: center; text-align: center;">
+            <a href="portfolio.php?user_id=<?= $user_id ?>" class="d-block" style="font-style: italic;">
+            User ID: <?= $user_data['user_id'] ?>
             </a>
           </div>
         </div>
