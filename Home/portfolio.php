@@ -659,7 +659,7 @@ if (isset($user_data) && !empty($user_data)) {
         <h2>Feedback</h2>
         <p>Feedback Form</p>
       </div>
-      <form action="?user_id=<?= $_GET['user_id'] ?>" method="POST" class="mt-4">
+      <form action="" method="POST" class="mt-4">
         <div class="row">
           <div class="col-md-6 form-group mt-3">
             <input type="text" name="fullName" class="form-control gray-background" placeholder="Your Name" required>
@@ -734,7 +734,7 @@ if (isset($user_data) && !empty($user_data)) {
       const emailBody = `Name: ${fullName.value}\nEmail: ${email.value}\nMobile Number: ${mobileNumber.value}\nSubject: ${subject.value}\n\nYour Message: ${message.value}`;
       const encodedEmailBody = encodeURIComponent(emailBody);
 
-      const mailtoLink = `mailto:portfoliowebsite617@gmail.com?subject=Contact%20Form%20Submission&body=${encodedEmailBody}`;
+      const mailtoLink = `mailto:<?= $contact['email'] ?>?subject=Contact%20Form%20Submission&body=${encodedEmailBody}`;
 
       // Clear input field values after generating the email link
       fullName.value = '';
