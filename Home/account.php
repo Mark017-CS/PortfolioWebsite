@@ -43,8 +43,8 @@ if (!$user_data) {
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>User Panel | Dashboard</title>
-<!-- Favicons -->
-<link href="../images/logo.png" rel="icon">
+  <!-- Favicons -->
+  <link href="../images/logo.png" rel="icon">
   <link href="../images/logo.png" rel="apple-touch-icon">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,12 +62,29 @@ if (!$user_data) {
   <link rel="stylesheet" href="../user/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../user/plugins/summernote/summernote-bs4.css">
-   <!-- iCheck -->
-   <link rel="stylesheet" href="../user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
   <link rel="stylesheet" href="../user/plugins/jqvmap/jqvmap.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .input-container {
+      position: relative;
+    }
+
+    .form-control {
+      padding-right: 30px;
+    }
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -96,8 +113,7 @@ if (!$user_data) {
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="account.php" class="brand-link">
-        <img src="../images/logo.png" alt="userLTE Logo" class="brand-image"
-          >
+        <img src="../images/logo.png" alt="userLTE Logo" class="brand-image">
         <span class="brand-text font-weight: bold;">USER PANEL</span>
       </a>
       <!-- Sidebar -->
@@ -105,17 +121,17 @@ if (!$user_data) {
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
             <img src="../images/<?= $user_data['user_profile'] ?>" class="img-circle elevation-2" alt="User Image">
-          </div>        
+          </div>
           <div class="info">
             <a href="portfolio.php?user_id=<?= $user_id ?>" class="d-block">
-            <?= $user_data['fullname'] ?>
+              <?= $user_data['fullname'] ?>
             </a>
-          </div>         
+          </div>
         </div>
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="info" style="justify-content: center; align-items: center; text-align: center;">
+          <div class="info" style="justify-content: center; align-items: center; text-align: center;">
             <a href="portfolio.php?user_id=<?= $user_id ?>" class="d-block" style="font-style: italic;">
-            User ID: <?= $user_data['user_id'] ?>
+              User ID: <?= $user_data['user_id'] ?>
             </a>
           </div>
         </div>
@@ -123,7 +139,8 @@ if (!$user_data) {
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item menu-open">
-              <a href="account.php?sectioncontrol=true" class="nav-link <?php echo isset($_GET['sectioncontrol']) ? 'active' : ''; ?>">
+              <a href="account.php?sectioncontrol=true"
+                class="nav-link <?php echo isset($_GET['sectioncontrol']) ? 'active' : ''; ?>">
                 <i class="fa fa-th-large" aria-hidden="true"></i>
                 <p>
                   Section Control
@@ -131,15 +148,17 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?homesetting=true" class="nav-link <?php echo isset($_GET['homesetting']) ? 'active' : ''; ?>">
+              <a href="account.php?homesetting=true"
+                class="nav-link <?php echo isset($_GET['homesetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-home" aria-hidden="true"></i>
-               <p>
+                <p>
                   Home Setting
                 </p>
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?aboutsetting=true" class="nav-link <?php echo isset($_GET['aboutsetting']) ? 'active' : ''; ?>">
+              <a href="account.php?aboutsetting=true"
+                class="nav-link <?php echo isset($_GET['aboutsetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-question-circle" aria-hidden="true"></i>
                 <p>
                   About Setting
@@ -147,15 +166,17 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?resumesetting=true" class="nav-link <?php echo isset($_GET['resumesetting']) ? 'active' : ''; ?>">
+              <a href="account.php?resumesetting=true"
+                class="nav-link <?php echo isset($_GET['resumesetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-briefcase" aria-hidden="true"></i>
                 <p>
                   Resume Setting
                 </p>
-             </a>
+              </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?portfoliosetting=true" class="nav-link <?php echo isset($_GET['portfoliosetting']) ? 'active' : ''; ?>">
+              <a href="account.php?portfoliosetting=true"
+                class="nav-link <?php echo isset($_GET['portfoliosetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-desktop" aria-hidden="true"></i>
                 <p>
                   Artworks Setting
@@ -163,7 +184,8 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?servicesetting=true" class="nav-link <?php echo isset($_GET['servicesetting']) ? 'active' : ''; ?>">
+              <a href="account.php?servicesetting=true"
+                class="nav-link <?php echo isset($_GET['servicesetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-briefcase" aria-hidden="true"></i>
                 <p>
                   Service Setting
@@ -171,7 +193,8 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?contactsetting=true" class="nav-link <?php echo isset($_GET['contactsetting']) ? 'active' : ''; ?>">
+              <a href="account.php?contactsetting=true"
+                class="nav-link <?php echo isset($_GET['contactsetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <p>
                   Contact Setting
@@ -179,7 +202,8 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?changebackground=true" class="nav-link <?php echo isset($_GET['changebackground']) ? 'active' : ''; ?>">
+              <a href="account.php?changebackground=true"
+                class="nav-link <?php echo isset($_GET['changebackground']) ? 'active' : ''; ?>">
                 <i class="fa fa-cog" aria-hidden="true"></i>
                 <p>
                   Change Background
@@ -187,7 +211,8 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?seosetting=true" class="nav-link <?php echo isset($_GET['seosetting']) ? 'active' : ''; ?>">
+              <a href="account.php?seosetting=true"
+                class="nav-link <?php echo isset($_GET['seosetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-search" aria-hidden="true"></i>
                 <p>
                   SEO Setting
@@ -195,7 +220,8 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?accountsetting=true" class="nav-link <?php echo isset($_GET['accountsetting']) ? 'active' : ''; ?>">
+              <a href="account.php?accountsetting=true"
+                class="nav-link <?php echo isset($_GET['accountsetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <p>
                   Account Setting
@@ -223,60 +249,60 @@ if (!$user_data) {
                   <h3 class="card-title">Manage Home</h3>
                 </div>
                 <div class="card">
-                    <div class="card-header">
-                      <h3 class="card-title">Home</h3>
-                    </div>
-                    <div class="card-body p-0">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Title</th>
-                            <th>Subtitle</th>
-                            <th>Showicons</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          $q = "SELECT * from home WHERE user_id=$user_id";
-                          $r = mysqli_query($db, $q);
-                          $c = 1;
-                          while ($home = mysqli_fetch_array($r)) {
-                            ?>
-                            <tr>
-                              <td>
-                              <?= $c ?>
-                              </td>
-                              <td>
-                              <?= $home['title'] ?>
-                              </td>
-                              <td>
-                              <?= $home['subtitle'] ?>
-                              </td>
-                              <td>
-                              <?= $home['showicons'] ?>
-                              </td>
-                            </tr>
-                            <?php
-                            $c++;
-                          }
+                  <div class="card-header">
+                    <h3 class="card-title">Home</h3>
+                  </div>
+                  <div class="card-body p-0">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="width: 10px">#</th>
+                          <th>Title</th>
+                          <th>Subtitle</th>
+                          <th>Showicons</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $q = "SELECT * from home WHERE user_id=$user_id";
+                        $r = mysqli_query($db, $q);
+                        $c = 1;
+                        while ($home = mysqli_fetch_array($r)) {
                           ?>
-                        </tbody>
-                      </table>
-                    </div>
-                    </div>
+                          <tr>
+                            <td>
+                              <?= $c ?>
+                            </td>
+                            <td>
+                              <?= $home['title'] ?>
+                            </td>
+                            <td>
+                              <?= $home['subtitle'] ?>
+                            </td>
+                            <td>
+                              <?= $home['showicons'] ?>
+                            </td>
+                          </tr>
+                          <?php
+                          $c++;
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
                 <!-- form start -->
                 <form role="form" action="../include/user.php" method="post">
                   <div class="card-body">
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputEmail1">Headline</label>
-                      <input type="text" class="form-control" name="title" 
-                        id="exampleInputEmail1" placeholder="Enter headline">
+                      <input type="text" class="form-control" name="title" id="exampleInputEmail1"
+                        placeholder="Enter headline">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputPassword1">Subtitle</label>
-                      <input type="text" class="form-control" name="subtitle" 
-                        id="exampleInputPassword1" placeholder="Enter Subtile">
+                      <input type="text" class="form-control" name="subtitle" id="exampleInputPassword1"
+                        placeholder="Enter Subtile">
                     </div>
 
                     <div class="form-check">
@@ -289,20 +315,20 @@ if (!$user_data) {
                     </div>
                   </div>
                   <div class="card-footer">
-                        <?php
-                        $query = "SELECT * FROM home WHERE user_id = $user_id";
-                        $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);
-                        
-                        if ($row_count == 0) {
-                          // Display Add button
-                          echo '<button type="submit" name="add-home" class="btn btn-primary">Add Home Details</button>';
-                        } else {
-                          // Display Save Changes button
-                          echo '<button type="submit" name="update-home" class="btn btn-primary">Save Changes</button>';
-                        }
-                        ?>
-                      </div>
+                    <?php
+                    $query = "SELECT * FROM home WHERE user_id = $user_id";
+                    $result = mysqli_query($db, $query);
+                    $row_count = mysqli_num_rows($result);
+
+                    if ($row_count == 0) {
+                      // Display Add button
+                      echo '<button type="submit" name="add-home" class="btn btn-primary">Add Home Details</button>';
+                    } else {
+                      // Display Save Changes button
+                      echo '<button type="submit" name="update-home" class="btn btn-primary">Save Changes</button>';
+                    }
+                    ?>
+                  </div>
                 </form>
               </div>
               <?php
@@ -346,7 +372,7 @@ if (!$user_data) {
                               <?= $about['about_subtitle'] ?>
                               </td>
                               <td>
-                              <img src="../images/<?= $about['profile_pic'] ?>" style="height: 70px; width: 100px;">
+                                <img src="../images/<?= $about['profile_pic'] ?>" style="height: 70px; width: 100px;">
                               </td>
                               <td>
                               <?= $about['about_desc'] ?>
@@ -359,43 +385,45 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    </div>
-                  <!-- form start -->               
+                  </div>
+                  <!-- form start -->
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">About Profile Pic</label>
-                        <input type="file" class="form-control" name="profile">
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">About Profile</label>
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="background">
+                          <i class="fas fa-image icon"></i>
+                        </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">About Headline</label>
-                        <input type="text" class="form-control" name="abouttitle" 
-                          id="exampleInputEmail1" placeholder="Enter headline">
+                        <input type="text" class="form-control" name="abouttitle" id="exampleInputEmail1"
+                          placeholder="Enter headline">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">About Subtitle</label>
-                        <input type="text" class="form-control" name="aboutsubtitle"
-                          id="exampleInputPassword1"
+                        <input type="text" class="form-control" name="aboutsubtitle" id="exampleInputPassword1"
                           placeholder="Enter Subtitle">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">About Description</label><br>
                         <textarea cols="50" name="aboutdesc"></textarea>
                       </div>
                     </div>
                     <div class="card-footer">
-                        <?php
-                        $query = "SELECT * FROM about WHERE user_id = $user_id";
-                        $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);
-                        
-                        if ($row_count == 0) {
-                          echo '<button type="submit" name="add-about" class="btn btn-primary">Add About Details</button>';
-                        } else {
-                          echo '<button type="submit" name="update-about" class="btn btn-primary">Save Changes</button>';
-                        }
-                        ?>
-                      </div>
+                      <?php
+                      $query = "SELECT * FROM about WHERE user_id = $user_id";
+                      $result = mysqli_query($db, $query);
+                      $row_count = mysqli_num_rows($result);
+
+                      if ($row_count == 0) {
+                        echo '<button type="submit" name="add-about" class="btn btn-primary">Add About Details</button>';
+                      } else {
+                        echo '<button type="submit" name="update-about" class="btn btn-primary">Save Changes</button>';
+                      }
+                      ?>
+                    </div>
                   </form>
                 </div>
                 <div class="card card-primary col-lg-12">
@@ -469,7 +497,7 @@ if (!$user_data) {
                   </form>
                 </div>
                 <div class="card card-primary col-lg-12">
-                <div class="card-header">
+                  <div class="card-header">
                     <h3 class="card-title">Manage Interests</h3>
                   </div>
                   <div class="card">
@@ -498,7 +526,7 @@ if (!$user_data) {
                               </td>
                               <td>
                               <?= $interest['inter_name'] ?>
-                              </td>                             
+                              </td>
                               <td>
                                 <a href="../include/deleteinterest.php?id=<?= $interest['id'] ?>">Delete</a>
                               </td>
@@ -531,7 +559,7 @@ if (!$user_data) {
                     <div class="card-header">
                       <h3 class="card-title">Counts</h3>
                     </div>
-                  <div class="card-body p-0">
+                    <div class="card-body p-0">
                       <table class="table">
                         <thead>
                           <tr>
@@ -564,7 +592,7 @@ if (!$user_data) {
                               </td>
                               <td>
                               <?= $pi['awards'] ?>
-                              </td>                              
+                              </td>
                             </tr>
                             <?php
                             $c++;
@@ -573,44 +601,45 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    </div>
+                  </div>
                   <!-- form start -->
                   <form role="form" action="../include/user.php" method="post">
                     <div class="card-body">
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Happy Clients</label>
-                        <input type="number" class="form-control" name="happy_clients" value="<?= $user_data['happy_clients'] ?>"
-                          id="exampleInputEmail1" placeholder="Enter Happy Cleints">
+                        <input type="number" class="form-control" name="happy_clients"
+                          value="<?= $user_data['happy_clients'] ?>" id="exampleInputEmail1"
+                          placeholder="Enter Happy Cleints">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Projects</label>
                         <input type="number" class="form-control" name="projects" value="<?= $user_data['projects'] ?>"
                           id="exampleInputPassword1" placeholder="Enter Projects">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Hours of support</label>
                         <input type="number" class="form-control" name="hours" value="<?= $user_data['hours'] ?>"
                           id="exampleInputPassword1" placeholder="Enter Hours of Support">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Awards</label>
                         <input type="number" class="form-control" name="awards" value="<?= $user_data['awards'] ?>"
                           id="exampleInputPassword1" placeholder="Enter Awards">
                       </div>
                     </div>
                     <div class="card-footer">
-                        <?php
-                        $query = "SELECT * FROM counts WHERE user_id = $user_id";
-                        $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);
-                        
-                        if ($row_count == 0) {
-                          echo '<button type="submit" name="add-counts" class="btn btn-primary">Add Counts Details</button>';
-                        } else {
-                          echo '<button type="submit" name="update-counts" class="btn btn-primary">Save Changes</button>';
-                        }
-                        ?>
-                      </div>
+                      <?php
+                      $query = "SELECT * FROM counts WHERE user_id = $user_id";
+                      $result = mysqli_query($db, $query);
+                      $row_count = mysqli_num_rows($result);
+
+                      if ($row_count == 0) {
+                        echo '<button type="submit" name="add-counts" class="btn btn-primary">Add Counts Details</button>';
+                      } else {
+                        echo '<button type="submit" name="update-counts" class="btn btn-primary">Save Changes</button>';
+                      }
+                      ?>
+                    </div>
                   </form>
                 </div>
                 <!-- /.card-header -->
@@ -688,11 +717,11 @@ if (!$user_data) {
                     <div class="card-header">
                       <h3 class="card-title">Testimonials</h3>
                     </div>
-                <div class="card-body p-0">
+                    <div class="card-body p-0">
                       <table class="table">
                         <thead>
                           <tr>
-                            <th style="width: 10px">#</th>                         
+                            <th style="width: 10px">#</th>
                             <th>Name</th>
                             <th>Position</th>
                             <th>Profile Picture</th>
@@ -711,7 +740,7 @@ if (!$user_data) {
                               <td>
                               <?= $c ?>
                               </td>
-                              
+
                               <td>
                               <?= $pi['test_name'] ?>
                               </td>
@@ -722,7 +751,7 @@ if (!$user_data) {
                               <?= $pi['testimonial'] ?>
                               </td>
                               <td>
-                              <img src="../images/<?= $pi['profile'] ?>" style="height: 30px; width: 50px;">
+                                <img src="../images/<?= $pi['profile'] ?>" style="height: 30px; width: 50px;">
                               </td>
                               <td>
                                 <a href="../include/deletetestimonial.php?id=<?= $pi['id'] ?>">Delete</a>
@@ -734,27 +763,28 @@ if (!$user_data) {
                           ?>
                         </tbody>
                       </table>
-                    </div>   
-                  </div>       
+                    </div>
+                  </div>
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">User Profile</label>
-                        <input type="file" class="form-control" name="profile">
-                      </div>                     
-                      <div class="form-group">
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Profile</label>
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="background">
+                          <i class="fas fa-image icon"></i>
+                        </div>
+                      </div>
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Name</label>
-                        <input type="text" class="form-control" name="test_name"
-                          id="exampleInputPassword1"
+                        <input type="text" class="form-control" name="test_name" id="exampleInputPassword1"
                           placeholder="Enter Name">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Position</label>
-                        <input type="text" class="form-control" name="position"
-                          id="exampleInputPassword1"
+                        <input type="text" class="form-control" name="position" id="exampleInputPassword1"
                           placeholder="Enter Position">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">User Testimonial</label><br>
                         <textarea cols="50" name="testimonial"></textarea>
                       </div>
@@ -762,13 +792,13 @@ if (!$user_data) {
                     <div class="card-footer">
                       <button type="submit" name="add-testimonial" class="btn btn-primary">Add Testimonial</button>
                     </div>
-                    
+
                   </form>
                 </div>
                 <?php
             } elseif (isset($_GET['resumesetting'])) {
               ?>
-               <div class="card card-primary col-lg-12">
+                <div class="card card-primary col-lg-12">
                   <div class="card-header">
                     <h3 class="card-title">Manage Resume</h3>
                   </div>
@@ -827,7 +857,7 @@ if (!$user_data) {
                       </table>
                     </div>
                   </div>
-                <form role="form" action="../include/user.php" method="post">
+                  <form role="form" action="../include/user.php" method="post">
                     <div class="card-body">
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Select Type</label><br>
@@ -941,13 +971,16 @@ if (!$user_data) {
                           <option value="FASHION DESIGN">FASHION DESIGN</option>
                           <option value="TAPESTRY">TAPESTRY</option>
                           <option value="QUILTING">QUILTING</option>
-                          <option value="LANDSCAPING">LANDSCAPING</option>   
-                          <option value="PORTRAIT">PORTRAIT</option>                         
+                          <option value="LANDSCAPING">LANDSCAPING</option>
+                          <option value="PORTRAIT">PORTRAIT</option>
                         </select>
                       </div>
                       <div class="form-group col-6">
-                        <label for="exampleInputEmail1">Project Image</label>
-                        <input type="file" class="form-control" name="project_pic">
+                        <label for="exampleInputEmail1">Project Picture</label>
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="project_pic">
+                          <i class="fas fa-image icon"></i>
+                        </div>
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Project Name</label>
@@ -995,7 +1028,7 @@ if (!$user_data) {
                             <tr>
                               <td>
                               <?= $cc ?>
-                              </td>                           
+                              </td>
                               <td>
                               <?= $pii['service_name'] ?>
                               </td>
@@ -1016,7 +1049,7 @@ if (!$user_data) {
                     </div>
                   </div>
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
-                    <div class="card-body">                      
+                    <div class="card-body">
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Service Name</label>
                         <input type="text" class="form-control" name="service_name">
@@ -1046,7 +1079,7 @@ if (!$user_data) {
                     <div class="card-header">
                       <h3 class="card-title">Contact Details</h3>
                     </div>
-                  <div class="card-body p-0">
+                    <div class="card-body p-0">
                       <table class="table">
                         <thead>
                           <tr>
@@ -1075,7 +1108,7 @@ if (!$user_data) {
                               </td>
                               <td>
                               <?= $pi['mobile'] ?>
-                              </td>                             
+                              </td>
                             </tr>
                             <?php
                             $c++;
@@ -1084,49 +1117,49 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    </div>
+                  </div>
                   <!-- form start -->
                   <form role="form" action="../include/user.php" method="post">
                     <div class="card-body">
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Address</label>
-                        <input type="text" class="form-control" name="address" 
-                          id="exampleInputEmail1" placeholder="Enter address">
+                        <input type="text" class="form-control" name="address" id="exampleInputEmail1"
+                          placeholder="Enter address">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Email Id</label>
-                        <input type="text" class="form-control" name="email" 
-                          id="exampleInputPassword1" placeholder="Enter Email">
+                        <input type="text" class="form-control" name="email" id="exampleInputPassword1"
+                          placeholder="Enter Email">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Mobile No</label>
-                        <input type="text" class="form-control" name="mobile" 
-                          id="exampleInputPassword1" placeholder="Enter mobile no">
+                        <input type="text" class="form-control" name="mobile" id="exampleInputPassword1"
+                          placeholder="Enter mobile no">
                       </div>
                     </div>
                     <div class="card-footer">
-                        <?php
-                        $query = "SELECT * FROM contact WHERE user_id = $user_id";
-                        $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);                      
-                        if ($row_count == 0) {
-                          echo '<button type="submit" name="add-contact" class="btn btn-primary">Add Contact Details</button>';
-                        } else {
-                          echo '<button type="submit" name="update-contact" class="btn btn-primary">Save Changes</button>';
-                        }
-                        ?>
-                      </div>
+                      <?php
+                      $query = "SELECT * FROM contact WHERE user_id = $user_id";
+                      $result = mysqli_query($db, $query);
+                      $row_count = mysqli_num_rows($result);
+                      if ($row_count == 0) {
+                        echo '<button type="submit" name="add-contact" class="btn btn-primary">Add Contact Details</button>';
+                      } else {
+                        echo '<button type="submit" name="update-contact" class="btn btn-primary">Save Changes</button>';
+                      }
+                      ?>
+                    </div>
                   </form>
                 </div>
                 <div class="card card-primary col-lg-12">
                   <div class="card-header">
                     <h3 class="card-title">Manage Social Media Details</h3>
                   </div>
-                   <div class="card">
+                  <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Social Media</h3>
                     </div>
-                  <div class="card-body p-0">
+                    <div class="card-body p-0">
                       <table class="table">
                         <thead>
                           <tr>
@@ -1158,7 +1191,7 @@ if (!$user_data) {
                               </td>
                               <td>
                               <?= $pi['instagram'] ?>
-                              </td> 
+                              </td>
                               <td>
                               <?= $pi['skype'] ?>
                               </td>
@@ -1167,7 +1200,7 @@ if (!$user_data) {
                               </td>
                               <td>
                               <?= $pi['linkedin'] ?>
-                              </td>                             
+                              </td>
                             </tr>
                             <?php
                             $c++;
@@ -1176,54 +1209,54 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    </div>
+                  </div>
                   <!-- form start -->
                   <form role="form" action="../include/user.php" method="post">
                     <div class="card-body">
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Twitter</label>
-                        <input type="text" class="form-control" name="twitter" 
-                          id="exampleInputEmail1" placeholder="Enter username">
+                        <input type="text" class="form-control" name="twitter" id="exampleInputEmail1"
+                          placeholder="Enter username">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Facebook</label>
-                        <input type="text" class="form-control" name="facebook" 
-                          id="exampleInputPassword1" placeholder="Enter Username">
+                        <input type="text" class="form-control" name="facebook" id="exampleInputPassword1"
+                          placeholder="Enter Username">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Instagram</label>
-                        <input type="text" class="form-control" name="instagram" 
-                          id="exampleInputPassword1" placeholder="Enter username">
+                        <input type="text" class="form-control" name="instagram" id="exampleInputPassword1"
+                          placeholder="Enter username">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Skype</label>
-                        <input type="text" class="form-control" name="skype" 
-                          id="exampleInputPassword1" placeholder="Enter username">
+                        <input type="text" class="form-control" name="skype" id="exampleInputPassword1"
+                          placeholder="Enter username">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Youtube</label>
-                        <input type="text" class="form-control" name="youtube" 
-                          id="exampleInputPassword1" placeholder="Enter username">
+                        <input type="text" class="form-control" name="youtube" id="exampleInputPassword1"
+                          placeholder="Enter username">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Linkedin</label>
-                        <input type="text" class="form-control" name="linkedin" 
-                          id="exampleInputPassword1" placeholder="Enter username">
+                        <input type="text" class="form-control" name="linkedin" id="exampleInputPassword1"
+                          placeholder="Enter username">
                       </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <?php
-                        $query = "SELECT * FROM social_media WHERE user_id = $user_id";
-                        $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);                       
-                        if ($row_count == 0) {
-                          echo '<button type="submit" name="add-socialmedia" class="btn btn-primary">Add Social Media</button>';
-                        } else {
-                          echo '<button type="submit" name="update-socialmedia" class="btn btn-primary">Save Changes</button>';
-                        }
-                        ?>
-                      </div>
+                      <?php
+                      $query = "SELECT * FROM social_media WHERE user_id = $user_id";
+                      $result = mysqli_query($db, $query);
+                      $row_count = mysqli_num_rows($result);
+                      if ($row_count == 0) {
+                        echo '<button type="submit" name="add-socialmedia" class="btn btn-primary">Add Social Media</button>';
+                      } else {
+                        echo '<button type="submit" name="update-socialmedia" class="btn btn-primary">Save Changes</button>';
+                      }
+                      ?>
+                    </div>
                   </form>
                 </div>
                 <?php
@@ -1233,11 +1266,11 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Site Background</h3>
                   </div>
-                   <div class="card">
+                  <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Account</h3>
                     </div>
-                  <div class="card-body p-0">
+                    <div class="card-body p-0">
                       <table class="table">
                         <thead>
                           <tr>
@@ -1255,10 +1288,10 @@ if (!$user_data) {
                             <tr>
                               <td>
                               <?= $c ?>
-                              </td>                             
+                              </td>
                               <td>
-                              <img src="../assets/img/<?= $pi['background_img'] ?>" style="height: 170px; width: 200px;">
-                              </td>                                                      
+                                <img src="../assets/img/<?= $pi['background_img'] ?>" style="height: 170px; width: 200px;">
+                              </td>
                             </tr>
                             <?php
                             $c++;
@@ -1267,29 +1300,32 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    </div>
+                  </div>
                   <!-- form start -->
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Choose Background Image</label>
-                        <input type="file" class="form-control" name="background">
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="background">
+                          <i class="fas fa-image icon"></i>
+                        </div>
                       </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <?php
-                        $query = "SELECT * FROM site_background WHERE user_id = $user_id";
-                        $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);
-                        
-                        if ($row_count == 0) {
-                          echo '<button type="submit" name="add-background" class="btn btn-primary">Add Background</button>';
-                        } else {
-                          echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
-                        }
-                        ?>
-                      </div>
+                      <?php
+                      $query = "SELECT * FROM site_background WHERE user_id = $user_id";
+                      $result = mysqli_query($db, $query);
+                      $row_count = mysqli_num_rows($result);
+
+                      if ($row_count == 0) {
+                        echo '<button type="submit" name="add-background" class="btn btn-primary">Add Background</button>';
+                      } else {
+                        echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
+                      }
+                      ?>
+                    </div>
                   </form>
                 </div>
                 <?php
@@ -1303,7 +1339,7 @@ if (!$user_data) {
                     <div class="card-header">
                       <h3 class="card-title">SEO</h3>
                     </div>
-                  <div class="card-body p-0">
+                    <div class="card-body p-0">
                       <table class="table">
                         <thead>
                           <tr>
@@ -1333,10 +1369,10 @@ if (!$user_data) {
                               </td>
                               <td>
                               <?= $pi['description'] ?>
-                              </td> 
+                              </td>
                               <td>
-                              <img src="../images/<?= $pi['siteicon'] ?>" style="height: 70px; width: 100px;">
-                              </td>                         
+                                <img src="../images/<?= $pi['siteicon'] ?>" style="height: 70px; width: 100px;">
+                              </td>
                             </tr>
                             <?php
                             $c++;
@@ -1345,41 +1381,44 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    </div>
+                  </div>
                   <!-- form start -->
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Siteicon</label>
-                        <input type="file" class="form-control" name="siteicon">
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="siteicon">
+                          <i class="fas fa-image icon"></i>
+                        </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Page Title</label>
-                        <input type="text" class="form-control" name="page_title" >
+                        <input type="text" class="form-control" name="page_title">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Enter Keywords (separte with ,)</label>
                         <input type="text" class="form-control" name="keyword">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Description</label>
                         <input type="text" class="form-control" name="description">
                       </div>
-                   </div>
+                    </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <?php
-                        $query = "SELECT * FROM seo WHERE user_id = $user_id";
-                        $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);
-                        
-                        if ($row_count == 0) {
-                          echo '<button type="submit" name="add-seo" class="btn btn-primary">Add SEO</button>';
-                        } else {
-                          echo '<button type="submit" name="update-seo" class="btn btn-primary">Save Changes</button>';
-                        }
-                        ?>
-                      </div>
+                      <?php
+                      $query = "SELECT * FROM seo WHERE user_id = $user_id";
+                      $result = mysqli_query($db, $query);
+                      $row_count = mysqli_num_rows($result);
+
+                      if ($row_count == 0) {
+                        echo '<button type="submit" name="add-seo" class="btn btn-primary">Add SEO</button>';
+                      } else {
+                        echo '<button type="submit" name="update-seo" class="btn btn-primary">Save Changes</button>';
+                      }
+                      ?>
+                    </div>
                   </form>
                 </div>
                 <?php
@@ -1389,11 +1428,11 @@ if (!$user_data) {
                   <div class="card-header">
                     <h3 class="card-title">Manage Account</h3>
                   </div>
-                   <div class="card">
+                  <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Account</h3>
                     </div>
-                  <div class="card-body p-0">
+                    <div class="card-body p-0">
                       <table class="table">
                         <thead>
                           <tr>
@@ -1423,10 +1462,10 @@ if (!$user_data) {
                               </td>
                               <td>
                               <?= $pi['password'] ?>
-                              </td> 
+                              </td>
                               <td>
-                              <img src="../images/<?= $pi['user_profile'] ?>" style="height: 70px; width: 100px;">
-                              </td>                      
+                                <img src="../images/<?= $pi['user_profile'] ?>" style="height: 70px; width: 100px;">
+                              </td>
                             </tr>
                             <?php
                             $c++;
@@ -1435,47 +1474,50 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                    </div>
+                  </div>
                   <!-- form start -->
                   <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Profile Pic</label>
-                        <input type="file" class="form-control" name="profilepic">
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail1">Profile Picture</label>
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="profilepic">
+                          <i class="fas fa-image icon"></i>
+                        </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Full Name</label>
                         <input type="text" class="form-control" name="fullname">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Email</label>
                         <input type="email" class="form-control" name="email">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">Password</label>
                         <input type="text" class="form-control" name="password">
                       </div>
-                   </div>
+                    </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <?php
-                        $query = "SELECT * FROM user WHERE user_id = $user_id";
-                        $result = mysqli_query($db, $query);
-                        $row_count = mysqli_num_rows($result);
-                        
-                        if ($row_count == 0) {
-                          echo '<button type="submit" name="add-account" class="btn btn-primary">Add User Details</button>';
-                        } else {
-                          echo '<button type="submit" name="update-account" class="btn btn-primary">Save Changes</button>';
-                        }
-                        ?>
-                      </div>
+                      <?php
+                      $query = "SELECT * FROM user WHERE user_id = $user_id";
+                      $result = mysqli_query($db, $query);
+                      $row_count = mysqli_num_rows($result);
+
+                      if ($row_count == 0) {
+                        echo '<button type="submit" name="add-account" class="btn btn-primary">Add User Details</button>';
+                      } else {
+                        echo '<button type="submit" name="update-account" class="btn btn-primary">Save Changes</button>';
+                      }
+                      ?>
+                    </div>
                   </form>
                 </div>
-               <?php
-            } elseif (isset($_GET['sectioncontrol'])){
+                <?php
+            } elseif (isset($_GET['sectioncontrol'])) {
               ?>
-              <div class="card card-primary col-lg-12">
+                <div class="card card-primary col-lg-12">
                   <div class="card-header">
                     <h3 class="card-title">Manage Section Control</h3>
                   </div>
@@ -1506,7 +1548,7 @@ if (!$user_data) {
                             <tr>
                               <td>
                               <?= $cc ?>
-                              </td>                           
+                              </td>
                               <td>
                               <?= $pii['home_section'] ?>
                               </td>
@@ -1533,73 +1575,73 @@ if (!$user_data) {
                         </tbody>
                       </table>
                     </div>
-                <form method="post" action="../include/user.php">
-                <div class="card-body">
-                  <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                    <input type="checkbox" name="home" class="custom-control-input" id="customSwitch1" <?php
-                    if ($user_data['home_section']) {
-                      echo "checked";
-                    }
-                    ?>>
-                    <label class="custom-control-label" for="customSwitch1">Home Section</label>
-                  </div>
-                  </div>
-                  <div class="card-body">
-                  <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                    <input type="checkbox" name="about" class="custom-control-input" id="customSwitch2" <?php
-                    if ($user_data['about_section']) {
-                      echo "checked";
-                    }
-                    ?>>
-                    <label class="custom-control-label" for="customSwitch2">About Section</label>
-                  </div>
-                  </div>
-                  <div class="card-body">
-                  <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                    <input type="checkbox" name="resume" class="custom-control-input" id="customSwitch3" <?php
-                    if ($user_data['resume_section']) {
-                      echo "checked";
-                    }
-                   ?>>
-                    <label class="custom-control-label" for="customSwitch3">Resume Section</label>
-                  </div>
-                  </div>
-                  <div class="card-body">
-                  <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                    <input type="checkbox" name="portfolio" class="custom-control-input" id="customSwitch4" <?php
-                    if ($user_data['portfolio_section']) {
-                      echo "checked";
-                    }
-                    ?>>
-                    <label class="custom-control-label" for="customSwitch4">Portfolio Section</label>
-                  </div>
-                  </div>
-                  <div class="card-body">
-                  <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                    <input type="checkbox" name="services" class="custom-control-input" id="customSwitch6" <?php
-                    if ($user_data['services_section']) {
-                      echo "checked";
-                    }
-                    ?>>
-                    <label class="custom-control-label" for="customSwitch6">Service Section</label>
-                  </div>
-                  </div>
-                  <div class="card-body">
-                  <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                    <input type="checkbox" name="contact" class="custom-control-input" id="customSwitch5" <?php
-                    if ($user_data['contact_section']) {
-                      echo "checked";
-                    }
-                    ?>>
-                    <label class="custom-control-label" for="customSwitch5">Contact Section</label>
-                  </div>
-                  </div>
-                  <div class="card-footer">
+                    <form method="post" action="../include/user.php">
+                      <div class="card-body">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                          <input type="checkbox" name="home" class="custom-control-input" id="customSwitch1" <?php
+                          if ($user_data['home_section']) {
+                            echo "checked";
+                          }
+                          ?>>
+                          <label class="custom-control-label" for="customSwitch1">Home Section</label>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                          <input type="checkbox" name="about" class="custom-control-input" id="customSwitch2" <?php
+                          if ($user_data['about_section']) {
+                            echo "checked";
+                          }
+                          ?>>
+                          <label class="custom-control-label" for="customSwitch2">About Section</label>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                          <input type="checkbox" name="resume" class="custom-control-input" id="customSwitch3" <?php
+                          if ($user_data['resume_section']) {
+                            echo "checked";
+                          }
+                          ?>>
+                          <label class="custom-control-label" for="customSwitch3">Resume Section</label>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                          <input type="checkbox" name="portfolio" class="custom-control-input" id="customSwitch4" <?php
+                          if ($user_data['portfolio_section']) {
+                            echo "checked";
+                          }
+                          ?>>
+                          <label class="custom-control-label" for="customSwitch4">Portfolio Section</label>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                          <input type="checkbox" name="services" class="custom-control-input" id="customSwitch6" <?php
+                          if ($user_data['services_section']) {
+                            echo "checked";
+                          }
+                          ?>>
+                          <label class="custom-control-label" for="customSwitch6">Service Section</label>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                          <input type="checkbox" name="contact" class="custom-control-input" id="customSwitch5" <?php
+                          if ($user_data['contact_section']) {
+                            echo "checked";
+                          }
+                          ?>>
+                          <label class="custom-control-label" for="customSwitch5">Contact Section</label>
+                        </div>
+                      </div>
+                      <div class="card-footer">
                         <?php
                         $query = "SELECT * FROM section_control WHERE user_id = $user_id";
                         $result = mysqli_query($db, $query);
                         $row_count = mysqli_num_rows($result);
-                        
+
                         if ($row_count == 0) {
                           echo '<button type="submit" name="add-section" class="btn btn-primary">Add Section</button>';
                         } else {
@@ -1607,13 +1649,13 @@ if (!$user_data) {
                         }
                         ?>
                       </div>
-                </form>
-                </div>
-                <?php
+                    </form>
+                  </div>
+                  <?php
             }
             ?>
+            </div>
           </div>
-        </div>
       </section>
     </div>
     <footer class="main-footer">
@@ -1666,7 +1708,8 @@ if (!$user_data) {
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" defer></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+    defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

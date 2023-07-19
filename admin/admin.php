@@ -57,12 +57,29 @@ if (!$admin_data) {
   <link rel="stylesheet" href="../user/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../user/plugins/summernote/summernote-bs4.css">
-   <!-- iCheck -->
-   <link rel="stylesheet" href="../user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
   <link rel="stylesheet" href="../user/plugins/jqvmap/jqvmap.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .input-container {
+      position: relative;
+    }
+
+    .form-control {
+      padding-right: 30px;
+    }
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -109,9 +126,10 @@ if (!$admin_data) {
           </div>
         </div>
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="info" style="justify-content: center; align-items: center; text-align: center;">
+          <div class="info" style="justify-content: center; align-items: center; text-align: center;">
             <a href="#" class="d-block" style="font-style: italic;">
-            Admin ID: <?= $admin_data['admin_id'] ?>
+              Admin ID:
+              <?= $admin_data['admin_id'] ?>
             </a>
           </div>
         </div>
@@ -231,9 +249,12 @@ if (!$admin_data) {
                 <!-- form start -->
                 <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
                   <div class="card-body">
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputEmail1">Choose Background Image</label>
-                      <input type="file" class="form-control" name="background">
+                      <div class="input-container">
+                        <input type="file" class="form-control" name="background">
+                        <i class="fas fa-image icon"></i>
+                      </div>
                     </div>
                   </div>
                   <!-- /.card-body -->
@@ -306,17 +327,17 @@ if (!$admin_data) {
                 <!-- form start -->
                 <form role="form" action="include/adminConfig.php" method="post">
                   <div class="card-body">
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputEmail1">Title 1</label>
                       <input type="text" class="form-control" name="home_title" id="exampleInputEmail1"
                         placeholder="Enter Title 1">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputPassword1">Title 2</label>
                       <input type="text" class="form-control" name="home_title2" id="exampleInputPassword1"
                         placeholder="Enter Title 2">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputPassword1">Description</label>
                       <input type="text" class="form-control" name="home_desc" id="exampleInputPassword1"
                         placeholder="Enter Description">
@@ -391,32 +412,32 @@ if (!$admin_data) {
                 <!-- form start -->
                 <form role="form" action="include/adminConfig.php" method="post">
                   <div class="card-body">
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputEmail1">Twitter</label>
                       <input type="text" class="form-control" name="twitter" id="exampleInputEmail1"
                         placeholder="Enter username">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputPassword1">Facebook</label>
                       <input type="text" class="form-control" name="facebook" id="exampleInputPassword1"
                         placeholder="Enter Username">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputPassword1">Instagram</label>
                       <input type="text" class="form-control" name="instagram" id="exampleInputPassword1"
                         placeholder="Enter username">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputPassword1">Skype</label>
                       <input type="text" class="form-control" name="skype" id="exampleInputPassword1"
                         placeholder="Enter username">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputPassword1">Youtube</label>
                       <input type="text" class="form-control" name="youtube" id="exampleInputPassword1"
                         placeholder="Enter username">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-6">
                       <label for="exampleInputPassword1">Linkedin</label>
                       <input type="text" class="form-control" name="linkedin" id="exampleInputPassword1"
                         placeholder="Enter username">
@@ -496,19 +517,22 @@ if (!$admin_data) {
                   <!-- form start -->
                   <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail1">About Image</label>
-                        <input type="file" class="form-control" name="profile">
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="profile">
+                          <i class="fas fa-image icon"></i>
+                        </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">About Description</label><br>
                         <textarea cols="50" name="about_desc"></textarea>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Mision</label><br>
                         <textarea cols="50" name="mission"></textarea>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputPassword1">Vision</label><br>
                         <textarea cols="50" name="vision"></textarea>
                       </div>
@@ -605,7 +629,10 @@ if (!$admin_data) {
                         </div>
                         <div class="form-group col-6">
                           <label for="exampleInputEmail1">Developer's Image</label>
-                          <input type="file" class="form-control" name="profile">
+                          <div class="input-container">
+                            <input type="file" class="form-control" name="profile">
+                            <i class="fas fa-image icon"></i>
+                          </div>
                         </div>
                         <div class="form-group col-6">
                           <label for="exampleInputPassword1">Facebook Username</label>
@@ -642,7 +669,10 @@ if (!$admin_data) {
                         </div>
                         <div class="form-group col-6">
                           <label for="exampleInputEmail1">Developer's Image</label>
-                          <input type="file" class="form-control" name="profile">
+                          <div class="input-container">
+                            <input type="file" class="form-control" name="profile">
+                            <i class="fas fa-image icon"></i>
+                          </div>
                         </div>
                         <div class="form-group col-6">
                           <label for="exampleInputPassword1">Facebook Username</label>
@@ -813,7 +843,10 @@ if (!$admin_data) {
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Profile</label>
-                        <input type="file" class="form-control" name="profile" id="exampleInputEmail1">
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="profile">
+                          <i class="fas fa-image icon"></i>
+                        </div>
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Email</label>
@@ -845,7 +878,10 @@ if (!$admin_data) {
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Profile</label>
-                        <input type="file" class="form-control" name="profile" id="exampleInputEmail1">
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="profile">
+                          <i class="fas fa-image icon"></i>
+                        </div>
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Email</label>
@@ -935,7 +971,10 @@ if (!$admin_data) {
                   </div>
                   <div class="form-group col-6">
                     <label for="exampleInputEmail1">Profile</label>
-                    <input type="file" class="form-control" name="profile" id="exampleInputEmail1">
+                    <div class="input-container">
+                      <input type="file" class="form-control" name="profile">
+                      <i class="fas fa-image icon"></i>
+                    </div>
                   </div>
                   <div class="form-group col-6">
                     <label for="exampleInputEmail1">Email</label>
