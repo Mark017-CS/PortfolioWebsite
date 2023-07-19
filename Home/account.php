@@ -43,8 +43,8 @@ if (!$user_data) {
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>User Panel | Dashboard</title>
-  <!-- Favicons -->
-  <link href="../images/logo.png" rel="icon">
+<!-- Favicons -->
+<link href="../images/logo.png" rel="icon">
   <link href="../images/logo.png" rel="apple-touch-icon">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,13 +55,17 @@ if (!$user_data) {
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="../user/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../user/dist/css/user.min.css">
+  <link rel="stylesheet" href="../user/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../user/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="../user/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../user/plugins/summernote/summernote-bs4.css">
+   <!-- iCheck -->
+   <link rel="stylesheet" href="../user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="../user/plugins/jqvmap/jqvmap.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -112,7 +116,7 @@ if (!$user_data) {
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item menu-open">
-              <a href="account.php" class="nav-link">
+              <a href="account.php?sectioncontrol=true" class="nav-link <?php echo isset($_GET['sectioncontrol']) ? 'active' : ''; ?>">
                 <i class="fa fa-th-large" aria-hidden="true"></i>
                 <p>
                   Section Control
@@ -120,7 +124,7 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?homesetting=true" class="nav-link">
+              <a href="account.php?homesetting=true" class="nav-link <?php echo isset($_GET['homesetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-home" aria-hidden="true"></i>
                <p>
                   Home Setting
@@ -128,7 +132,7 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?aboutsetting=true" class="nav-link">
+              <a href="account.php?aboutsetting=true" class="nav-link <?php echo isset($_GET['aboutsetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-question-circle" aria-hidden="true"></i>
                 <p>
                   About Setting
@@ -136,7 +140,7 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?resumesetting=true" class="nav-link">
+              <a href="account.php?resumesetting=true" class="nav-link <?php echo isset($_GET['resumesetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-briefcase" aria-hidden="true"></i>
                 <p>
                   Resume Setting
@@ -144,7 +148,7 @@ if (!$user_data) {
              </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?portfoliosetting=true" class="nav-link">
+              <a href="account.php?portfoliosetting=true" class="nav-link <?php echo isset($_GET['portfoliosetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-desktop" aria-hidden="true"></i>
                 <p>
                   Artworks Setting
@@ -152,7 +156,7 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?servicesetting=true" class="nav-link">
+              <a href="account.php?servicesetting=true" class="nav-link <?php echo isset($_GET['servicesetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-briefcase" aria-hidden="true"></i>
                 <p>
                   Service Setting
@@ -160,7 +164,7 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?contactsetting=true" class="nav-link">
+              <a href="account.php?contactsetting=true" class="nav-link <?php echo isset($_GET['contactsetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <p>
                   Contact Setting
@@ -168,7 +172,7 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?changebackground=true" class="nav-link">
+              <a href="account.php?changebackground=true" class="nav-link <?php echo isset($_GET['changebackground']) ? 'active' : ''; ?>">
                 <i class="fa fa-cog" aria-hidden="true"></i>
                 <p>
                   Change Background
@@ -176,7 +180,7 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?seosetting=true" class="nav-link">
+              <a href="account.php?seosetting=true" class="nav-link <?php echo isset($_GET['seosetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-search" aria-hidden="true"></i>
                 <p>
                   SEO Setting
@@ -184,7 +188,7 @@ if (!$user_data) {
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="account.php?accountsetting=true" class="nav-link">
+              <a href="account.php?accountsetting=true" class="nav-link <?php echo isset($_GET['accountsetting']) ? 'active' : ''; ?>">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <p>
                   Account Setting
@@ -1466,7 +1470,7 @@ if (!$user_data) {
                   </form>
                 </div>
                <?php
-            } else {
+            } elseif (isset($_GET['sectioncontrol'])){
               ?>
               <div class="card card-primary col-lg-12">
                   <div class="card-header">
@@ -1653,9 +1657,13 @@ if (!$user_data) {
   <script src="../user/plugins/summernote/summernote-bs4.min.js"></script>
   <!-- overlayScrollbars -->
   <script src="../user/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <script src="../user/dist/js/userlte.js"></script>
+  <script src="../user/dist/js/adminlte.js"></script>
   <script src="../user/dist/js/pages/dashboard.js"></script>
   <script src="../user/dist/js/demo.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

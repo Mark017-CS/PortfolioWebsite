@@ -50,13 +50,17 @@ if (!$admin_data) {
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="../user/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../user/dist/css/user.min.css">
+  <link rel="stylesheet" href="../user/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../user/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="../user/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../user/plugins/summernote/summernote-bs4.css">
+   <!-- iCheck -->
+   <link rel="stylesheet" href="../user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="../user/plugins/jqvmap/jqvmap.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -984,9 +988,12 @@ if (!$admin_data) {
     <script src="../user/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="../user/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <script src="../user/dist/js/userlte.js"></script>
+    <script src="../user/dist/js/adminlte.js"></script>
     <script src="../user/dist/js/pages/dashboard.js"></script>
     <script src="../user/dist/js/demo.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

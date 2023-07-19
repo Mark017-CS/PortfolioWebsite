@@ -76,7 +76,7 @@ if (isset($_POST['login'])) {
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="../user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../user/dist/css/user.min.css">
+  <link rel="stylesheet" href="../user/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -167,7 +167,7 @@ if (isset($_POST['login'])) {
   <script src="../user/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="../user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../user/dist/js/userlte.min.js"></script>
+  <script src="../user/dist/js/adminlte.min.js"></script>
   <script>
     var passwordInput = document.querySelector('#password');
     var lockIcon = document.getElementById('lockIcon');

@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="../user/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../user/dist/css/user.min.css">
+  <link rel="stylesheet" href="../user/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <script src="../user/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="../user/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../user/dist/js/user.min.js"></script>
+  <script src="../user/dist/js/adminnlte.min.js"></script>
 </body>
 
 </html>

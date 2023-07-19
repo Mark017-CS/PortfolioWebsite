@@ -142,7 +142,7 @@ $home = mysqli_fetch_array($resultHome);
           <?php
           session_start();
           if (isset($_SESSION['user_id'])) {
-            echo '<li><a href="Home/account.php" target="_blank"><b class="navbar-link">ACCOUNT</b></a></li>';
+            echo '<li><a href="Home/account.php?sectioncontrol=true" target="_blank"><b class="navbar-link">ACCOUNT</b></a></li>';
             echo '<li><a href="components/logout.php"><b class="navbar-link">Logout</b></a></li>';
           } else {
             echo '<li><a href="components/register.php"><b class="navbar-link">Register</b></a></li>';
