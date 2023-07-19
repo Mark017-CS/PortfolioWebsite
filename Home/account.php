@@ -1397,12 +1397,11 @@ if (!$user_data) {
                       <table class="table">
                         <thead>
                           <tr>
-                            <th style="width: 10px">#</th>
+                            <th>User ID</th>
                             <th>Fullname</th>
                             <th>Email</th>
                             <th>Password</th>
                             <th>User Profile</th>
-                            <th>Code</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -1414,7 +1413,7 @@ if (!$user_data) {
                             ?>
                             <tr>
                               <td>
-                              <?= $c ?>
+                              <?= $pi['user_id'] ?>
                               </td>
                               <td>
                               <?= $pi['fullname'] ?>
@@ -1427,9 +1426,6 @@ if (!$user_data) {
                               </td> 
                               <td>
                               <img src="../images/<?= $pi['user_profile'] ?>" style="height: 70px; width: 100px;">
-                              </td>    
-                              <td>
-                              <?= $pi['code'] ?>
                               </td>                      
                             </tr>
                             <?php

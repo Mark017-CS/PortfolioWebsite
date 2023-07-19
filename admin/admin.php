@@ -92,7 +92,7 @@ if (!$admin_data) {
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="admin.php?changebackground=true" class="brand-link">
+      <a href="admin.php?homesetting=true" class="brand-link">
         <img src="../images/logo.png" alt="userLTE Logo" class="brand-image">
         <span class="brand-text font-weight-bold">ADMIN PANEL</span>
       </a>
@@ -105,6 +105,13 @@ if (!$admin_data) {
           <div class="info">
             <a href="#" class="d-block">
               <?= $admin_data['name'] ?>
+            </a>
+          </div>
+        </div>
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info" style="justify-content: center; align-items: center; text-align: center;">
+            <a href="#" class="d-block" style="font-style: italic;">
+            Admin ID: <?= $admin_data['admin_id'] ?>
             </a>
           </div>
         </div>
