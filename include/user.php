@@ -24,7 +24,7 @@ if (isset($_POST['add-section'])) {
 
   $run = mysqli_query($db, $query);
   if ($run) {
-    echo "<script>window.location.href='../Home/account.php';</script>";
+    echo "<script>window.location.href='../Home/account.php?sectioncontrol=true';</script>";
     exit();
   }
 }
@@ -49,13 +49,38 @@ if (isset($_POST['add-home'])) {
   }
 }
 
+//add-resume
+if (isset($_POST['add-resume'])) {
+  $type = $_POST['type'];
+  $title = mysqli_real_escape_string($db, $_POST['title']);
+  $time = mysqli_real_escape_string($db, $_POST['time']);
+  $org = mysqli_real_escape_string($db, $_POST['org']);
+  $about_exp = mysqli_real_escape_string($db, $_POST['about_exp']);
+
+  $query = "INSERT INTO resume (user_id, type, title, time, org, about_exp) ";
+  $query .= "VALUES (?, ?, ?, ?, ?, ?) ";
+  $query .= "ON DUPLICATE KEY UPDATE type=VALUES(type), title=VALUES(title), time=VALUES(time), org=VALUES(org), about_exp=VALUES(about_exp)";
+
+  $statement = mysqli_prepare($db, $query);
+  mysqli_stmt_bind_param($statement, "isssss", $userId, $type, $title, $time, $org, $about_exp);
+
+  $run = mysqli_stmt_execute($statement);
+  if (!$run) {
+    echo "Error executing query: " . mysqli_error($db);
+    exit();
+  } else {
+    echo "<script>window.location.href='../Home/account.php?resumesetting=true';</script>";
+    exit();
+  }
+}
+
 // Add About Details
 if (isset($_POST['add-about'])) {
   $title = mysqli_real_escape_string($db, $_POST['abouttitle']);
   $subtitle = mysqli_real_escape_string($db, $_POST['aboutsubtitle']);
   $desc = mysqli_real_escape_string($db, $_POST['aboutdesc']);
-  $imagename = time() . $_FILES['profile']['name'];
-  $imgtemp = $_FILES['profile']['tmp_name'];
+  $imagename = time() . $_FILES['profile_pic']['name'];
+  $imgtemp = $_FILES['profile_pic']['tmp_name'];
 
   if ($imgtemp == '') {
     $q = "SELECT * FROM about WHERE user_id=$userId";
@@ -322,7 +347,7 @@ if (isset($_POST['update-section'])) {
 
   $run = mysqli_query($db, $query);
   if ($run) {
-    echo "<script>window.location.href='../Home/account.php';</script>";
+    echo "<script>window.location.href='../Home/account.php?sectioncontrol=true';</script>";
     exit();
   }
 }
@@ -347,8 +372,8 @@ if (isset($_POST['update-about'])) {
   $title = mysqli_real_escape_string($db, $_POST['abouttitle']);
   $subtitle = mysqli_real_escape_string($db, $_POST['aboutsubtitle']);
   $desc = mysqli_real_escape_string($db, $_POST['aboutdesc']);
-  $imagename = time() . $_FILES['profile']['name'];
-  $imgtemp = $_FILES['profile']['tmp_name'];
+  $imagename = time() . $_FILES['profile_pic']['name'];
+  $imgtemp = $_FILES['profile_pic']['tmp_name'];
 
   if ($imgtemp == '') {
     $q = "SELECT * FROM about WHERE user_id=$userId";
@@ -457,13 +482,13 @@ if (isset($_POST['update-seo'])) {
   }
 }
 
-// Update Details Details
+// Update account Details
 if (isset($_POST['update-account'])) {
   $fullname = mysqli_real_escape_string($db, $_POST['fullname']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
-  $imagename = time() . $_FILES['profilepic']['name'];
-  $imgtemp = $_FILES['profilepic']['tmp_name'];
+  $imagename = time() . $_FILES['user_profile']['name'];
+  $imgtemp = $_FILES['suer_profile']['tmp_name'];
 
   if ($imgtemp == '') {
     $q = "SELECT * FROM user WHERE user_id=$userId";

@@ -7,6 +7,9 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
 
 $user_id = $_SESSION['user_id'];
 
+// Set SQL_BIG_SELECTS=1 to avoid the "MAX_JOIN_SIZE" error
+mysqli_query($db, "SET SQL_BIG_SELECTS=1");
+
 // Retrieve data for the specific user based on user_id
 $query = "SELECT * FROM user 
           LEFT JOIN home ON user.user_id = home.user_id 
@@ -131,7 +134,7 @@ if (!$user_data) {
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="info" style="justify-content: center; align-items: center; text-align: center;">
             <a href="portfolio.php?user_id=<?= $user_id ?>" class="d-block" style="font-style: italic;">
-              User ID: <?= $user_data['user_id'] ?>
+              User ID: <?= $user_id ?>
             </a>
           </div>
         </div>
@@ -392,7 +395,7 @@ if (!$user_data) {
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">About Profile</label>
                         <div class="input-container">
-                          <input type="file" class="form-control" name="background">
+                          <input type="file" class="form-control" name="profile_pic">
                           <i class="fas fa-image icon"></i>
                         </div>
                       </div>
@@ -609,7 +612,7 @@ if (!$user_data) {
                         <label for="exampleInputEmail1">Happy Clients</label>
                         <input type="number" class="form-control" name="happy_clients"
                           value="<?= $user_data['happy_clients'] ?>" id="exampleInputEmail1"
-                          placeholder="Enter Happy Cleints">
+                          placeholder="Enter Happy Clients">
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputPassword1">Projects</label>
@@ -770,7 +773,7 @@ if (!$user_data) {
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Profile</label>
                         <div class="input-container">
-                          <input type="file" class="form-control" name="background">
+                          <input type="file" class="form-control" name="profile">
                           <i class="fas fa-image icon"></i>
                         </div>
                       </div>
@@ -880,8 +883,8 @@ if (!$user_data) {
                       </div>
 
                       <div class="form-group col-6">
-                        <label for="exampleInputEmail1">About</label>
-                        <input type="text" class="form-control" name="about" id="exampleInputEmail1">
+                        <label for="exampleInputEmail1">About</label><br>
+                        <textarea cols="50" name="about_exp"></textarea>
                       </div>
                     </div>
                     <div class="card-footer">
@@ -1216,32 +1219,32 @@ if (!$user_data) {
                       <div class="form-group col-6">
                         <label for="exampleInputEmail1">Twitter</label>
                         <input type="text" class="form-control" name="twitter" id="exampleInputEmail1"
-                          placeholder="Enter username">
+                          placeholder="Enter link">
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputPassword1">Facebook</label>
                         <input type="text" class="form-control" name="facebook" id="exampleInputPassword1"
-                          placeholder="Enter Username">
+                          placeholder="Enter link">
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputPassword1">Instagram</label>
                         <input type="text" class="form-control" name="instagram" id="exampleInputPassword1"
-                          placeholder="Enter username">
+                          placeholder="Enter link">
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputPassword1">Skype</label>
                         <input type="text" class="form-control" name="skype" id="exampleInputPassword1"
-                          placeholder="Enter username">
+                          placeholder="Enter link">
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputPassword1">Youtube</label>
                         <input type="text" class="form-control" name="youtube" id="exampleInputPassword1"
-                          placeholder="Enter username">
+                          placeholder="Enter link">
                       </div>
                       <div class="form-group col-6">
                         <label for="exampleInputPassword1">Linkedin</label>
                         <input type="text" class="form-control" name="linkedin" id="exampleInputPassword1"
-                          placeholder="Enter username">
+                          placeholder="Enter link">
                       </div>
                     </div>
                     <!-- /.card-body -->

@@ -186,30 +186,30 @@ if (isset($user_data) && !empty($user_data)) {
         <div class="social-links">
 
           <?php if (isset($social_media['twitter']) && $social_media['twitter'] != '') { ?>
-            <a href="https://twitter.com/<?= $social_media['twitter'] ?>" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="https://twitter.com/<?= $social_media['twitter'] ?>" class="twitter" target="_blank"><i class="bi bi-twitter"></i></a>
           <?php } ?>
 
           <?php if (isset($social_media['facebook']) && $social_media['facebook'] != '') { ?>
-            <a href="https://facebook.com/<?= $social_media['facebook'] ?>" class="facebook"><i
+            <a href="https://facebook.com/<?= $social_media['facebook'] ?>" class="facebook" target="_blank"><i
                 class="bi bi-facebook"></i></a>
           <?php } ?>
 
           <?php if (isset($social_media['instagram']) && $social_media['instagram'] != '') { ?>
-            <a href="https://instagram.com/<?= $social_media['instagram'] ?>" class="instagram"><i
+            <a href="https://instagram.com/<?= $social_media['instagram'] ?>" class="instagram" target="_blank"><i
                 class="bi bi-instagram"></i></a>
           <?php } ?>
 
           <?php if (isset($social_media['skype']) && $social_media['skype'] != '') { ?>
-            <a href="https://join.skype.com/<?= $social_media['skype'] ?>" class="google-plus"><i
+            <a href="https://join.skype.com/<?= $social_media['skype'] ?>" class="google-plus" target="_blank"><i
                 class="bi bi-skype"></i></a>
           <?php } ?>
 
           <?php if (isset($social_media['youtube']) && $social_media['youtube'] != '') { ?>
-            <a href="https://youtube.com/<?= $social_media['youtube'] ?>" class="youtube"><i class="bi bi-youtube"></i></a>
+            <a href="https://youtube.com/<?= $social_media['youtube'] ?>" class="youtube" target="_blank"><i class="bi bi-youtube"></i></a>
           <?php } ?>
 
           <?php if (isset($social_media['linkedin']) && $social_media['linkedin'] != '') { ?>
-            <a href="https://linkedin.com/<?= $social_media['linkedin'] ?>" class="linkedin"><i
+            <a href="https://linkedin.com/<?= $social_media['linkedin'] ?>" class="linkedin" ><i
                 class="bi bi-linkedin"></i></a>
           <?php } ?>
         </div>
